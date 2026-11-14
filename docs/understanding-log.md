@@ -103,3 +103,13 @@ How to explain it:
 - `PathLine.jsx` draws an SVG path through every circle's center. `M` moves to the first point. Each `C` is a curve whose two control points pull the line straight down out of one circle and straight down into the next, which makes the S shape.
 - Names are `position: absolute` beside the circle, on the outside of the bend (`labelSide`), so they never push the circle off center and the line never crosses them.
 - Locked things use `--text-dim` (a readable grey) instead of `opacity`, which washes out on a projector. `--text-dim` is one new neutral grey, not a new brand color.
+
+## PR #14: Lesson path drawn like git log (2026-11-14, Nicolas)
+What it does: the lesson map now reads like a commit history. Each reached lesson shows a short commit hash, the current lesson has a `HEAD -> main` tag, and the line is solid where you've been and dashed ahead.
+How AI helped: Claude wrote the code from the polish plan (PR C). Study notes used: section 2 ("status is calculated, not stored"). The solid and dashed parts come from the same finished-lessons list, so nothing new is saved.
+How to explain it:
+- Real Git names every commit with a hash, a code made from its contents. Short hashes like `a1f9c2e` are the first 7 characters. Ours are made up and stored in `unit-1.json`.
+- A commit only gets its hash once it's made, so locked lessons don't show one yet (`showHash` in `LessonBubble.jsx`).
+- `HEAD -> main` is exactly what `git log --oneline` prints next to the commit you're on. We put it on the current lesson. JetBrains Mono turns `->` into an arrow by itself (a font "ligature").
+- `PathLine.jsx` now draws two lines: `points.slice(0, head + 1)` for the solid part you've walked, and `points.slice(head)` for the dashed part ahead. Both start or end at the current lesson, so they meet there.
+- `stroke-dasharray: 2 12` draws a 2px dash, then a 12px gap, over and over.

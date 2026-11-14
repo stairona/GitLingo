@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .lesson-bubble__circle {
@@ -13,14 +13,14 @@
   border: 1px solid var(--card-border);
   background: var(--card);
   color: var(--text-muted);
-  font-size: 1.5rem;
+  font-size: var(--text-xl);
   font-family: inherit;
   cursor: default;
 }
 
 .lesson-bubble__title {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
@@ -38,7 +38,7 @@
   background: var(--accent);
   border-color: var(--accent-tint);
   color: var(--text);
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   cursor: pointer;
   /* A soft pulsing glow made from the accent color. */
   box-shadow: 0 0 24px var(--accent);
@@ -62,9 +62,9 @@
 
 .lesson-bubble__start {
   color: var(--accent-light);
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 

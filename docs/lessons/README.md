@@ -30,7 +30,7 @@ How Git works under the hood, from most familiar to deepest. Reuses the same cha
 | File | Lesson | Demo user | Status |
 |---|---|---|---|
 | [Lesson 1](unit-3/lesson-1-three-areas.md) | The three areas (working directory, staging, repository) | Charley Dunkel | ✅ Written |
-| Lesson 2 | Snapshots & hashes | Jackson Stark | ⬜ Not started |
+| [Lesson 2](unit-3/lesson-2-snapshots-and-hashes.md) | Snapshots & hashes | Jackson Stark | ✅ Written |
 | Lesson 3 | Git as a database | Lily Lurvey | ⬜ Not started |
 | Lesson 4 | Centralized vs. distributed | All three | ⬜ Not started |
 

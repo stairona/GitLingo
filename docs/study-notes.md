@@ -104,7 +104,9 @@ Next.js gives them pages for free, Vite doesn't. Two options:
 | `XPBadge` | `TopBar.tsx` (streak and gem counts at the top) | A small pill with an icon and a number, grey when it's 0. |
 | Extras (stretch) | `CheckAnswer` -> `FeedbackBar`, `LessonComplete` | Slide-up feedback panel and an end-of-lesson summary. |
 
-Skip `LeftBar`, `RightBar` (644 lines of leaderboard and promo cards), `BottomBar` (tab nav, though we might borrow the idea of 2-3 tabs), `Calendar`, `LanguageCarousel`, `LanguageDropDown`, `Flag`, `LoginScreen` and `Svgs.tsx` (3,854 lines of icons). We'll use our own simple icons, emoji or a few inline SVGs.
+Update (PR #9): we now borrow the layout idea from `LeftBar` and `RightBar` for our app frame. `Sidebar` is a fixed left column with the logo and bold uppercase menu items, the active one outlined. `RightPanel` is a sticky right column of stacked cards. We still skip everything inside them: the leaderboard, streak and gem popups, promo cards, language picker and "More" menu. Our right panel shows lessons finished and a "how it works" card instead.
+
+Skip `BottomBar` (tab nav, though we might borrow the idea of 2-3 tabs), `Calendar`, `LanguageCarousel`, `LanguageDropDown`, `Flag`, `LoginScreen` and `Svgs.tsx` (3,854 lines of icons). We'll use our own simple icons, emoji or a few inline SVGs.
 
 ## 5. `src/styles/global.css` (look and feel)
 

@@ -19,11 +19,6 @@ function Home({ completedLessons, onStartLesson }) {
 
   return (
     <div className="home">
-      <header className="home__header">
-        <h1 className="home__logo">GitLingo</h1>
-        <p className="home__tagline">Learn Git and GitHub, one small lesson at a time.</p>
-      </header>
-
       <section className="unit">
         <div className="unit__banner">
           <span className="unit__label">Unit {unit1.number}</span>

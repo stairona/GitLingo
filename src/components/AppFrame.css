@@ -1,0 +1,11 @@
+/* Three columns: fixed-width sidebar, flexible middle, fixed-width right panel.
+   We only design for laptops, so there is no phone layout. */
+.app-frame {
+  display: grid;
+  grid-template-columns: 240px 1fr 340px;
+  min-height: 100vh;
+}
+
+.app-frame__main {
+  min-width: 0; /* lets the middle shrink instead of pushing the right panel off screen */
+}

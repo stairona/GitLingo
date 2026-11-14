@@ -2,23 +2,10 @@
 .home {
   max-width: 640px;
   margin: 0 auto;
-  padding: 48px 24px 96px;
+  padding: 32px 24px 96px;
   display: flex;
   flex-direction: column;
   gap: 32px;
-}
-
-.home__header {
-  text-align: center;
-}
-
-.home__logo {
-  color: var(--accent);
-  font-size: 2.5rem;
-}
-
-.home__tagline {
-  color: var(--text-muted);
 }
 
 /* A unit is a card with a banner on top and the lesson path below. */

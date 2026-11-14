@@ -29,7 +29,8 @@
   --radius: 16px;
   /* Nunito is loaded in index.html. The rest are backups if it can't load. */
   --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  /* JetBrains Mono (also from index.html) is for anything code: commands, hashes, paths. */
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
 /* Small reset: make sizes include padding, and remove the browser's default margins. */

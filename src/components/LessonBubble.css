@@ -54,6 +54,31 @@
   transition: transform 0.1s, box-shadow 0.1s, filter 0.15s;
 }
 
+/* The hash line: the hash, plus the HEAD tag on the current lesson. */
+.lesson-bubble__ref {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.lesson-bubble--label-left .lesson-bubble__ref {
+  justify-content: flex-end;
+}
+
+/* "HEAD -> main" as a small tag, the way git log shows where you are.
+   JetBrains Mono joins "->" into an arrow on its own. */
+.lesson-bubble__head {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--accent-tint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* The commit hash, in our code font, like a line of git log. */
 .lesson-bubble__hash {
   font-family: var(--font-mono);
@@ -108,7 +133,32 @@
   outline-offset: 6px;
 }
 
-.lesson-bubble--current /* The commit hash, in our code font, like a line of git log. */
+.lesson-bubble--current /* The hash line: the hash, plus the HEAD tag on the current lesson. */
+.lesson-bubble__ref {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.lesson-bubble--label-left .lesson-bubble__ref {
+  justify-content: flex-end;
+}
+
+/* "HEAD -> main" as a small tag, the way git log shows where you are.
+   JetBrains Mono joins "->" into an arrow on its own. */
+.lesson-bubble__head {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--accent-tint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* The commit hash, in our code font, like a line of git log. */
 .lesson-bubble__hash {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -135,7 +185,32 @@
   cursor: not-allowed;
 }
 
-.lesson-bubble--locked /* The commit hash, in our code font, like a line of git log. */
+.lesson-bubble--locked /* The hash line: the hash, plus the HEAD tag on the current lesson. */
+.lesson-bubble__ref {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.lesson-bubble--label-left .lesson-bubble__ref {
+  justify-content: flex-end;
+}
+
+/* "HEAD -> main" as a small tag, the way git log shows where you are.
+   JetBrains Mono joins "->" into an arrow on its own. */
+.lesson-bubble__head {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--accent-tint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* The commit hash, in our code font, like a line of git log. */
 .lesson-bubble__hash {
   font-family: var(--font-mono);
   font-size: var(--text-xs);

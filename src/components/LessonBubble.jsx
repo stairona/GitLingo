@@ -32,7 +32,13 @@ function LessonBubble({ title, hash, status, labelSide, onStart }) {
         </button>
       </div>
       <div className="lesson-bubble__label">
-        {showHash && <code className="lesson-bubble__hash">{hash}</code>}
+        {showHash && (
+          <div className="lesson-bubble__ref">
+            <code className="lesson-bubble__hash">{hash}</code>
+            {/* In git log, "HEAD -> main" marks where you are right now. */}
+            {isCurrent && <code className="lesson-bubble__head">HEAD -&gt; main</code>}
+          </div>
+        )}
         <span className="lesson-bubble__title">{title}</span>
         {isCurrent && <span className="lesson-bubble__start">Start</span>}
       </div>

@@ -3,9 +3,9 @@
   "number": 1,
   "title": "GitHub Fundamentals",
   "lessons": [
-    { "id": "u1-l1", "title": "Git vs GitHub" },
-    { "id": "u1-l2", "title": "Setting up Git" },
-    { "id": "u1-l3", "title": "Main commands" },
-    { "id": "u1-l4", "title": "Putting it on GitHub" }
+    { "id": "u1-l1", "hash": "a1f9c2e", "title": "Git vs GitHub" },
+    { "id": "u1-l2", "hash": "7c3e0b1", "title": "Setting up Git" },
+    { "id": "u1-l3", "hash": "e94d2a8", "title": "Main commands" },
+    { "id": "u1-l4", "hash": "3b7f6c0", "title": "Putting it on GitHub" }
   ]
 }

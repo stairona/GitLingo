@@ -14,8 +14,8 @@
 
 .lesson__label {
   color: var(--accent-light);
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -45,7 +45,9 @@
   background: var(--accent);
   color: var(--text);
   font: inherit;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 

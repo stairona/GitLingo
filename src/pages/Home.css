@@ -37,8 +37,8 @@
 
 .unit__label {
   color: var(--accent-light);
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }

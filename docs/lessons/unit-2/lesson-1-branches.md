@@ -1,6 +1,6 @@
 # Unit 2, Lesson 1: Branches
 
-**Status:** 🟡 Draft, needs review
+**Status:** ✅ Written
 **Structure:** "Welcome back" card → 3 teaching cards → 2 multiple choice → 2 terminal
 
 ---

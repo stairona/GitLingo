@@ -12,8 +12,11 @@ const ICONS = {
 // status is 'done', 'current' or 'locked'. Only the current lesson can be clicked.
 // labelSide ('left' or 'right') puts the name on the outside of the path's bend,
 // so the line joining the lessons never runs through the text.
-function LessonBubble({ title, status, labelSide, onStart }) {
+// hash is the lesson's short commit code. Like in Git, a commit only exists once
+// you get there, so locked lessons don't show one yet.
+function LessonBubble({ title, hash, status, labelSide, onStart }) {
   const isCurrent = status === 'current'
+  const showHash = status !== 'locked'
 
   return (
     <div className={`lesson-bubble lesson-bubble--${status} lesson-bubble--label-${labelSide}`}>
@@ -29,6 +32,7 @@ function LessonBubble({ title, status, labelSide, onStart }) {
         </button>
       </div>
       <div className="lesson-bubble__label">
+        {showHash && <code className="lesson-bubble__hash">{hash}</code>}
         <span className="lesson-bubble__title">{title}</span>
         {isCurrent && <span className="lesson-bubble__start">Start</span>}
       </div>

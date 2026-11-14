@@ -54,6 +54,13 @@
   transition: transform 0.1s, box-shadow 0.1s, filter 0.15s;
 }
 
+/* The commit hash, in our code font, like a line of git log. */
+.lesson-bubble__hash {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-light);
+}
+
 .lesson-bubble__title {
   color: var(--text-muted);
   font-size: var(--text-sm);
@@ -101,7 +108,14 @@
   outline-offset: 6px;
 }
 
-.lesson-bubble--current .lesson-bubble__title {
+.lesson-bubble--current /* The commit hash, in our code font, like a line of git log. */
+.lesson-bubble__hash {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-light);
+}
+
+.lesson-bubble__title {
   color: var(--text);
   font-weight: 800;
 }
@@ -121,7 +135,14 @@
   cursor: not-allowed;
 }
 
-.lesson-bubble--locked .lesson-bubble__title {
+.lesson-bubble--locked /* The commit hash, in our code font, like a line of git log. */
+.lesson-bubble__hash {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-light);
+}
+
+.lesson-bubble__title {
   color: var(--text-dim);
 }
 

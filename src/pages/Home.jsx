@@ -39,6 +39,7 @@ function Home({ completedLessons, onStartLesson }) {
             >
               <LessonBubble
                 title={lesson.title}
+                hash={lesson.hash}
                 status={getLessonStatus(lesson.id, index, firstUnfinishedIndex, completedLessons)}
                 labelSide={getPathOffset(index) < 0 ? 'left' : 'right'}
                 onStart={() => onStartLesson(lesson.id)}

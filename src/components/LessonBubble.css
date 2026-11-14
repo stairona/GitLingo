@@ -33,11 +33,11 @@
   font-weight: 700;
 }
 
-/* Done: filled purple with a check mark. */
+/* Done: dark inside with a purple ring and check, calm so the current lesson stands out. */
 .lesson-bubble--done .lesson-bubble__circle {
-  background: var(--accent-deep);
   border-color: var(--accent);
-  color: var(--text);
+  color: var(--accent-light);
+  box-shadow: 0 var(--lip) 0 var(--accent-deep);
 }
 
 /* Current: bigger, bright, glowing, and the only one you can click. */
@@ -87,9 +87,15 @@
   text-transform: uppercase;
 }
 
-/* Locked: dimmed so it clearly can't be clicked yet. */
-.lesson-bubble--locked {
-  opacity: 0.5;
+/* Locked: grey icon and grey name. We use quieter colors instead of making it
+   see-through, because see-through text washes out on a projector. */
+.lesson-bubble--locked .lesson-bubble__circle {
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+
+.lesson-bubble--locked .lesson-bubble__title {
+  color: var(--text-dim);
 }
 
 /* The glow pulses but the lip stays put, so both shadows are listed each time. */

@@ -25,7 +25,18 @@ Reuses the Unit 1 characters, now working together.
 
 ### Unit 3: GitHub Theory
 
-⬜ Not started.
+How Git works under the hood, from most familiar to deepest. Reuses the same characters.
+
+| File | Lesson | Demo user | Status |
+|---|---|---|---|
+| [Lesson 1](unit-3/lesson-1-three-areas.md) | The three areas (working directory, staging, repository) | Charley Dunkel | 🟡 Draft, needs review |
+| Lesson 2 | Snapshots & hashes | Jackson Stark | ⬜ Not started |
+| Lesson 3 | Git as a database | Lily Lurvey | ⬜ Not started |
+| Lesson 4 | Centralized vs. distributed | All three | ⬜ Not started |
+
+- **Lesson 4 uses 3 multiple choice + 1 terminal**, because it's mostly a concept and a forced second command would teach less.
+- **Left out on purpose:** "fast-forward" and `git reset`, to keep Unit 3 at 4 lessons.
+- **Still to decide:** whether Lesson 3 uses `git cat-file` to peek inside Git's database, or stays concepts only.
 
 ---
 

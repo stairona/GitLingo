@@ -72,3 +72,13 @@ How to explain it:
 - The progress bar is two divs. The inner one's width is the percent of lessons done (`finished / total * 100`), and `transition` makes it slide.
 - We show "lessons finished" instead of streaks and gems, because we decided not to have XP or streaks.
 - `App.jsx` only puts the frame around the home screen. The lesson screen is returned on its own, so it's full screen.
+
+## PR #10: Moon logo and tab icon (2026-11-14, Nicolas)
+What it does: adds our crescent-moon logo (with a git branch inside) to the sidebar, and replaces Vite's default browser-tab icon with a small version of the moon.
+How AI helped: Nicolas made the logo. Claude checked it at real sizes, moved one dot so the side branch reads better, made the cropped tab-icon version, and added it to the sidebar.
+How to explain it:
+- Files in `public/` are served as they are, so `public/gitlingo-logo.svg` loads at `/gitlingo-logo.svg`.
+- SVG is an image made of shapes and lines, so it stays sharp at any size and is only about 2 KB.
+- `viewBox` is the part of the drawing that's shown. The big logo leaves extra room for the glow. The favicon uses a tighter `viewBox`, so the moon fills the tiny tab.
+- The glow is a `feGaussianBlur` filter (a blur) on copies of the moon's outline. At 16px it's just fuzz, so the favicon skips it and uses thicker lines.
+- `alt=""` on the sidebar image tells screen readers it's decoration, so they read "GitLingo" from the text next to it instead of reading it twice.

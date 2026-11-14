@@ -36,7 +36,8 @@
   font-size: var(--text-xl);
 }
 
-/* The path: lessons stacked in a column, joined by a thin vertical line. */
+/* The path: lessons stacked in a column. Each row's height and its
+   left/right shift come from utils/pathLayout.js, so the path zig-zags. */
 .unit__path {
   list-style: none;
   margin: var(--space-7) 0 var(--space-2);
@@ -44,16 +45,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-/* Draw the line between two lessons (every lesson except the first gets one above it). */
-.unit__step + .unit__step::before {
-  content: '';
-  display: block;
-  width: 2px;
-  height: 32px;
-  margin: var(--space-2) auto;
-  background: var(--card-border);
 }
 
 /* Units that aren't ready yet use quieter colors (not see-through, so they stay readable). */

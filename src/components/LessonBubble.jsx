@@ -15,14 +15,17 @@ function LessonBubble({ title, status, onStart }) {
 
   return (
     <div className={`lesson-bubble lesson-bubble--${status}`}>
-      <button
-        className="lesson-bubble__circle"
-        onClick={onStart}
-        disabled={!isCurrent}
-        aria-label={`${title} (${status})`}
-      >
-        <Icon name={ICONS[status]} size={isCurrent ? 40 : 28} />
-      </button>
+      {/* Fixed-height slot so every circle's center sits at the same height in its row. */}
+      <div className="lesson-bubble__slot">
+        <button
+          className="lesson-bubble__circle"
+          onClick={onStart}
+          disabled={!isCurrent}
+          aria-label={`${title} (${status})`}
+        >
+          <Icon name={ICONS[status]} size={isCurrent ? 40 : 28} />
+        </button>
+      </div>
       <span className="lesson-bubble__title">{title}</span>
       {isCurrent && <span className="lesson-bubble__start">Start</span>}
     </div>

@@ -6,6 +6,15 @@
   gap: var(--space-2);
 }
 
+/* Same height as CIRCLE_SLOT in utils/pathLayout.js: big enough for the
+   current lesson's 96px circle plus its 8px lip. */
+.lesson-bubble__slot {
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .lesson-bubble__circle {
   /* Center the icon inside the circle. */
   display: flex;

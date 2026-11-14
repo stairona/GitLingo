@@ -3,7 +3,7 @@
 A Duolingo-style web app that teaches Git and GitHub to total beginners, one small lesson at a time.
 Built in 24 hours for the hackathon (Midnight Mode, so it's dark by default).
 
-Live site: coming soon (Vercel)
+Live site: https://hackathon-project-iota-three.vercel.app/
 
 ## How to run it on your laptop
 

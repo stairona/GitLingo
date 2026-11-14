@@ -1,9 +1,27 @@
-/* One lesson on the map: a circle with the lesson name under it. */
+/* One lesson on the map: a circle with its name beside it.
+   The name is placed with position: absolute, so it doesn't push the circle
+   off the path's center line. */
 .lesson-bubble {
+  position: relative;
+}
+
+.lesson-bubble__label {
+  position: absolute;
+  top: 52px; /* the circle's center (half of the 104px slot) */
+  transform: translateY(-50%);
+  width: 180px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
+}
+
+.lesson-bubble--label-right .lesson-bubble__label {
+  left: calc(100% + var(--space-4));
+}
+
+.lesson-bubble--label-left .lesson-bubble__label {
+  right: calc(100% + var(--space-4));
+  text-align: right;
 }
 
 /* Same height as CIRCLE_SLOT in utils/pathLayout.js: big enough for the

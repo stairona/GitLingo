@@ -15,4 +15,7 @@ main idea: git/github duolingo learning type website app
 - undoing mistakes (restore, revert)
 
 3. github theory
-- 
+- version control - snapshots - hashes
+- git as a database
+- The 3 areas (working directory → staging area → repository)
+- Centralized vs distributed (one shared server vs everyone having the full history)

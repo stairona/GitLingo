@@ -56,3 +56,14 @@ How to explain it:
 - The font loads with a `<link>` in `index.html`, with no npm package. `preconnect` opens the connection to Google early so it loads faster.
 - `display=swap` shows a backup font right away, then switches to Nunito, so text is never invisible.
 - `--font-body` lists backup fonts in case Nunito can't load.
+
+## PR #9: App frame with sidebar and progress panel (2026-11-14, Nicolas)
+What it does: the home screen is now 3 columns like Duolingo: a sidebar with the logo and LEARN on the left, the unit map in the middle, and a progress panel on the right. Lessons still open full screen.
+How AI helped: Claude studied react-duolingo's LeftBar and RightBar layout (ideas only, no code copied) and wrote the components after we asked.
+How to explain it:
+- `AppFrame.jsx` is a wrapper. Whatever we put between `<AppFrame>` and `</AppFrame>` arrives as `children` and is drawn in the middle column.
+- `AppFrame.css` uses CSS grid: `grid-template-columns: 240px 1fr 340px` means a fixed sidebar, a middle that takes the leftover space, and a fixed right panel.
+- `position: sticky; top: 0` keeps the sidebar and right panel in place while the middle scrolls.
+- The progress bar is two divs. The inner one's width is the percent of lessons done (`finished / total * 100`), and `transition` makes it slide.
+- We show "lessons finished" instead of streaks and gems, because we decided not to have XP or streaks.
+- `App.jsx` only puts the frame around the home screen. The lesson screen is returned on its own, so it's full screen.

@@ -16,3 +16,7 @@ dist/
 
 # Vercel CLI local folder
 .vercel/
+
+# Log files and local-only Vite settings
+*.log
+*.local

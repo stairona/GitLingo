@@ -19,8 +19,8 @@ Reuses the Unit 1 characters, now working together.
 | File | Lesson | Demo user | Status |
 |---|---|---|---|
 | [Lesson 1](unit-2/lesson-1-branches.md) | Branches | Charley Dunkel | 🟡 Draft, needs review |
-| Lesson 2 | Merging | Charley Dunkel | ⬜ Not started |
-| Lesson 3 | Pull requests & teamwork | Jackson Stark + Charley Dunkel | ⬜ Not started |
+| [Lesson 2](unit-2/lesson-2-merging.md) | Merging on GitHub (pull requests) | Charley Dunkel | 🟡 Draft, needs review |
+| Lesson 3 | Teamwork (cloning, reviewing, staying up to date) | Jackson Stark + Charley Dunkel | ⬜ Not started |
 | Lesson 4 | Undoing mistakes | Lily Lurvey | ⬜ Not started |
 
 ### Unit 3: GitHub Theory

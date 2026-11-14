@@ -1,0 +1,11 @@
+{
+  "id": "unit-1",
+  "number": 1,
+  "title": "GitHub Fundamentals",
+  "lessons": [
+    { "id": "u1-l1", "title": "Git vs GitHub" },
+    { "id": "u1-l2", "title": "Setting up Git" },
+    { "id": "u1-l3", "title": "Main commands" },
+    { "id": "u1-l4", "title": "Putting it on GitHub" }
+  ]
+}

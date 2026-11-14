@@ -1,17 +1,30 @@
-/* Midnight theme: every color in the app comes from these variables.
-   To try a different look, change a value here and the whole app updates.
-   The accent color is still open (see docs/lessons/README.md), so swap it freely. */
+/* Midnight theme: dark purple neon, based on the Central Hacks colors.
+   Every color in the app comes from these variables. Components use only
+   these names, never a hex code, so changing a value here restyles the whole app. */
 :root {
-  --bg: #0b1026;          /* deep midnight navy, not pure black */
-  --surface: #161d3d;     /* cards and panels, a bit lighter so they float */
-  --border: #2a3463;      /* thin outlines around cards and the terminal */
-  --text: #eef1ff;        /* main text, bright enough for a projector */
-  --text-muted: #b3bbdf;  /* secondary text, still easy to read on navy */
-  --accent: #8b7bff;      /* the one bright color: buttons, current lesson, progress */
-  --correct: #4cc38a;     /* softened green */
-  --wrong: #f06a6a;       /* softened red */
-  --terminal-bg: #05070f; /* darker than the background */
-  --terminal-text: #d6ffe0;
+  /* Backgrounds */
+  --bg: #0d0714;           /* page background: flat near-black purple, no gradient */
+  --bg-alt: #0e071b;       /* optional, slightly lighter section background */
+  --card: #180b2d;         /* cards, panels, lesson bubbles, quiz boxes */
+  --card-border: #5b21b6;  /* the 1px border on every card */
+
+  /* Purple accents */
+  --accent: #a855f7;       /* main accent: buttons, progress fill, top bar, active states */
+  --accent-light: #c084fc; /* small uppercase labels, subtitles, numbers, links */
+  --accent-deep: #6b21a8;  /* hover or pressed state, decorative shapes */
+  --accent-tint: #e9d5ff;  /* very light highlight, use sparingly */
+
+  /* Text */
+  --text: #ffffff;         /* headings and main text */
+  --text-muted: #cbd5e1;   /* body text and descriptions */
+
+  /* Feedback: only for right/wrong answers and hearts */
+  --success: #22c55e;
+  --danger: #ef4444;
+
+  /* Practice terminal: darker than the page so it stands out */
+  --terminal-bg: #07040b;
+  --terminal-text: #e9d5ff;
 
   --radius: 16px;
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;

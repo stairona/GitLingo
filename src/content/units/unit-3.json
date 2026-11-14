@@ -1,0 +1,400 @@
+{
+  "id": "unit-3",
+  "number": 3,
+  "title": "GitHub Theory",
+  "lessons": [
+    {
+      "id": "u3-l1",
+      "hash": "6b1d3a9",
+      "title": "The three areas",
+      "user": {
+        "name": "Charley Dunkel",
+        "welcomeTitle": "Charley's back, with a choice to make.",
+        "backstory": "Charley fixed a bug in `app.py`, and also scribbled some messy notes in `notes.txt`. Only the bug fix should go in the next snapshot. Time to find out how Git lets you choose.",
+        "fields": [
+          { "label": "Name", "value": "Charley Dunkel" },
+          { "label": "Project folder", "value": "weather-app" },
+          { "label": "Changed files", "value": "app.py (a bug fix), notes.txt (personal notes, not ready to save)" }
+        ]
+      },
+      "cards": [
+        {
+          "title": "Git has three areas",
+          "body": ["Remember packing a box in Unit 1? Each step has a real name:"],
+          "bullets": [
+            "Working directory: the files on your laptop that you edit",
+            "Staging area: the box, holding the changes you picked for the next snapshot",
+            "Repository: your saved snapshots, kept in the hidden `.git` folder"
+          ],
+          "diagram": "[ Working directory ]  --git add-->  [ Staging area ]  --git commit-->  [ Repository ]"
+        },
+        {
+          "title": "Why have a staging area?",
+          "body": ["The staging area lets you choose. If you changed two files but only one is ready, stage just that one. The snapshot will contain only what you put in the box."]
+        },
+        {
+          "title": "`git status` shows the areas",
+          "body": ["Now you know what red and green in `git status` really mean:"],
+          "bullets": [
+            "\"Changes to be committed\" (green): in the staging area",
+            "\"Changes not staged for commit\" (red): only in the working directory"
+          ]
+        },
+        {
+          "title": "Taking something back out of the box",
+          "body": [
+            "`git restore --staged notes.txt` takes a file out of the staging area but keeps your edits in the working directory.",
+            "Careful: don't mix it up with plain `git restore notes.txt` from Unit 2, which throws your edits away. The `--staged` makes all the difference."
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "prompt": "Charley picked some changes with `git add`. Which area are they in now?",
+          "options": ["Working directory", "Staging area", "Repository"],
+          "correctIndex": 1,
+          "wrongFeedback": "`git add` puts changes in the staging area, the box for the next snapshot. They reach the repository only after `git commit`."
+        },
+        {
+          "type": "terminal",
+          "prompt": "Only the bug fix is ready. Stage just `app.py`.",
+          "startingHistory": [
+            { "text": "$ git status" },
+            { "text": "On branch main" },
+            { "text": "Changes not staged for commit:" },
+            { "text": "        modified:   app.py", "color": "red" },
+            { "text": "        modified:   notes.txt", "color": "red" }
+          ],
+          "acceptedAnswers": ["git add app.py"],
+          "fakeOutput": []
+        },
+        {
+          "type": "terminal",
+          "prompt": "Charley changed their mind: the bug fix needs more work first. Take `app.py` back out of the staging area, without losing the edits.",
+          "startingHistory": [
+            { "text": "$ git status" },
+            { "text": "On branch main" },
+            { "text": "Changes to be committed:" },
+            { "text": "        modified:   app.py", "color": "green" },
+            { "text": "Changes not staged for commit:" },
+            { "text": "        modified:   notes.txt", "color": "red" }
+          ],
+          "acceptedAnswers": [
+            "git restore --staged app.py",
+            "git reset app.py",
+            "git reset HEAD app.py"
+          ],
+          "fakeOutput": []
+        },
+        {
+          "type": "multiple-choice",
+          "prompt": "After `git restore --staged app.py`, what happened to Charley's bug-fix edits?",
+          "options": [
+            "They're still in the working directory, just not staged",
+            "They were deleted for good",
+            "They were saved in a snapshot"
+          ],
+          "correctIndex": 0,
+          "wrongFeedback": "`--staged` only takes the file out of the box. The edits are still in the working directory. (Plain `git restore` without `--staged` is the one that throws edits away.)"
+        }
+      ]
+    },
+    {
+      "id": "u3-l2",
+      "hash": "f27c8e4",
+      "title": "Snapshots & hashes",
+      "user": {
+        "name": "Jackson Stark",
+        "welcomeTitle": "Jackson's back, and Charley has a question.",
+        "backstory": "Charley messaged: \"Which commit added the forecast? Send me its ID so I can take a look.\" Every commit has an ID, but what is it, and where does it come from?",
+        "fields": [
+          { "label": "Name", "value": "Jackson Stark" },
+          { "label": "Email", "value": "jackson.stark@example.com" },
+          { "label": "Project", "value": "weather-app (Charley's repo)" },
+          { "label": "Branch", "value": "add-forecast" },
+          { "label": "Commit to find", "value": "Add 5-day forecast" }
+        ]
+      },
+      "cards": [
+        {
+          "title": "Snapshots, not lists of changes",
+          "body": ["Each commit is a snapshot: a picture of your whole project at that moment, not just a list of what changed. Files that didn't change aren't copied again. Git just points to the copy it already has. That's how Git stays fast and small."]
+        },
+        {
+          "title": "Every snapshot has an ID called a hash",
+          "body": ["Every commit gets an ID called a hash: 40 letters and numbers, like `4c5d6e7f8a9b0c1d2e3f...`. Git calculates it from everything in the commit: the files, the author, the time, the message, and the hash of the commit before it. Think of it as the commit's fingerprint."]
+        },
+        {
+          "title": "Why fingerprints matter",
+          "body": ["Change even one letter in a commit, and its hash changes completely. And because every commit includes the hash of the one before it, changing an old commit would change every hash after it too. So Git can always tell if history was changed."]
+        },
+        {
+          "title": "Using hashes",
+          "body": ["You usually only need the first 7 characters, like `4c5d6e7`. That's the short ID you saw with `git log --oneline` in Unit 2."],
+          "bullets": [
+            "`git log` shows your commits with their full hashes",
+            "`git show 4c5d6e7` opens one snapshot and shows what changed in it"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "prompt": "What is a commit hash?",
+          "options": [
+            "The commit's message",
+            "A password that protects the commit",
+            "A unique ID calculated from everything in the commit"
+          ],
+          "correctIndex": 2,
+          "wrongFeedback": "A hash is a commit's fingerprint: an ID Git calculates from the files, author, time, message and the commit before it."
+        },
+        {
+          "type": "terminal",
+          "prompt": "Show Jackson's commit history, with the full hashes.",
+          "startingHistory": [],
+          "acceptedAnswers": ["git log"],
+          "fakeOutput": [
+            "commit 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d (HEAD -> add-forecast)",
+            "Author: Jackson Stark <jackson.stark@example.com>",
+            "Date:   Sat Nov 14 21:15:42 2026 -0500",
+            "",
+            "    Add 5-day forecast",
+            "",
+            "commit 7b6a5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b",
+            "Author: Charley Dunkel <charley.dunkel@example.com>",
+            "Date:   Sat Nov 14 19:02:10 2026 -0500",
+            "",
+            "    Add dark mode"
+          ]
+        },
+        {
+          "type": "terminal",
+          "prompt": "Open the \"Add 5-day forecast\" snapshot using its short hash, `4c5d6e7`.",
+          "startingHistory": [
+            { "text": "$ git log" },
+            { "text": "commit 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d (HEAD -> add-forecast)" },
+            { "text": "Author: Jackson Stark <jackson.stark@example.com>" },
+            { "text": "Date:   Sat Nov 14 21:15:42 2026 -0500" },
+            { "text": "" },
+            { "text": "    Add 5-day forecast" },
+            { "text": "" },
+            { "text": "commit 7b6a5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b" },
+            { "text": "Author: Charley Dunkel <charley.dunkel@example.com>" },
+            { "text": "Date:   Sat Nov 14 19:02:10 2026 -0500" },
+            { "text": "" },
+            { "text": "    Add dark mode" }
+          ],
+          "acceptedAnswers": [
+            "git show 4c5d6e7",
+            "git show 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d",
+            "git show HEAD"
+          ],
+          "fakeOutput": [
+            "commit 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d (HEAD -> add-forecast)",
+            "Author: Jackson Stark <jackson.stark@example.com>",
+            "Date:   Sat Nov 14 21:15:42 2026 -0500",
+            "",
+            "    Add 5-day forecast",
+            "",
+            "diff --git a/forecast.py b/forecast.py",
+            "new file mode 100644",
+            "--- /dev/null",
+            "+++ b/forecast.py",
+            "@@ -0,0 +1,3 @@",
+            "+def five_day_forecast(city):",
+            "+    # Get the weather for the next 5 days",
+            "+    ..."
+          ]
+        },
+        {
+          "type": "multiple-choice",
+          "prompt": "Someone secretly edits an old commit in Jackson's history. What happens to the hashes?",
+          "options": [
+            "Nothing changes",
+            "That commit's hash changes, and so does every hash after it",
+            "Only the newest commit's hash changes"
+          ],
+          "correctIndex": 1,
+          "wrongFeedback": "Each commit includes the hash of the one before it, so changing an old commit changes its hash and every hash after it."
+        }
+      ]
+    },
+    {
+      "id": "u3-l3",
+      "hash": "0d9e5b2",
+      "title": "Git as a database",
+      "user": {
+        "name": "Lily Lurvey",
+        "welcomeTitle": "Lily's back, and curious.",
+        "backstory": "Lily has been saving snapshots for a while now, and even undid a broken commit. But where does Git actually keep all of that? Time to find Git's hidden database.",
+        "fields": [
+          { "label": "Name", "value": "Lily Lurvey" },
+          { "label": "Project folder", "value": "portfolio" },
+          { "label": "Files", "value": "index.html, about.html, style.css" }
+        ]
+      },
+      "cards": [
+        {
+          "title": "Git is a database",
+          "body": [
+            "A database is a place that stores information so you can look it up later. Git's database stores every snapshot of your project. It lives in a hidden folder called `.git` inside your project, created when you ran `git init`.",
+            "`ls -a` lists all files, including hidden ones (names starting with a dot). On Windows, use Git Bash for this."
+          ]
+        },
+        {
+          "title": "What's inside",
+          "body": ["Git stores three kinds of things:"],
+          "bullets": [
+            "File contents: what's inside each file",
+            "Folder lists: which files are in each folder",
+            "Commits: who, when, the message, and which snapshot came before"
+          ],
+          "footer": "(If you're curious, their official names are blobs, trees and commits.)"
+        },
+        {
+          "title": "Everything is filed under its hash",
+          "body": ["Every item is stored under its hash, like a label on a drawer. Two files with exactly the same contents get the same hash, so Git stores them only once. That's why unchanged files aren't copied in every snapshot."]
+        },
+        {
+          "title": "Don't touch `.git`",
+          "body": ["Never edit or delete the `.git` folder yourself. If it's deleted, your current files stay, but every snapshot is gone: your whole history. (Unless it's also on GitHub. Another reason to push!)"]
+        }
+      ],
+      "questions": [
+        {
+          "type": "terminal",
+          "prompt": "List all the files in Lily's project, including hidden ones.",
+          "startingHistory": [
+            { "text": "$ ls" },
+            { "text": "about.html  index.html  style.css" }
+          ],
+          "acceptedAnswers": ["ls -a", "ls -la", "ls -al"],
+          "fakeOutput": [".  ..  .git  about.html  index.html  style.css"]
+        },
+        {
+          "type": "multiple-choice",
+          "prompt": "Lily deletes the `.git` folder by accident (and never pushed). What's lost?",
+          "options": [
+            "Nothing, Git rebuilds it",
+            "Every snapshot, the whole history. The current files stay.",
+            "The current files, but the history stays"
+          ],
+          "correctIndex": 1,
+          "wrongFeedback": "`.git` is the database. Delete it and every snapshot is gone, though the current files stay."
+        },
+        {
+          "type": "terminal",
+          "prompt": "Ask Git's database for all of Lily's snapshots, one per line.",
+          "startingHistory": [],
+          "acceptedAnswers": ["git log --oneline"],
+          "fakeOutput": [
+            "7d3e2f1 (HEAD -> main, origin/main) Revert \"Add contact form\"",
+            "e4f5a6b Add contact form",
+            "9c8d7e6 Add project page",
+            "a1b2c3d First version of portfolio"
+          ]
+        },
+        {
+          "type": "multiple-choice",
+          "prompt": "Lily has two files with exactly the same contents. How many copies of those contents does Git store?",
+          "options": [
+            "Two, one for each file",
+            "None, Git only stores changes",
+            "One, because same contents means the same hash"
+          ],
+          "correctIndex": 2,
+          "wrongFeedback": "Git files everything under its hash. Same contents, same hash, so it's stored only once."
+        }
+      ]
+    },
+    {
+      "id": "u3-l4",
+      "hash": "8e3a7c6",
+      "title": "Centralized vs. distributed",
+      "user": {
+        "name": "Jackson Stark",
+        "welcomeTitle": "The whole crew is back!",
+        "backstory": "Jackson, Charley and Lily are having a late study session at the library, when the Wi-Fi goes down. Lily panics: \"Can we still work without GitHub?\" Time to find out why Git says yes.",
+        "fields": [
+          { "label": "You are", "value": "Jackson Stark" },
+          { "label": "With", "value": "Charley Dunkel, Lily Lurvey" },
+          { "label": "Project", "value": "weather-app" },
+          { "label": "Branch", "value": "add-forecast" },
+          { "label": "Commit message", "value": "Add rain alerts" }
+        ]
+      },
+      "cards": [
+        {
+          "title": "Two ways to share a project",
+          "body": [
+            "Centralized: one central server holds the history. Everyone's laptop only has the latest files. Older tools like Subversion (SVN) work this way.",
+            "Distributed: every copy has the full history. Git works this way."
+          ],
+          "diagram": "Centralized:   [laptop]   [laptop]   [laptop]\n                     \\        |        /\n               [ Server: the only history ]\n\nDistributed:   [laptop: full history] <--> [GitHub: full history] <--> [laptop: full history]"
+        },
+        {
+          "title": "You already have everything",
+          "body": ["When you clone a project, you get every snapshot ever made, not just the latest files. That's why `git log`, `git commit`, `git branch` and `git switch` all work with no internet."]
+        },
+        {
+          "title": "Only some commands need internet",
+          "body": ["The commands that talk to GitHub need internet: `git clone`, `git push` and `git pull`. Everything else works anywhere, even on a plane."]
+        },
+        {
+          "title": "No single point of failure",
+          "body": ["In a centralized system, if the server breaks, the history can be lost. With Git, every clone is a full backup. GitHub is just the copy your team agreed to share. That's what \"distributed\" means."]
+        }
+      ],
+      "questions": [
+        {
+          "type": "multiple-choice",
+          "prompt": "What's the big difference between centralized and distributed version control?",
+          "options": [
+            "In distributed (like Git), every copy has the full history",
+            "Distributed only works with internet",
+            "Centralized lets everyone work offline"
+          ],
+          "correctIndex": 0,
+          "wrongFeedback": "In a distributed system like Git, every copy has the full history. In a centralized one, only the server does."
+        },
+        {
+          "type": "terminal",
+          "prompt": "No Wi-Fi, so the push failed. But Jackson can still save new work. Commit the staged changes with the message on the profile card.",
+          "startingHistory": [
+            { "text": "$ git push" },
+            { "text": "fatal: unable to access 'https://github.com/charley-dunkel-gitlingo/weather-app.git/': Could not resolve host: github.com", "color": "red" },
+            { "text": "$ git add ." }
+          ],
+          "acceptedAnswers": [
+            "git commit -m \"Add rain alerts\"",
+            "git commit -m 'Add rain alerts'"
+          ],
+          "fakeOutput": [
+            "[add-forecast 5e6f7a8] Add rain alerts",
+            " 1 file changed, 8 insertions(+)"
+          ]
+        },
+        {
+          "type": "multiple-choice",
+          "prompt": "The Wi-Fi is still down. Which of these commands won't work?",
+          "options": ["`git commit`", "`git log`", "`git push`"],
+          "correctIndex": 2,
+          "wrongFeedback": "`git push` talks to GitHub, so it needs internet. `git commit` and `git log` only use your own copy."
+        },
+        {
+          "type": "multiple-choice",
+          "prompt": "Imagine GitHub's copy of the weather app was lost. Could the team get their project back?",
+          "options": [
+            "No, GitHub had the only history",
+            "Yes, any teammate's clone has the full history",
+            "Only the latest files, not the history"
+          ],
+          "correctIndex": 1,
+          "wrongFeedback": "Every clone is a full copy of the history, so any teammate could put it all back."
+        }
+      ]
+    }
+  ]
+}

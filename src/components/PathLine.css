@@ -9,7 +9,17 @@
 
 .path-line path {
   fill: none;
-  stroke: var(--card-border);
   stroke-width: 4;
   stroke-linecap: round;
+}
+
+/* The part you've already walked: solid and bright. */
+.path-line__done {
+  stroke: var(--accent);
+}
+
+/* The part still ahead: dashed and quiet, like commits that don't exist yet. */
+.path-line__ahead {
+  stroke: var(--card-border);
+  stroke-dasharray: 2 12;
 }

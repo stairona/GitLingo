@@ -48,6 +48,11 @@ How to explain it: Vercel watches our GitHub repo and rebuilds the site every ti
 What it does: removed the placeholder files from folders that have real code now.
 How to explain it: we typed the `git rm` and the commit ourselves. Only `src/utils` keeps its `.gitkeep` because it's still empty.
 
+## PR #7: Unit 2 lessons (2026-11-14, Gavin)
+What it does: planned Unit 2 and wrote its four lessons (branches, merging with a pull request, teamwork, undoing mistakes) in `docs/lessons/unit-2/`.
+How AI helped: Claude drafted the lesson text and readme updates from our decisions; Gavin reviewed and approved them.
+Can we explain it? Yes
+
 ## PR #8: Nunito font (2026-11-14, Nicolas)
 What it does: the whole app uses Nunito, a free rounded font, with extra bold titles, labels and buttons.
 How AI helped: Claude checked react-duolingo (it uses no special font) and suggested Nunito as the closest free match.

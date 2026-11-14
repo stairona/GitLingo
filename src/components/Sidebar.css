@@ -1,0 +1,52 @@
+/* Left column: stays in place while the middle scrolls. */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 32px 20px;
+  border-right: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sidebar__logo {
+  padding-left: 12px;
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.sidebar__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* One menu row: icon + bold uppercase word. */
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* The page you're on gets a purple outline and purple text. */
+.sidebar__item--active {
+  border-color: var(--accent);
+  background: var(--card);
+  color: var(--accent-light);
+}
+
+.sidebar__icon {
+  font-size: 1.5rem;
+}

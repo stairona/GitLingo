@@ -1,7 +1,9 @@
 # GitLingo: UX & Lesson Decisions
 
 Reference for when we start coding. Everything here was decided during UX planning.
-Each lesson's full content (cards, questions, answers) is in `unit-1/`.
+Each lesson's full content (cards, questions, answers) is in `unit-1/`, `unit-2/` and `unit-3/`.
+
+### Unit 1: GitHub Fundamentals
 
 | File | Lesson | Demo user | Status |
 |---|---|---|---|
@@ -9,6 +11,21 @@ Each lesson's full content (cards, questions, answers) is in `unit-1/`.
 | [Lesson 2](unit-1/lesson-2-setting-up-git.md) | Setting up Git | Jackson Stark | ✅ Written |
 | [Lesson 3](unit-1/lesson-3-main-commands.md) | Main commands | Charley Dunkel | ✅ Written |
 | [Lesson 4](unit-1/lesson-4-putting-it-on-github.md) | Putting it on GitHub | Lily Lurvey | ✅ Written |
+
+### Unit 2: GitHub Advanced
+
+Reuses the Unit 1 characters, now working together.
+
+| File | Lesson | Demo user | Status |
+|---|---|---|---|
+| [Lesson 1](unit-2/lesson-1-branches.md) | Branches | Charley Dunkel | ✅ Written |
+| [Lesson 2](unit-2/lesson-2-merging.md) | Merging on GitHub (pull requests) | Charley Dunkel | ✅ Written |
+| [Lesson 3](unit-2/lesson-3-teamwork.md) | Teamwork (cloning, reviewing, staying up to date) | Jackson Stark + Charley Dunkel | ✅ Written |
+| [Lesson 4](unit-2/lesson-4-undoing-mistakes.md) | Undoing mistakes (restore, revert) | Lily Lurvey | ✅ Written |
+
+### Unit 3: GitHub Theory
+
+⬜ Not started.
 
 ---
 
@@ -19,7 +36,8 @@ Each lesson's full content (cards, questions, answers) is in `unit-1/`.
 - **Device:** Laptops (desktop layout only; no mobile layout).
 - **Hackathon:** 24 hours, team of 2, both coding.
 - **Track:** Games & Late Night Experiences. We lean on *game feel* (hearts, unlocking lessons, satisfying feedback, a win screen) and a midnight theme. **No late-night story.**
-- **Demo scope:** Unit 1 (GitHub Fundamentals), 4 lessons. Units 2 & 3 appear on the map as locked.
+- **Demo scope:** All 3 units, 4 lessons each. Every lesson uses the same screens and question types, so Units 2 & 3 are mostly new lesson data. Build and polish Unit 1 first, then add Units 2 & 3.
+- **Dropped:** "GitHub for students" (from the original outline). It isn't a Git command, so it doesn't fit the terminal-question format.
 
 ## Game rules
 
@@ -38,6 +56,8 @@ Each lesson's full content (cards, questions, answers) is in `unit-1/`.
 - Questions only test things a teaching card already explained.
 - The progress bar covers the **whole lesson** (cards + questions).
 - Answer order is **fixed**, never shuffled. No random variables anywhere.
+- **Questions appear in the order they're listed in the lesson data.** Most lessons list multiple choice first, then terminal, but a lesson can follow the real workflow instead (e.g. Unit 2: terminal → multiple choice → multiple choice → terminal).
+- **"Welcome back" card:** returning characters (Units 2+) get a "Welcome back" card instead of "Meet your user". Same layout.
 - Wrong-answer messages always show **the correct answer and why**.
 
 ## Demo users
@@ -150,7 +170,7 @@ Big ✓, "Lesson complete!", hearts left ("Perfect: no hearts lost!" if 3), **[ 
 ## Out of scope (pitch as "future ideas")
 
 Accounts/login, streaks, XP, settings, sound, mobile layout, drag-and-drop questions,
-put-in-order questions, Units 2 & 3 content.
+put-in-order questions.
 
 ## Still open
 

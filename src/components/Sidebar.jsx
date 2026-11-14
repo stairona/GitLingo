@@ -1,3 +1,4 @@
+import Icon from './Icon.jsx'
 import './Sidebar.css'
 
 // The left column: our logo and the main menu.
@@ -14,9 +15,7 @@ function Sidebar() {
       <ul className="sidebar__menu">
         <li>
           <span className="sidebar__item sidebar__item--active">
-            <span className="sidebar__icon" aria-hidden="true">
-              🏠
-            </span>
+            <Icon name="home" size={28} />
             Learn
           </span>
         </li>

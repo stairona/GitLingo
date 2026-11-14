@@ -1,4 +1,5 @@
 import LessonBubble from '../components/LessonBubble.jsx'
+import Icon from '../components/Icon.jsx'
 import unit1 from '../content/unit-1/unit-1.json'
 import upcomingUnits from '../content/upcoming-units.json'
 import './Home.css'
@@ -41,7 +42,9 @@ function Home({ completedLessons, onStartLesson }) {
       {upcomingUnits.map((unit) => (
         <section key={unit.number} className="unit unit--locked">
           <div className="unit__banner">
-            <span className="unit__label">Unit {unit.number} · Coming soon 🔒</span>
+            <span className="unit__label">
+              <Icon name="lock" size={14} /> Unit {unit.number} · Coming soon
+            </span>
             <h2 className="unit__title">{unit.title}</h2>
           </div>
         </section>

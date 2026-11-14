@@ -3,17 +3,17 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: 32px 20px;
+  padding: var(--space-7) var(--space-5);
   border-right: 1px solid var(--card-border);
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--space-7);
 }
 
 .sidebar__brand {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
 }
 
 /* The logo file has extra space around the moon for its glow,
@@ -25,7 +25,7 @@
 
 .sidebar__logo {
   color: var(--accent);
-  font-size: 1.75rem;
+  font-size: var(--text-2xl);
   font-weight: 900;
 }
 
@@ -35,20 +35,20 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 /* One menu row: icon + bold uppercase word. */
 .sidebar__item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px;
+  gap: var(--space-4);
+  padding: var(--space-3);
   border: 2px solid transparent;
   border-radius: var(--radius);
   color: var(--text-muted);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-button);
   text-transform: uppercase;
 }
 
@@ -57,8 +57,4 @@
   border-color: var(--accent);
   background: var(--card);
   color: var(--accent-light);
-}
-
-.sidebar__icon {
-  font-size: 1.5rem;
 }

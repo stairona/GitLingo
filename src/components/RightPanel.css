@@ -2,34 +2,34 @@
 .right-panel {
   position: sticky;
   top: 0;
-  align-self: start;
-  padding: 32px 24px;
+  flex: 0 0 340px; /* always 340px wide */
+  padding: var(--space-7) 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--space-6);
 }
 
 .panel-card {
-  padding: 20px;
+  padding: var(--space-5);
   background: var(--card);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .panel-card__label {
   color: var(--accent-light);
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
 .panel-card__title {
   color: var(--text);
-  font-size: 1.25rem;
+  font-size: var(--text-lg);
 }
 
 .panel-card__text {
@@ -39,14 +39,14 @@
 /* Progress bar: a dark track with a purple fill whose width is the percent. */
 .progress {
   height: 16px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--bg);
   overflow: hidden;
 }
 
 .progress__fill {
   height: 100%;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--accent);
   /* Slide smoothly when a lesson is finished. */
   transition: width 0.5s;

@@ -1,10 +1,11 @@
+import Icon from './Icon.jsx'
 import './LessonBubble.css'
 
-// What each status shows inside the circle.
+// Which icon each status shows inside the circle.
 const ICONS = {
-  done: '✓',
-  current: '★',
-  locked: '🔒',
+  done: 'check',
+  current: 'star',
+  locked: 'lock',
 }
 
 // One round lesson button on the map.
@@ -20,7 +21,7 @@ function LessonBubble({ title, status, onStart }) {
         disabled={!isCurrent}
         aria-label={`${title} (${status})`}
       >
-        {ICONS[status]}
+        <Icon name={ICONS[status]} size={isCurrent ? 40 : 28} />
       </button>
       <span className="lesson-bubble__title">{title}</span>
       {isCurrent && <span className="lesson-bubble__start">Start</span>}

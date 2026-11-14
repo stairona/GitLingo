@@ -21,7 +21,7 @@ Reuses the Unit 1 characters, now working together.
 | [Lesson 1](unit-2/lesson-1-branches.md) | Branches | Charley Dunkel | ✅ Written |
 | [Lesson 2](unit-2/lesson-2-merging.md) | Merging on GitHub (pull requests) | Charley Dunkel | ✅ Written |
 | [Lesson 3](unit-2/lesson-3-teamwork.md) | Teamwork (cloning, reviewing, staying up to date) | Jackson Stark + Charley Dunkel | ✅ Written |
-| Lesson 4 | Undoing mistakes | Lily Lurvey | ⬜ Not started |
+| [Lesson 4](unit-2/lesson-4-undoing-mistakes.md) | Undoing mistakes (restore, revert) | Lily Lurvey | ✅ Written |
 
 ### Unit 3: GitHub Theory
 

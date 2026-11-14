@@ -23,6 +23,9 @@
 }
 
 .unit__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   color: var(--accent-light);
   font-size: var(--text-xs);
   font-weight: 800;

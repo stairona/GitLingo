@@ -58,7 +58,3 @@
   background: var(--card);
   color: var(--accent-light);
 }
-
-.sidebar__icon {
-  font-size: var(--text-xl);
-}

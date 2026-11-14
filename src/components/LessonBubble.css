@@ -7,6 +7,10 @@
 }
 
 .lesson-bubble__circle {
+  /* Center the icon inside the circle. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 72px;
   height: 72px;
   border-radius: 50%;

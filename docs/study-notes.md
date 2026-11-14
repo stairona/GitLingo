@@ -1,5 +1,7 @@
 # GitLingo study notes: what we can learn from react-duolingo
 
+Heads up: these notes were written before our lesson decisions. Where they disagree (for example XP, streaks or phone layout), `docs/lessons/README.md` wins.
+
 Source: https://github.com/bryanjenningz/react-duolingo (MIT license). We cloned it to `~/study/react-duolingo`, outside our project. We only read it, we never run it.
 
 How to use these notes: each section covers one of our folders or tools. It points to the file in react-duolingo worth reading, the idea to take from it, and the simplest version for us. Read the idea, then write our own version. We need to be able to explain every line (see `CLAUDE.md`). Line numbers refer to `src/pages/*.tsx` in the version we cloned, so they might drift a bit.

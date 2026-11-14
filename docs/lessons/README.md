@@ -1,14 +1,14 @@
 # GitLingo: UX & Lesson Decisions
 
 Reference for when we start coding. Everything here was decided during UX planning.
-Each lesson has its own folder with its content.
+Each lesson's full content (cards, questions, answers) is in `unit-1/`.
 
-| Folder | Lesson | Demo user | Status |
+| File | Lesson | Demo user | Status |
 |---|---|---|---|
-| [lesson-1-git-vs-github](lesson-1-git-vs-github/lesson.md) | Git vs GitHub | none | ✅ Written |
-| [lesson-2-setting-up-git](lesson-2-setting-up-git/lesson.md) | Setting up Git | Jackson Stark | ✅ Written |
-| [lesson-3-main-commands](lesson-3-main-commands/lesson.md) | Main commands | Charley Dunkel | ✅ Written |
-| [lesson-4-putting-it-on-github](lesson-4-putting-it-on-github/lesson.md) | Putting it on GitHub | Lily Lurvey | ✅ Written |
+| [Lesson 1](unit-1/lesson-1-git-vs-github.md) | Git vs GitHub | none | ✅ Written |
+| [Lesson 2](unit-1/lesson-2-setting-up-git.md) | Setting up Git | Jackson Stark | ✅ Written |
+| [Lesson 3](unit-1/lesson-3-main-commands.md) | Main commands | Charley Dunkel | ✅ Written |
+| [Lesson 4](unit-1/lesson-4-putting-it-on-github.md) | Putting it on GitHub | Lily Lurvey | ✅ Written |
 
 ---
 

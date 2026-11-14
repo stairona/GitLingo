@@ -32,7 +32,7 @@ How Git works under the hood, from most familiar to deepest. Reuses the same cha
 | [Lesson 1](unit-3/lesson-1-three-areas.md) | The three areas (working directory, staging, repository) | Charley Dunkel | ✅ Written |
 | [Lesson 2](unit-3/lesson-2-snapshots-and-hashes.md) | Snapshots & hashes | Jackson Stark | ✅ Written |
 | [Lesson 3](unit-3/lesson-3-git-as-a-database.md) | Git as a database | Lily Lurvey | ✅ Written |
-| Lesson 4 | Centralized vs. distributed | All three | ⬜ Not started |
+| [Lesson 4](unit-3/lesson-4-centralized-vs-distributed.md) | Centralized vs. distributed | All three (you play Jackson) | ✅ Written |
 
 - **Lesson 4 uses 3 multiple choice + 1 terminal**, because it's mostly a concept and a forced second command would teach less.
 - **Left out on purpose:** "fast-forward" and `git reset`, to keep Unit 3 at 4 lessons.

@@ -29,7 +29,7 @@ function Home({ completedLessons, onStartLesson }) {
         </div>
 
         <div className="unit__path-area">
-          <PathLine count={unit1.lessons.length} />
+          <PathLine count={unit1.lessons.length} reachedIndex={firstUnfinishedIndex} />
           <ol className="unit__path">
           {unit1.lessons.map((lesson, index) => (
             <li
@@ -39,6 +39,7 @@ function Home({ completedLessons, onStartLesson }) {
             >
               <LessonBubble
                 title={lesson.title}
+                hash={lesson.hash}
                 status={getLessonStatus(lesson.id, index, firstUnfinishedIndex, completedLessons)}
                 labelSide={getPathOffset(index) < 0 ? 'left' : 'right'}
                 onStart={() => onStartLesson(lesson.id)}

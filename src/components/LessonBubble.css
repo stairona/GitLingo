@@ -1,0 +1,83 @@
+/* One lesson on the map: a circle with the lesson name under it. */
+.lesson-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.lesson-bubble__circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  font-family: inherit;
+  cursor: default;
+}
+
+.lesson-bubble__title {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Done: filled purple with a check mark. */
+.lesson-bubble--done .lesson-bubble__circle {
+  background: var(--accent-deep);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+/* Current: bigger, bright, glowing, and the only one you can click. */
+.lesson-bubble--current .lesson-bubble__circle {
+  width: 96px;
+  height: 96px;
+  background: var(--accent);
+  border-color: var(--accent-tint);
+  color: var(--text);
+  font-size: 2rem;
+  cursor: pointer;
+  /* A soft pulsing glow made from the accent color. */
+  box-shadow: 0 0 24px var(--accent);
+  animation: bubble-glow 2s ease-in-out infinite;
+  transition: transform 0.1s;
+}
+
+.lesson-bubble--current .lesson-bubble__circle:hover {
+  background: var(--accent-deep);
+}
+
+/* Pressing it pushes it down a little, like a real button. */
+.lesson-bubble--current .lesson-bubble__circle:active {
+  transform: translateY(2px);
+}
+
+.lesson-bubble--current .lesson-bubble__title {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.lesson-bubble__start {
+  color: var(--accent-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Locked: dimmed so it clearly can't be clicked yet. */
+.lesson-bubble--locked {
+  opacity: 0.5;
+}
+
+@keyframes bubble-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 12px var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 32px var(--accent);
+  }
+}

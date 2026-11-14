@@ -1,0 +1,74 @@
+/* The home screen is one centered column. */
+.home {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.home__header {
+  text-align: center;
+}
+
+.home__logo {
+  color: var(--accent);
+  font-size: 2.5rem;
+}
+
+.home__tagline {
+  color: var(--text-muted);
+}
+
+/* A unit is a card with a banner on top and the lesson path below. */
+.unit {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.unit__banner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.unit__label {
+  color: var(--accent-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.unit__title {
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+/* The path: lessons stacked in a column, joined by a thin vertical line. */
+.unit__path {
+  list-style: none;
+  margin: 32px 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Draw the line between two lessons (every lesson except the first gets one above it). */
+.unit__step + .unit__step::before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 32px;
+  margin: 8px auto;
+  background: var(--card-border);
+}
+
+/* Units that aren't ready yet are dimmed. */
+.unit--locked {
+  opacity: 0.6;
+}

@@ -53,17 +53,3 @@ h3,
 p {
   margin: 0;
 }
-
-/* Keep the placeholder page centered until the real screens exist. */
-main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 64px 24px;
-  display: grid;
-  gap: 12px;
-}
-
-h1 {
-  color: var(--accent);
-  font-size: 3rem;
-}

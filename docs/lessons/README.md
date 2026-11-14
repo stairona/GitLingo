@@ -56,6 +56,8 @@ Reuses the Unit 1 characters, now working together.
 - Questions only test things a teaching card already explained.
 - The progress bar covers the **whole lesson** (cards + questions).
 - Answer order is **fixed**, never shuffled. No random variables anywhere.
+- **Questions appear in the order they're listed in the lesson data.** Most lessons list multiple choice first, then terminal, but a lesson can follow the real workflow instead (e.g. Unit 2: terminal → multiple choice → multiple choice → terminal).
+- **"Welcome back" card:** returning characters (Units 2+) get a "Welcome back" card instead of "Meet your user". Same layout.
 - Wrong-answer messages always show **the correct answer and why**.
 
 ## Demo users

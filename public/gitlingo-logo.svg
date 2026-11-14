@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -70 652 652" width="512" height="512" role="img" aria-label="GitLingo moon logo">
+  <defs>
+    <filter id="g1" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="34"/></filter>
+    <filter id="g2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="g3" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="13"/></filter>
+    <filter id="g4" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+    <path id="moon" d="M264.95 26.16 A230 230 0 1 0 466.05 349.7 A195 195 0 1 1 264.95 26.16 Z"/>
+  </defs>
+
+  <!-- layered neon glow: all soft, smooth falloff, no hard edge -->
+  <use href="#moon" fill="none" stroke="#7E22CE" stroke-width="16" stroke-linejoin="round" filter="url(#g1)" opacity="0.40"/>
+  <use href="#moon" fill="none" stroke="#7E22CE" stroke-width="13" stroke-linejoin="round" filter="url(#g2)" opacity="0.45"/>
+  <use href="#moon" fill="none" stroke="#9333EA" stroke-width="10" stroke-linejoin="round" filter="url(#g3)" opacity="0.50"/>
+  <use href="#moon" fill="none" stroke="#A855F7" stroke-width="8"  stroke-linejoin="round" filter="url(#g4)" opacity="0.55"/>
+
+  <!-- moon body -->
+  <use href="#moon" fill="#C084FC"/>
+
+  <!-- git branch centered in the crescent, following the moon's curve -->
+  <g fill="none" stroke="#6B21A8" stroke-width="13" stroke-linecap="round">
+    <path d="M112.7 155.6 A175 175 0 0 0 112.7 356.4"/>
+    <path d="M81 256 C100 258 116 267 124 282"/>
+  </g>
+  <g fill="#E9D5FF" stroke="#6B21A8" stroke-width="10">
+    <circle cx="112.7" cy="155.6" r="18"/>
+    <circle cx="81" cy="256" r="18"/>
+    <circle cx="112.7" cy="356.4" r="18"/>
+    <circle cx="124" cy="282" r="15"/>
+  </g>
+</svg>

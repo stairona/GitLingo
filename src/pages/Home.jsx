@@ -2,7 +2,7 @@ import LessonBubble from '../components/LessonBubble.jsx'
 import Icon from '../components/Icon.jsx'
 import PathLine from '../components/PathLine.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
-import unit1 from '../content/unit-1/unit-1.json'
+import unit1 from '../content/units/unit-1.json'
 import upcomingUnits from '../content/upcoming-units.json'
 import './Home.css'
 

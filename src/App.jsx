@@ -3,7 +3,7 @@ import Home from './pages/Home.jsx'
 import Lesson from './pages/Lesson.jsx'
 import AppFrame from './components/AppFrame.jsx'
 import { useProgress } from './hooks/useProgress.js'
-import unit1 from './content/unit-1/unit-1.json'
+import unit1 from './content/units/unit-1.json'
 
 // The whole app starts here. Instead of a routing library, we keep track of
 // which screen to show ('home' or 'lesson') and which lesson is open.

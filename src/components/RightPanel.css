@@ -1,0 +1,53 @@
+/* Right column: stays in view while the middle scrolls. */
+.right-panel {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel-card {
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.panel-card__label {
+  color: var(--accent-light);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.panel-card__title {
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+.panel-card__text {
+  color: var(--text-muted);
+}
+
+/* Progress bar: a dark track with a purple fill whose width is the percent. */
+.progress {
+  height: 16px;
+  border-radius: 999px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  /* Slide smoothly when a lesson is finished. */
+  transition: width 0.5s;
+}

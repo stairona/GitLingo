@@ -82,3 +82,13 @@ How to explain it:
 - `viewBox` is the part of the drawing that's shown. The big logo leaves extra room for the glow. The favicon uses a tighter `viewBox`, so the moon fills the tiny tab.
 - The glow is a `feGaussianBlur` filter (a blur) on copies of the moon's outline. At 16px it's just fuzz, so the favicon skips it and uses thicker lines.
 - `alt=""` on the sidebar image tells screen readers it's decoration, so they read "GitLingo" from the text next to it instead of reading it twice.
+
+## PR #12: Design foundations (2026-11-14, Nicolas)
+What it does: adds a code font, a spacing scale and text sizes, replaces every emoji with our own drawn icons, and centers the page.
+How AI helped: Claude wrote the tokens, the icon component and the layout change after we approved the polish plan (PR A2). Study notes used: section 5 (CSS variables) and section 4 (our own simple inline SVG icons).
+How to explain it:
+- JetBrains Mono loads in the same Google Fonts link as Nunito. `--font-mono` is for anything code: commands, hashes, file paths.
+- Spacing tokens (`--space-1` to `--space-10`, 4px up to 96px) and text sizes (`--text-xs` to `--text-3xl`) mean we pick from a short list instead of inventing numbers. That's why the spacing looks even.
+- `Icon.jsx` keeps a small list of SVG drawings and shows one by name: `<Icon name="lock" />`. They use `currentColor`, so an icon is the same color as the text around it.
+- `aria-hidden="true"` on icons: they're decoration, so screen readers skip them and read the words next to them.
+- In `AppFrame.css`, the page and the right panel are wrapped in one flex row with `justify-content: center`, so they stay together in the middle. `flex: 0 1 640px` means up to 640px wide, and allowed to shrink.

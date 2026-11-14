@@ -1,0 +1,15 @@
+/* Sits behind the circles, centered on the path. */
+.path-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none; /* clicks go through to the circles */
+}
+
+.path-line path {
+  fill: none;
+  stroke: var(--card-border);
+  stroke-width: 4;
+  stroke-linecap: round;
+}

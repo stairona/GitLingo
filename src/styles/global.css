@@ -17,6 +17,7 @@
   /* Text */
   --text: #ffffff;         /* headings and main text */
   --text-muted: #cbd5e1;   /* body text and descriptions */
+  --text-dim: #94a3b8;     /* locked things: quieter, but still readable on a projector */
 
   /* Feedback: only for right/wrong answers and hearts */
   --success: #22c55e;

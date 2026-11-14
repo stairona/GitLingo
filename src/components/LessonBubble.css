@@ -1,9 +1,36 @@
-/* One lesson on the map: a circle with the lesson name under it. */
+/* One lesson on the map: a circle with its name beside it.
+   The name is placed with position: absolute, so it doesn't push the circle
+   off the path's center line. */
 .lesson-bubble {
+  position: relative;
+}
+
+.lesson-bubble__label {
+  position: absolute;
+  top: 52px; /* the circle's center (half of the 104px slot) */
+  transform: translateY(-50%);
+  width: 180px;
   display: flex;
   flex-direction: column;
+  gap: var(--space-1);
+}
+
+.lesson-bubble--label-right .lesson-bubble__label {
+  left: calc(100% + var(--space-4));
+}
+
+.lesson-bubble--label-left .lesson-bubble__label {
+  right: calc(100% + var(--space-4));
+  text-align: right;
+}
+
+/* Same height as CIRCLE_SLOT in utils/pathLayout.js: big enough for the
+   current lesson's 96px circle plus its 8px lip. */
+.lesson-bubble__slot {
+  height: 104px;
+  display: flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
 }
 
 .lesson-bubble__circle {
@@ -14,12 +41,17 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  border: 1px solid var(--card-border);
+  border: 2px solid var(--card-border);
   background: var(--card);
   color: var(--text-muted);
   font-size: var(--text-xl);
   font-family: inherit;
   cursor: default;
+  /* The "lip": a solid shadow straight below the circle, so it looks like
+     a thick physical button you can press, not a flat sticker. */
+  --lip: 6px;
+  box-shadow: 0 var(--lip) 0 var(--card-border);
+  transition: transform 0.1s, box-shadow 0.1s, filter 0.15s;
 }
 
 .lesson-bubble__title {
@@ -28,11 +60,11 @@
   font-weight: 700;
 }
 
-/* Done: filled purple with a check mark. */
+/* Done: dark inside with a purple ring and check, calm so the current lesson stands out. */
 .lesson-bubble--done .lesson-bubble__circle {
-  background: var(--accent-deep);
   border-color: var(--accent);
-  color: var(--text);
+  color: var(--accent-light);
+  box-shadow: 0 var(--lip) 0 var(--accent-deep);
 }
 
 /* Current: bigger, bright, glowing, and the only one you can click. */
@@ -44,19 +76,29 @@
   color: var(--text);
   font-size: var(--text-3xl);
   cursor: pointer;
-  /* A soft pulsing glow made from the accent color. */
-  box-shadow: 0 0 24px var(--accent);
+  --lip: 8px;
+  /* Two shadows: the dark lip underneath, plus a soft glow that pulses. */
+  box-shadow: 0 var(--lip) 0 var(--accent-deep), 0 0 24px var(--accent);
   animation: bubble-glow 2s ease-in-out infinite;
-  transition: transform 0.1s;
 }
 
+/* Hovering makes it a little brighter, so you know it can be clicked. */
 .lesson-bubble--current .lesson-bubble__circle:hover {
-  background: var(--accent-deep);
+  filter: brightness(1.12);
 }
 
-/* Pressing it pushes it down a little, like a real button. */
+/* Pressing it moves the circle down onto its lip, like pushing a real button.
+   The animation stops while pressed so the shadow can flatten. */
 .lesson-bubble--current .lesson-bubble__circle:active {
-  transform: translateY(2px);
+  transform: translateY(var(--lip));
+  box-shadow: 0 0 0 var(--accent-deep), 0 0 24px var(--accent);
+  animation: none;
+}
+
+/* Keyboard users see a clear ring when they tab onto the button. */
+.lesson-bubble__circle:focus-visible {
+  outline: 3px solid var(--accent-tint);
+  outline-offset: 6px;
 }
 
 .lesson-bubble--current .lesson-bubble__title {
@@ -72,17 +114,31 @@
   text-transform: uppercase;
 }
 
-/* Locked: dimmed so it clearly can't be clicked yet. */
-.lesson-bubble--locked {
-  opacity: 0.5;
+/* Locked: grey icon and grey name. We use quieter colors instead of making it
+   see-through, because see-through text washes out on a projector. */
+.lesson-bubble--locked .lesson-bubble__circle {
+  color: var(--text-dim);
+  cursor: not-allowed;
 }
 
+.lesson-bubble--locked .lesson-bubble__title {
+  color: var(--text-dim);
+}
+
+/* The glow pulses but the lip stays put, so both shadows are listed each time. */
 @keyframes bubble-glow {
   0%,
   100% {
-    box-shadow: 0 0 12px var(--accent);
+    box-shadow: 0 var(--lip) 0 var(--accent-deep), 0 0 12px var(--accent);
   }
   50% {
-    box-shadow: 0 0 32px var(--accent);
+    box-shadow: 0 var(--lip) 0 var(--accent-deep), 0 0 32px var(--accent);
+  }
+}
+
+/* People who turn off animations in their system settings get a still glow. */
+@media (prefers-reduced-motion: reduce) {
+  .lesson-bubble--current .lesson-bubble__circle {
+    animation: none;
   }
 }

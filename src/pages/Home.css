@@ -36,27 +36,26 @@
   font-size: var(--text-xl);
 }
 
-/* The path: lessons stacked in a column, joined by a thin vertical line. */
-.unit__path {
-  list-style: none;
+/* The path: lessons stacked in a column. Each row's height and its
+   left/right shift come from utils/pathLayout.js, so the path zig-zags. */
+/* Holds the line and the lessons on top of each other. */
+.unit__path-area {
+  position: relative;
   margin: var(--space-7) 0 var(--space-2);
+}
+
+.unit__path {
+  position: relative; /* sits above the line */
+  list-style: none;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Draw the line between two lessons (every lesson except the first gets one above it). */
-.unit__step + .unit__step::before {
-  content: '';
-  display: block;
-  width: 2px;
-  height: 32px;
-  margin: var(--space-2) auto;
-  background: var(--card-border);
-}
-
-/* Units that aren't ready yet are dimmed. */
-.unit--locked {
-  opacity: 0.6;
+/* Units that aren't ready yet use quieter colors (not see-through, so they stay readable). */
+.unit--locked .unit__label,
+.unit--locked .unit__title {
+  color: var(--text-dim);
 }

@@ -1,5 +1,7 @@
 import LessonBubble from '../components/LessonBubble.jsx'
 import Icon from '../components/Icon.jsx'
+import PathLine from '../components/PathLine.jsx'
+import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
 import unit1 from '../content/unit-1/unit-1.json'
 import upcomingUnits from '../content/upcoming-units.json'
 import './Home.css'
@@ -26,17 +28,25 @@ function Home({ completedLessons, onStartLesson }) {
           <h2 className="unit__title">{unit1.title}</h2>
         </div>
 
-        <ol className="unit__path">
+        <div className="unit__path-area">
+          <PathLine count={unit1.lessons.length} />
+          <ol className="unit__path">
           {unit1.lessons.map((lesson, index) => (
-            <li key={lesson.id} className="unit__step">
+            <li
+              key={lesson.id}
+              className="unit__step"
+              style={{ height: ROW_HEIGHT, transform: `translateX(${getPathOffset(index)}px)` }}
+            >
               <LessonBubble
                 title={lesson.title}
                 status={getLessonStatus(lesson.id, index, firstUnfinishedIndex, completedLessons)}
+                labelSide={getPathOffset(index) < 0 ? 'left' : 'right'}
                 onStart={() => onStartLesson(lesson.id)}
               />
             </li>
           ))}
-        </ol>
+          </ol>
+        </div>
       </section>
 
       {upcomingUnits.map((unit) => (

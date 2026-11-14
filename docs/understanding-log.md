@@ -92,3 +92,14 @@ How to explain it:
 - `Icon.jsx` keeps a small list of SVG drawings and shows one by name: `<Icon name="lock" />`. They use `currentColor`, so an icon is the same color as the text around it.
 - `aria-hidden="true"` on icons: they're decoration, so screen readers skip them and read the words next to them.
 - In `AppFrame.css`, the page and the right panel are wrapped in one flex row with `justify-content: center`, so they stay together in the middle. `flex: 0 1 640px` means up to 640px wide, and allowed to shrink.
+
+## PR #13: Pressable zig-zag path (2026-11-14, Nicolas)
+What it does: lesson circles look like real buttons you can press, the path zig-zags with a curvy line joining the lessons, and locked items use a readable grey instead of being see-through.
+How AI helped: Claude wrote the code from the polish plan (PR B). Study notes used: section 3 (react-duolingo's zig-zag idea: nudge each lesson left or right) and section 5 (pressable buttons with a thick darker bottom edge). Their code is a fixed list of offsets. Ours uses a sine wave, and no code was copied.
+How to explain it:
+- The "lip" is a solid `box-shadow` straight below the circle (`0 8px 0 color`). On click (`:active`), the circle moves down 8px and the shadow goes to 0, so it looks pushed in.
+- `prefers-reduced-motion`: if someone turns off animations in their computer settings, the glow stops pulsing.
+- `utils/pathLayout.js` holds the shared numbers: row height, circle slot, and `getPathOffset(index)`. `Math.sin(index * π / 2) * 72` gives 0, 72, 0, -72..., which is the zig-zag.
+- `PathLine.jsx` draws an SVG path through every circle's center. `M` moves to the first point. Each `C` is a curve whose two control points pull the line straight down out of one circle and straight down into the next, which makes the S shape.
+- Names are `position: absolute` beside the circle, on the outside of the bend (`labelSide`), so they never push the circle off center and the line never crosses them.
+- Locked things use `--text-dim` (a readable grey) instead of `opacity`, which washes out on a projector. `--text-dim` is one new neutral grey, not a new brand color.

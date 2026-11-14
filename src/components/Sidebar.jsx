@@ -5,7 +5,11 @@ import './Sidebar.css'
 function Sidebar() {
   return (
     <nav className="sidebar">
-      <span className="sidebar__logo">GitLingo</span>
+      {/* The moon image is decoration, so alt="" lets screen readers skip it and just read the name. */}
+      <div className="sidebar__brand">
+        <img className="sidebar__mark" src="/gitlingo-logo.svg" alt="" />
+        <span className="sidebar__logo">GitLingo</span>
+      </div>
 
       <ul className="sidebar__menu">
         <li>

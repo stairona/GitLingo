@@ -10,10 +10,22 @@
   gap: 32px;
 }
 
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* The logo file has extra space around the moon for its glow,
+   so the image is a bit bigger than the moon itself looks. */
+.sidebar__mark {
+  width: 56px;
+  height: 56px;
+}
+
 .sidebar__logo {
-  padding-left: 12px;
   color: var(--accent);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 900;
 }
 

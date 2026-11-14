@@ -73,7 +73,7 @@ How to explain it:
 - We show "lessons finished" instead of streaks and gems, because we decided not to have XP or streaks.
 - `App.jsx` only puts the frame around the home screen. The lesson screen is returned on its own, so it's full screen.
 
-## PR #10: Moon logo and tab icon (2026-11-14, Nicolas)
+## PR #11: Moon logo and tab icon (2026-11-14, Nicolas)
 What it does: adds our crescent-moon logo (with a git branch inside) to the sidebar, and replaces Vite's default browser-tab icon with a small version of the moon.
 How AI helped: Nicolas made the logo. Claude checked it at real sizes, moved one dot so the side branch reads better, made the cropped tab-icon version, and added it to the sidebar.
 How to explain it:

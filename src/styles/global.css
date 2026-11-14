@@ -1,0 +1,56 @@
+/* Midnight theme: every color in the app comes from these variables.
+   To try a different look, change a value here and the whole app updates.
+   The accent color is still open (see docs/lessons/README.md), so swap it freely. */
+:root {
+  --bg: #0b1026;          /* deep midnight navy, not pure black */
+  --surface: #161d3d;     /* cards and panels, a bit lighter so they float */
+  --border: #2a3463;      /* thin outlines around cards and the terminal */
+  --text: #eef1ff;        /* main text, bright enough for a projector */
+  --text-muted: #b3bbdf;  /* secondary text, still easy to read on navy */
+  --accent: #8b7bff;      /* the one bright color: buttons, current lesson, progress */
+  --correct: #4cc38a;     /* softened green */
+  --wrong: #f06a6a;       /* softened red */
+  --terminal-bg: #05070f; /* darker than the background */
+  --terminal-text: #d6ffe0;
+
+  --radius: 16px;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* Small reset: make sizes include padding, and remove the browser's default margins. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Keep the placeholder page centered until the real screens exist. */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  display: grid;
+  gap: 12px;
+}
+
+h1 {
+  color: var(--accent);
+  font-size: 3rem;
+}

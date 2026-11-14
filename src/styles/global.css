@@ -27,7 +27,8 @@
   --terminal-text: #e9d5ff;
 
   --radius: 16px;
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Nunito is loaded in index.html. The rest are backups if it can't load. */
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 

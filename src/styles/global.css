@@ -54,3 +54,10 @@ h3,
 p {
   margin: 0;
 }
+
+/* Chunky headings, like Duolingo's bold titles. */
+h1,
+h2,
+h3 {
+  font-weight: 800;
+}

@@ -1,0 +1,42 @@
+.teaching-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.teaching-card__title {
+  color: var(--text);
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.teaching-card__text {
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+.teaching-card__bullets {
+  margin: 0;
+  padding-left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+.teaching-card__bullets li::marker {
+  color: var(--accent);
+}
+
+.teaching-card__footer {
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--space-2);
+  background: var(--card);
+  color: var(--text-muted);
+  line-height: 1.6;
+}

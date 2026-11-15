@@ -1,0 +1,38 @@
+.top-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.top-bar__quit {
+  display: flex;
+  padding: var(--space-1);
+  border: none;
+  border-radius: var(--space-2);
+  background: none;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.top-bar__quit:hover {
+  color: var(--text);
+}
+
+.top-bar__quit:focus-visible {
+  outline: 3px solid var(--accent-tint);
+}
+
+.top-bar__progress {
+  height: 16px;
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.top-bar__fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  transition: width 0.4s;
+}

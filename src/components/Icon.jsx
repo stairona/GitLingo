@@ -13,6 +13,7 @@ const SHAPES = {
     </>
   ),
   check: <path d="M5 12.5 10 17.5 19 7" />,
+  close: <path d="M6 6l12 12M18 6 6 18" />,
   star: (
     <path
       fill="currentColor"

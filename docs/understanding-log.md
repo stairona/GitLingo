@@ -159,6 +159,18 @@ How to explain it:
 - `utils/guideNote.js` puts the next lesson's number and title in front: the lesson right after the guide's lesson, or Lesson 1 of the next unit at the end of a unit.
 - Waiting guides on locked units say "First up, Lesson 1 (...)".
 
+## PR #23: What we learned when `main` diverged (2026-11-14, Gavin)
+What happened: Gavin committed the study notes update straight onto `main` instead of a branch. At the same time, Nicolas merged three PRs on GitHub. Now each `main` had commits the other one didn't, which Git calls "diverged". GitHub refused the push, and `git pull` started a merge that stopped halfway, with a long list of Nicolas's files waiting to be committed. It looked broken, but nothing was lost.
+How we fixed it: we cancelled the merge, moved the commit onto its own branch, put `main` back to match GitHub, and opened a normal PR (#22).
+How AI helped: Claude looked at the repo (only reading, no changes) to explain what had happened, and suggested the commands. Gavin ran every command himself.
+How to explain it:
+- GitHub refuses a push when its `main` has commits you don't have. Accepting it would throw away your teammate's work.
+- `git pull` is really two steps: download (`fetch`), then combine (`merge`). The files in the half-done merge were Nicolas's changes coming in, not damage.
+- `git merge --abort` cancels a merge that isn't finished and puts everything back to how it was before.
+- `git switch -c docs/update-study-notes` makes a branch right where you are, so the commit now belongs to that branch too.
+- `git branch -f main origin/main` moves the `main` label back to match GitHub. That's safe only because the commit was already saved on the new branch.
+- The habit that prevents this: run `git branch` before committing. If the `*` is on `main`, make a branch first. Uncommitted changes come along when you switch.
+
 ## PR #24: Fun-fact characters on the sides (2026-11-14, Nicolas)
 What it does: six pixel characters are scattered around the empty left and right sides of the home page, three in the sidebar and three under the right panel cards. Each has a small "?" above their head, and hovering over one shows a Git or GitHub fun fact.
 How AI helped: Nicolas asked for characters on both sides with Git and GitHub fun facts. Claude picked six well-documented facts, placed the characters, and reused the guides' hover card.

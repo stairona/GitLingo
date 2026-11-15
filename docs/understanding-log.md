@@ -1,7 +1,7 @@
 # Understanding log
 
-What we built, how AI helped, and how to explain each part in our own words.
-Every PR adds an entry here. Read the "How to explain it" part before demoing or reviewing.
+What we built, how AI helped, and explanation of each part.
+Every PR adds an entry here. 
 
 ---
 

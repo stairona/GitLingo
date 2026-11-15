@@ -100,6 +100,20 @@
   box-shadow: 0 var(--lip) 0 var(--accent-deep);
 }
 
+/* finished lessons open in review mode, so they press like the current one, just without the glow */
+.lesson-bubble--done .lesson-bubble__circle {
+  cursor: pointer;
+}
+
+.lesson-bubble--done .lesson-bubble__circle:hover {
+  filter: brightness(1.25);
+}
+
+.lesson-bubble--done .lesson-bubble__circle:active {
+  transform: translateY(var(--lip));
+  box-shadow: 0 0 0 var(--accent-deep);
+}
+
 .lesson-bubble--current .lesson-bubble__circle {
   --lip: 8px;
   width: 96px;

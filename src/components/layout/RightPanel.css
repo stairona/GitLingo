@@ -1,11 +1,8 @@
-/* stays in view while the map scrolls, but is never taller than the window:
-   if it doesn't fit (smaller screens), the column scrolls by itself */
+/* stays in the same spot while the map scrolls. It's short enough now
+   (no characters) to fit on screen, so it doesn't need its own scrollbar */
 .right-panel {
   position: sticky;
   top: 0;
-  max-height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
   flex: 0 0 340px;
   padding: var(--space-7) 0;
   display: flex;

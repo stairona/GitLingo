@@ -44,6 +44,10 @@
   margin: var(--space-7) 0 var(--space-2);
 }
 
+.unit__step {
+  position: relative; /* characters are placed relative to their lesson row */
+}
+
 .unit__path {
   position: relative; /* sits above the line */
   list-style: none;

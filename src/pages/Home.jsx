@@ -1,6 +1,7 @@
 import LessonBubble from '../components/LessonBubble.jsx'
 import Icon from '../components/Icon.jsx'
 import PathLine from '../components/PathLine.jsx'
+import PathCharacter from '../components/PathCharacter.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
 import unit1 from '../content/units/unit-1.json'
 import upcomingUnits from '../content/upcoming-units.json'
@@ -31,21 +32,33 @@ function Home({ completedLessons, onStartLesson }) {
         <div className="unit__path-area">
           <PathLine count={unit1.lessons.length} reachedIndex={firstUnfinishedIndex} />
           <ol className="unit__path">
-          {unit1.lessons.map((lesson, index) => (
-            <li
-              key={lesson.id}
-              className="unit__step"
-              style={{ height: ROW_HEIGHT, transform: `translateX(${getPathOffset(index)}px)` }}
-            >
-              <LessonBubble
-                title={lesson.title}
-                hash={lesson.hash}
-                status={getLessonStatus(lesson.id, index, firstUnfinishedIndex, completedLessons)}
-                labelSide={getPathOffset(index) < 0 ? 'left' : 'right'}
-                onStart={() => onStartLesson(lesson.id)}
-              />
-            </li>
-          ))}
+            {unit1.lessons.map((lesson, index) => {
+              const status = getLessonStatus(lesson.id, index, firstUnfinishedIndex, completedLessons)
+              const labelSide = getPathOffset(index) < 0 ? 'left' : 'right'
+
+              return (
+                <li
+                  key={lesson.id}
+                  className="unit__step"
+                  style={{ height: ROW_HEIGHT, transform: `translateX(${getPathOffset(index)}px)` }}
+                >
+                  <LessonBubble
+                    title={lesson.title}
+                    hash={lesson.hash}
+                    status={status}
+                    labelSide={labelSide}
+                    onStart={() => onStartLesson(lesson.id)}
+                  />
+                  {/* The demo user stands on the other side from the lesson's name. */}
+                  <PathCharacter
+                    user={lesson.user}
+                    says={lesson.says}
+                    side={labelSide === 'right' ? 'left' : 'right'}
+                    status={status}
+                  />
+                </li>
+              )
+            })}
           </ol>
         </div>
       </section>

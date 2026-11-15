@@ -4,7 +4,9 @@ import TeachingCard from '../components/lesson/TeachingCard.jsx'
 import CodeText from '../components/lesson/CodeText.jsx'
 import MultipleChoice from '../components/lesson/MultipleChoice.jsx'
 import FeedbackBar from '../components/lesson/FeedbackBar.jsx'
+import PracticeTerminal from '../components/lesson/PracticeTerminal.jsx'
 import { getLessonSteps } from '../utils/lessonSteps.js'
+import { isAnswerCorrect } from '../utils/answerChecker.js'
 import './Lesson.css'
 
 // How many hearts every lesson starts with. A wrong answer costs one.
@@ -23,8 +25,31 @@ function ComingSoon({ label, title, note }) {
   )
 }
 
-// picked, onPick and checked are only used by multiple-choice questions.
-function StepScreen({ step, picked, onPick, checked }) {
+// The three question rules, one place each. Both question types go through these,
+// so the rest of Lesson.jsx doesn't care which type the question is.
+
+// Has the player given an answer yet? CHECK stays grey until they have.
+function hasAnswer(step, picked, typed) {
+  if (step.type === 'multiple-choice') return picked !== null
+  return typed.trim() !== ''
+}
+
+// Multiple choice compares positions. Terminal answers use the checker, which
+// ignores extra spaces but not uppercase letters.
+function getIsRight(step, picked, typed) {
+  if (step.type === 'multiple-choice') return picked === step.correctIndex
+  return isAnswerCorrect(typed, step.acceptedAnswers)
+}
+
+// What the red bar says. Terminal questions have no wrongFeedback in the lesson
+// files, so we show the first accepted answer instead.
+function getWrongMessage(step) {
+  if (step.type === 'multiple-choice') return step.wrongFeedback
+  return `The answer is \`${step.acceptedAnswers[0]}\``
+}
+
+// Shows the current screen. The answer props are only used by questions.
+function StepScreen({ step, picked, onPick, typed, onType, onSubmit, checked, isRight }) {
   if (step.kind === 'card') return <TeachingCard card={step} />
   if (step.kind === 'welcome') {
     return <ComingSoon label="Meet your user" title={step.user.name} note="The welcome card comes in a later PR." />
@@ -32,7 +57,16 @@ function StepScreen({ step, picked, onPick, checked }) {
   if (step.type === 'multiple-choice') {
     return <MultipleChoice question={step} picked={picked} onPick={onPick} checked={checked} />
   }
-  return <ComingSoon label="Terminal question" title={step.prompt} note="The practice terminal comes in the next PR." />
+  return (
+    <PracticeTerminal
+      question={step}
+      typed={typed}
+      onType={onType}
+      onSubmit={onSubmit}
+      checked={checked}
+      isRight={isRight}
+    />
+  )
 }
 
 // One lesson, played screen by screen: the welcome card, teaching cards, then questions,
@@ -43,6 +77,8 @@ function Lesson({ lesson, onFinish, onBack }) {
   const [hearts, setHearts] = useState(STARTING_HEARTS)
   // Which option the player chose on this question (0, 1, 2...), or null for none yet.
   const [picked, setPicked] = useState(null)
+  // What the player typed in the practice terminal on this question.
+  const [typed, setTyped] = useState('')
   // Becomes true when CHECK is pressed. The answer is locked and the feedback bar shows.
   const [checked, setChecked] = useState(false)
 
@@ -71,8 +107,8 @@ function Lesson({ lesson, onFinish, onBack }) {
   }
 
   const step = steps[stepIndex]
-  const isMultipleChoice = step.type === 'multiple-choice'
-  const isRight = picked === step.correctIndex
+  const isQuestion = step.kind === 'question'
+  const isRight = isQuestion && getIsRight(step, picked, typed)
 
   // CHECK: lock the answer in, and take a heart if it's wrong.
   // Math.max keeps hearts from going below 0.
@@ -85,6 +121,7 @@ function Lesson({ lesson, onFinish, onBack }) {
   // The lesson moves on whether the answer was right or wrong (no retries).
   function goToNextStep() {
     setPicked(null)
+    setTyped('')
     setChecked(false)
     setStepIndex(stepIndex + 1)
   }
@@ -95,17 +132,26 @@ function Lesson({ lesson, onFinish, onBack }) {
         <TopBar progress={progress} hearts={hearts} onQuit={onBack} />
       </div>
       <main className="lesson-screen__body">
-        <StepScreen step={step} picked={picked} onPick={setPicked} checked={checked} />
+        <StepScreen
+          step={step}
+          picked={picked}
+          onPick={setPicked}
+          typed={typed}
+          onType={setTyped}
+          onSubmit={checkAnswer}
+          checked={checked}
+          isRight={isRight}
+        />
       </main>
 
       {checked ? (
-        <FeedbackBar isRight={isRight} message={step.wrongFeedback} onContinue={goToNextStep} />
+        <FeedbackBar isRight={isRight} message={getWrongMessage(step)} onContinue={goToNextStep} />
       ) : (
         <footer className="lesson-screen__bottom">
           <div className="lesson-screen__bottom-inner">
-            {isMultipleChoice ? (
-              // CHECK stays grey until an option is picked, so you can't check an empty answer.
-              <button className="lesson-button" onClick={checkAnswer} disabled={picked === null}>
+            {isQuestion ? (
+              // CHECK stays grey until there's an answer, so you can't check an empty one.
+              <button className="lesson-button" onClick={checkAnswer} disabled={!hasAnswer(step, picked, typed)}>
                 Check
               </button>
             ) : (

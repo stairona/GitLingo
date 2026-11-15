@@ -9,6 +9,8 @@ const ICONS = {
 
 function LessonBubble({ title, hash, status, labelSide, onStart }) {
   const isCurrent = status === 'current'
+  // finished lessons can be opened again to review them, locked ones can't be opened
+  const canOpen = status !== 'locked'
   const showHash = status !== 'locked'
 
   return (
@@ -17,8 +19,8 @@ function LessonBubble({ title, hash, status, labelSide, onStart }) {
         <button
           className="lesson-bubble__circle"
           onClick={onStart}
-          disabled={!isCurrent}
-          aria-label={`${title} (${status})`}
+          disabled={!canOpen}
+          aria-label={status === 'done' ? `Review ${title}` : `${title} (${status})`}
         >
           <Icon name={ICONS[status]} size={isCurrent ? 40 : 28} />
         </button>

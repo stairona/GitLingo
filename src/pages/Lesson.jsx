@@ -6,6 +6,7 @@ import FeedbackBar from '../components/lesson/FeedbackBar.jsx'
 import PracticeTerminal from '../components/lesson/PracticeTerminal.jsx'
 import LessonComplete from '../components/lesson/LessonComplete.jsx'
 import OutOfHearts from '../components/lesson/OutOfHearts.jsx'
+import ReviewFinished from '../components/lesson/ReviewFinished.jsx'
 import MeetUserCard from '../components/lesson/MeetUserCard.jsx'
 import ProfileCard from '../components/lesson/ProfileCard.jsx'
 import { getLessonSteps } from '../utils/lessonSteps.js'
@@ -58,8 +59,8 @@ function StepScreen({ step, picked, onPick, typed, onType, onSubmit, checked, is
 }
 
 // One lesson, played screen by screen: the welcome card, teaching cards, then questions,
-// in the order getLessonSteps gives them.
-function Lesson({ lesson, onFinish, onBack }) {
+// in the order getLessonSteps gives them. review is true when the lesson was already finished.
+function Lesson({ lesson, review = false, onFinish, onBack }) {
   const steps = getLessonSteps(lesson)
   const [stepIndex, setStepIndex] = useState(0)
   const [hearts, setHearts] = useState(STARTING_HEARTS)
@@ -97,6 +98,11 @@ function Lesson({ lesson, onFinish, onBack }) {
     return <OutOfHearts totalHearts={STARTING_HEARTS} onTryAgain={restart} onBack={onBack} />
   }
 
+  // past the last screen of a review: nothing to save, just go back to the map
+  if (stepIndex >= steps.length && review) {
+    return <ReviewFinished title={lesson.title} onBack={onBack} />
+  }
+
   // past the last screen: the lesson is done. CONTINUE calls onFinish, which saves it in App.
   if (stepIndex >= steps.length) {
     return (
@@ -117,10 +123,10 @@ function Lesson({ lesson, onFinish, onBack }) {
 
   // CHECK: save the answer for this screen (which locks it), and take a heart if it's wrong.
   // A saved answer can never be checked again, so hearts can't be won back.
-  // Math.max keeps hearts from going below 0.
+  // Math.max keeps hearts from going below 0. Reviewing is practice, so it never costs a heart.
   function checkAnswer() {
     setAnswers({ ...answers, [stepIndex]: { picked: draftPicked, typed: draftTyped } })
-    if (!isRight) setHearts(Math.max(0, hearts - 1))
+    if (!isRight && !review) setHearts(Math.max(0, hearts - 1))
   }
 
   // CONTINUE: clear the draft so the next question starts fresh, then move on.
@@ -147,7 +153,7 @@ function Lesson({ lesson, onFinish, onBack }) {
   return (
     <div className="lesson-screen">
       <div className="lesson-screen__top">
-        <TopBar progress={progress} hearts={hearts} onQuit={onBack} />
+        <TopBar progress={progress} hearts={hearts} review={review} onQuit={onBack} />
       </div>
       <main className={`lesson-screen__body${showProfile ? ' lesson-screen__body--with-profile' : ''}`}>
         <StepScreen

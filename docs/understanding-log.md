@@ -190,3 +190,13 @@ How to explain it:
 - `UnitSelector.jsx` draws one button per unit. Clicking runs `document.getElementById('unit-3').scrollIntoView(...)`. Each unit's section in `Home.jsx` got `id={unit.id}` so it can be found.
 - `completedLessons` is passed from `App` to `AppFrame` to `Sidebar` to `UnitSelector`, so the list knows the progress.
 - The sidebar bug: `position: sticky` only works inside its parent's box. Hidden hover cards were invisible but still took up room, and the one under Unit 3 stuck out below the page. The page got taller than the layout, so the sidebar ran out of room to stick. Hidden cards now use `display: none`, which takes no room at all.
+
+## PR #26: GitHub-style progress and recent commits (2026-11-14, Nicolas)
+What it does: the right column's progress card looks like a GitHub milestone ("Unit 1: GitHub Fundamentals", a bar, "75% complete · 3 done · 1 open"), with a thin whole-course bar split into the three units. A new "Recent commits" card shows your finished lessons like `git log --oneline`, newest first.
+How AI helped: Nicolas chose these two ideas. Claude built them as separate components and tested them with 0 and 3 lessons finished.
+How to explain it:
+- `RightPanel` now gets the whole `completedLessons` list instead of two numbers from `App`, so each card can work out what it needs.
+- `ProgressCard.jsx`: the unit you're on comes from `getCurrentUnitIndex`. Percent is `done / total * 100`, rounded. "Open" is `total - done`.
+- The whole-course bar has one piece per unit. `flex: u.lessons.length` makes each piece as wide as its share of lessons, and the fill inside grows as you finish that unit.
+- Each unit's purple is set once as a CSS variable (`--unit-color`) and used by both its bar piece and its legend dot.
+- `RecentCommits.jsx`: `completedLessons` is saved in the order you finished, so `[...list].reverse()` puts the newest first. (We copy it with `[...]` first, because `reverse()` would change the original list.) `findLesson` turns each id into its hash and title, and `.slice(0, 4)` keeps the newest four.

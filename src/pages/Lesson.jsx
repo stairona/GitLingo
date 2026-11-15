@@ -6,6 +6,7 @@ import MultipleChoice from '../components/lesson/MultipleChoice.jsx'
 import FeedbackBar from '../components/lesson/FeedbackBar.jsx'
 import PracticeTerminal from '../components/lesson/PracticeTerminal.jsx'
 import LessonComplete from '../components/lesson/LessonComplete.jsx'
+import OutOfHearts from '../components/lesson/OutOfHearts.jsx'
 import { getLessonSteps } from '../utils/lessonSteps.js'
 import { isAnswerCorrect } from '../utils/answerChecker.js'
 import './Lesson.css'
@@ -85,6 +86,20 @@ function Lesson({ lesson, onFinish, onBack }) {
 
   // the bar fills as you move through the screens, and is full once you pass the last one
   const progress = stepIndex / steps.length
+
+  // TRY AGAIN: everything back to how the lesson started
+  function restart() {
+    setStepIndex(0)
+    setHearts(STARTING_HEARTS)
+    setPicked(null)
+    setTyped('')
+    setChecked(false)
+  }
+
+  // the last heart is gone and its red bar has been closed with CONTINUE
+  if (hearts === 0 && !checked) {
+    return <OutOfHearts totalHearts={STARTING_HEARTS} onTryAgain={restart} onBack={onBack} />
+  }
 
   // past the last screen: the lesson is done. CONTINUE calls onFinish, which saves it in App.
   if (stepIndex >= steps.length) {

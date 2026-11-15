@@ -3,8 +3,8 @@ import Icon from '../Icon.jsx'
 import './TopBar.css'
 
 // The bar at the top of every lesson screen: quit, how far you are, hearts left.
-// progress is a number from 0 to 1.
-function TopBar({ progress, hearts, onQuit }) {
+// progress is a number from 0 to 1. In review mode a Review label takes the hearts' place.
+function TopBar({ progress, hearts, review = false, onQuit }) {
   const percent = Math.round(progress * 100)
 
   return (
@@ -15,7 +15,7 @@ function TopBar({ progress, hearts, onQuit }) {
       <div className="top-bar__progress" aria-label={`${percent}% of the lesson done`}>
         <div className="top-bar__fill" style={{ width: `${percent}%` }} />
       </div>
-      <Hearts count={hearts} />
+      {review ? <span className="top-bar__review">Review</span> : <Hearts count={hearts} />}
     </header>
   )
 }

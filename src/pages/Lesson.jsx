@@ -117,10 +117,10 @@ function Lesson({ lesson, review = false, onFinish, onBack }) {
 
   // CHECK: save the answer for this screen (which locks it), and take a heart if it's wrong.
   // A saved answer can never be checked again, so hearts can't be won back.
-  // Math.max keeps hearts from going below 0.
+  // Math.max keeps hearts from going below 0. Reviewing is practice, so it never costs a heart.
   function checkAnswer() {
     setAnswers({ ...answers, [stepIndex]: { picked: draftPicked, typed: draftTyped } })
-    if (!isRight) setHearts(Math.max(0, hearts - 1))
+    if (!isRight && !review) setHearts(Math.max(0, hearts - 1))
   }
 
   // CONTINUE: clear the draft so the next question starts fresh, then move on.
@@ -147,7 +147,7 @@ function Lesson({ lesson, review = false, onFinish, onBack }) {
   return (
     <div className="lesson-screen">
       <div className="lesson-screen__top">
-        <TopBar progress={progress} hearts={hearts} onQuit={onBack} />
+        <TopBar progress={progress} hearts={hearts} review={review} onQuit={onBack} />
       </div>
       <main className={`lesson-screen__body${showProfile ? ' lesson-screen__body--with-profile' : ''}`}>
         <StepScreen

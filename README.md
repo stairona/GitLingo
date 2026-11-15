@@ -79,8 +79,6 @@ Every PR has an entry in [docs/understanding-log.md](docs/understanding-log.md) 
 We left these out on purpose to finish in 24 hours. Here's what we'd add next:
 
 - **More units:** cover topics beginners hit next, like fixing merge conflicts, `git stash`, `git rebase`, and GitHub Actions.
-- **A merge conflict simulator:** a practice screen where you see real conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) and pick which version to keep. Conflicts confused us the most while building this, so we know it's worth teaching.
-- **A live branch diagram:** draw your branches and commits as you type commands, so you can see what `git switch -c` or a merge actually does.
 - **More question types:** for example, put commands in the right order (add, commit, push) or fill in the missing part of a command.
 - **Accounts and cloud saving:** progress is only saved in your browser right now. Accounts would need a backend, but would let you continue on any device.
 - **Streaks and XP:** small daily rewards that bring people back, like Duolingo. We skipped them to focus on the lessons themselves.

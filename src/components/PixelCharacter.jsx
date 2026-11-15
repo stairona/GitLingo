@@ -4,11 +4,13 @@ import { CHARACTERS } from '../content/characters.js'
 const PIXEL = 6
 
 // Draws one of our pixel characters as an SVG.
+// pose is 'stand' or 'point'. flip mirrors the picture, so a pointing
+// character can point left instead of right.
 // It walks through the sprite row by row, letter by letter, and draws a
 // PIXEL x PIXEL square for every letter that isn't a dot.
-function PixelCharacter({ id }) {
+function PixelCharacter({ id, pose = 'stand', flip = false }) {
   const character = CHARACTERS[id]
-  const rows = character.sprite
+  const rows = character.poses[pose]
   const columns = rows[0].length
 
   const squares = []
@@ -33,6 +35,7 @@ function PixelCharacter({ id }) {
       width={columns * PIXEL}
       height={rows.length * PIXEL}
       shapeRendering="crispEdges"
+      style={flip ? { transform: 'scaleX(-1)' } : undefined}
       role="img"
       aria-label={character.name}
     >

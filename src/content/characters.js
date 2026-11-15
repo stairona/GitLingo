@@ -63,6 +63,63 @@ const LILY = [
   '.KKK..KKK.',
 ]
 
+// Pointing poses: the same characters with one arm stretched out to the right,
+// pointing at a lesson. (To point left, the picture is just flipped.)
+const JACKSON_POINT = [
+  '..HHHHHH.....',
+  '..HHHHHH.....',
+  '..HSSSSH.....',
+  '..SESSES.....',
+  '..BSSSSB.....',
+  '..SSSSSS.....',
+  '.TTTDDTTT....',
+  'TTTTDDTTTTTSS',
+  'STTTDDTTT....',
+  '.TTTDDTTT....',
+  '.PPPPPPPP....',
+  '.PPP..PPP....',
+  '.PPP..PPP....',
+  '.KKK..KKK....',
+]
+
+const CHARLEY_POINT = [
+  '..HHHHHH.....',
+  '.HHHHHHH.....',
+  '..HHHHHH.....',
+  '..HHHSSH.....',
+  '..SESSES.....',
+  '..BSSSSB.....',
+  '..SSSSSS.....',
+  '.TTTDDTTT....',
+  'TTTTDDTTTTTSS',
+  'TTTTDDTTT....',
+  'STTTDDTTT....',
+  '.TTTDDTTT....',
+  '.PPPPPPPP....',
+  '.PPP..PPP....',
+  '.PPP..PPP....',
+  '.PPP..PPP....',
+  '.PPP..PPP....',
+  '.KKK..KKK....',
+]
+
+const LILY_POINT = [
+  '..HHHHHH.....',
+  '.HHHHHHHH....',
+  '.HSSSSSSH....',
+  '.HSESSESH....',
+  '.HBSSSSBH....',
+  '.HHSSSSHH....',
+  '.TTTTTTTT....',
+  'TTTTTTTTTTTSS',
+  'STTTTTTTT....',
+  '.TTTTTTTT....',
+  '.PPPPPPPP....',
+  '.PPP..PPP....',
+  '.PPP..PPP....',
+  '.KKK..KKK....',
+]
+
 // Which color each letter uses, per character. Every value is a variable from global.css.
 const SHARED = {
   S: '--char-skin',
@@ -75,17 +132,17 @@ const SHARED = {
 export const CHARACTERS = {
   jackson: {
     name: 'Jackson',
-    sprite: JACKSON,
+    poses: { stand: JACKSON, point: JACKSON_POINT },
     colors: { ...SHARED, H: '--char-hair-brown', T: '--accent-light', D: '--accent-deep' },
   },
   charley: {
     name: 'Charley',
-    sprite: CHARLEY,
+    poses: { stand: CHARLEY, point: CHARLEY_POINT },
     colors: { ...SHARED, H: '--char-hair-brown', T: '--accent', D: '--accent-tint' },
   },
   lily: {
     name: 'Lily',
-    sprite: LILY,
+    poses: { stand: LILY, point: LILY_POINT },
     colors: { ...SHARED, H: '--char-hair-blond', T: '--accent-tint' },
   },
 }

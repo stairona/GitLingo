@@ -1,31 +1,19 @@
 import { useState } from 'react'
 import TopBar from '../components/lesson/TopBar.jsx'
 import TeachingCard from '../components/lesson/TeachingCard.jsx'
-import CodeText from '../components/lesson/CodeText.jsx'
 import MultipleChoice from '../components/lesson/MultipleChoice.jsx'
 import FeedbackBar from '../components/lesson/FeedbackBar.jsx'
 import PracticeTerminal from '../components/lesson/PracticeTerminal.jsx'
 import LessonComplete from '../components/lesson/LessonComplete.jsx'
 import OutOfHearts from '../components/lesson/OutOfHearts.jsx'
+import MeetUserCard from '../components/lesson/MeetUserCard.jsx'
+import ProfileCard from '../components/lesson/ProfileCard.jsx'
 import { getLessonSteps } from '../utils/lessonSteps.js'
 import { isAnswerCorrect } from '../utils/answerChecker.js'
 import './Lesson.css'
 
 // How many hearts every lesson starts with. A wrong answer costs one.
 const STARTING_HEARTS = 3
-
-// Screens that aren't built yet. Each one gets replaced in its own PR.
-function ComingSoon({ label, title, note }) {
-  return (
-    <div className="coming-soon">
-      <span className="coming-soon__label">{label}</span>
-      <h1 className="coming-soon__title">
-        <CodeText text={title} />
-      </h1>
-      <p className="coming-soon__note">{note}</p>
-    </div>
-  )
-}
 
 // The three question rules, one place each. Both question types go through these,
 // so the rest of Lesson.jsx doesn't care which type the question is.
@@ -53,9 +41,7 @@ function getWrongMessage(step) {
 // Shows the current screen. The answer props are only used by questions.
 function StepScreen({ step, picked, onPick, typed, onType, onSubmit, checked, isRight }) {
   if (step.kind === 'card') return <TeachingCard card={step} />
-  if (step.kind === 'welcome') {
-    return <ComingSoon label="Meet your user" title={step.user.name} note="The welcome card comes in a later PR." />
-  }
+  if (step.kind === 'welcome') return <MeetUserCard user={step.user} />
   if (step.type === 'multiple-choice') {
     return <MultipleChoice question={step} picked={picked} onPick={onPick} checked={checked} />
   }
@@ -115,6 +101,8 @@ function Lesson({ lesson, onFinish, onBack }) {
 
   const step = steps[stepIndex]
   const isQuestion = step.kind === 'question'
+  // in lessons with a demo user, their info card sits beside every question
+  const showProfile = isQuestion && lesson.user
   const isRight = isQuestion && getIsRight(step, picked, typed)
 
   // CHECK: lock the answer in, and take a heart if it's wrong.
@@ -138,7 +126,7 @@ function Lesson({ lesson, onFinish, onBack }) {
       <div className="lesson-screen__top">
         <TopBar progress={progress} hearts={hearts} onQuit={onBack} />
       </div>
-      <main className="lesson-screen__body">
+      <main className={`lesson-screen__body${showProfile ? ' lesson-screen__body--with-profile' : ''}`}>
         <StepScreen
           step={step}
           picked={picked}
@@ -149,6 +137,7 @@ function Lesson({ lesson, onFinish, onBack }) {
           checked={checked}
           isRight={isRight}
         />
+        {showProfile && <ProfileCard user={lesson.user} />}
       </main>
 
       {checked ? (
@@ -163,7 +152,7 @@ function Lesson({ lesson, onFinish, onBack }) {
               </button>
             ) : (
               <button className="lesson-button" onClick={goToNextStep}>
-                Continue
+                {step.kind === 'welcome' ? "Let's go" : 'Continue'}
               </button>
             )}
           </div>

@@ -339,3 +339,12 @@ How to explain it:
 - Out of hearts is worked out, not stored: `hearts === 0 && !checked`. The `!checked` part means you still see the red bar for the answer that cost the last heart, and the end screen comes after its CONTINUE.
 - `restart()` puts every piece of state back to the start: step 0, 3 hearts, no answer.
 - Both end screens share `EndScreen.css`. The check badge "pops" with a small CSS animation that's turned off for people who turn off animations in their system settings.
+
+## PR #44: Lessons with a demo user (2026-11-14, Nicolas)
+What it does: Lessons 2–4 (and every Unit 2 and 3 lesson) now start with a "Meet your user" card. The installing Git card has Windows / Mac / Linux tabs. During questions, a profile card on the right shows the user's info, and long values like Lily's GitHub URL have a Copy button. The "coming soon" screen is gone.
+How AI helped: Claude built PR 5 of the Unit 1 plan and checked Lessons 2 and 4 and Unit 3 Lesson 1 in Chrome, on a wide and a narrow window.
+How to explain it:
+- `MeetUserCard` reads `lesson.user`. The title is `welcomeTitle` if the lesson has one (Units 2–3), or "Meet " plus the name. The sprite comes from the user's first name ("Jackson Stark" → `jackson` in characters.js).
+- `OsTabs` keeps one number, `openIndex`, and only shows that tab's text. `TeachingCard` shows it only if the card has `tabs`.
+- `ProfileCard` shows every field. A field with `copyable: true` gets a Copy button that uses Gavin's `copyText`. It says "Copied!" or "Couldn't copy" for 2 seconds, then goes back to "Copy" (a `setTimeout`).
+- In `Lesson.jsx`, `showProfile` is true on questions in lessons that have a user, and the body switches to two columns.

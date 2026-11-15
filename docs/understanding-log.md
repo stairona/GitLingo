@@ -213,3 +213,11 @@ How to explain it:
 What it does: deletes `src/content/upcoming-units.json` (replaced by Gavin's unit files) and `src/utils/.gitkeep` (the folder has real files now).
 How AI helped: Claude checked that nothing used them. Nicolas ran the `git rm` himself.
 How to explain it: `git rm` deletes a file and stages that deletion in one step, so the next commit removes it from the repo.
+
+## PR #30: Components grouped into folders (2026-11-14, Nicolas)
+What it does: the components Nicolas made now live in three folders instead of one long list: `layout/` (the frame and side columns), `map/` (lesson buttons and the path line) and `characters/` (Jackson, Charley, Lily and their cards). `Icon.jsx` stays shared in `components/`, and Gavin's `Hearts.jsx` stays where it is until the lesson screen gets its own `lesson/` folder.
+How AI helped: Claude moved the files with `git mv` and fixed every import path with a small script, then checked the app built after each folder and looked the same.
+How to explain it:
+- `git mv` moves a file and keeps its history, so `git log --follow` still shows every change it ever had.
+- Moving a file one folder deeper means its imports need one more `../`. For example `'../content/characters.js'` became `'../../content/characters.js'`.
+- Nothing about how the app works changed. Only where files live and the import lines that point to them.

@@ -150,3 +150,11 @@ How to explain it:
 - `utils/guideNote.js` picks the right line: `waiting` if the guide is still on a locked unit (`-1`), otherwise `next[lesson.id]`, and if there's no next line (the last lesson of the course), `finale`.
 - `??` means "use the left side, or the right side if the left is missing". That's how the last lesson falls back to `finale`.
 - The lines describe the next lesson's story from our docs, like Charley's dark mode branch or Lily's broken contact form, so the map and the lessons tell the same story.
+
+## PR #21: Guide cards name the next lesson (2026-11-14, Nicolas)
+What it does: every guide hover card now names the lesson that comes next, for example "Next up, Lesson 3 (Main commands): you'll help my friend Charley...". Only a unit's last lesson points to the next unit ("That's Unit 1! Next up, Unit 2, Lesson 1 (Branches): ...").
+How AI helped: Nicolas noticed Jackson seemed to talk about the next unit. Claude found why: Lessons 3 and 4 star Charley and Lily, who are also the Unit 2 and 3 guides, so the lines sounded like they were about later units. Naming the lesson fixes that.
+How to explain it:
+- The lines in `characters.js` are now the second half of a sentence ("you'll help my friend Charley...").
+- `utils/guideNote.js` puts the next lesson's number and title in front: the lesson right after the guide's lesson, or Lesson 1 of the next unit at the end of a unit.
+- Waiting guides on locked units say "First up, Lesson 1 (...)".

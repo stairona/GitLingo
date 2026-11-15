@@ -387,3 +387,12 @@ How AI helped: Gavin took the screenshots and chose to add the section. Claude w
 How to explain it:
 - `![description](docs/screenshot-map.png)` is how Markdown shows an image. The text in the brackets is read out by screen readers and shows if the image can't load.
 - The future ideas follow from what we built: more units and a merge conflict simulator (the hardest part for us), a light theme (easy because every color is a CSS variable), and accounts (would need a backend, which we left out on purpose).
+
+## PR #49: Land on the lesson you're working on (2026-11-15, Nicolas)
+What it does: coming back to the map after a lesson (finished or quit with ✕), it slides to your glowing current lesson instead of starting at the top. Someone brand new, or someone who finished everything, stays at the top.
+How AI helped: Claude built PR 9 of the plan and checked it in Chrome with different amounts of progress (new player, Unit 1 done, halfway through Unit 2, everything done).
+How to explain it:
+- `Home.jsx` has a `useEffect`, code that runs right after the map shows up on screen. Every time you come back from a lesson the map is shown again, so it runs again.
+- `useRef` gives us the map's `<div>`, and `querySelector('.lesson-bubble--current')` finds the glowing lesson inside it.
+- `scrollIntoView({ block: 'center' })` is built into the browser. It scrolls the page until that element is in the middle of the screen.
+- If nothing is finished yet we skip it, so a new player sees the top of the page first. If everything is finished there's no current lesson, so nothing happens.

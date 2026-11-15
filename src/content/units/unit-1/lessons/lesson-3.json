@@ -1,0 +1,94 @@
+{
+  "id": "u1-l3",
+  "hash": "e94d2a8",
+  "title": "Main commands",
+  "user": {
+    "name": "Charley Dunkel",
+    "backstory": "Charley just built a small weather app for a class project. Now Charley wants to start saving it with Git, so nothing gets lost.",
+    "fields": [
+      { "label": "Name", "value": "Charley Dunkel" },
+      { "label": "Project folder", "value": "weather-app" },
+      { "label": "File", "value": "app.py" },
+      { "label": "Commit message", "value": "Add weather app" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Saving in Git takes steps",
+      "body": ["In a game, you hit save once. In Git, saving is a few steps, so you get to choose exactly what goes into each snapshot. Think of it like packing a box: first you put things in, then you seal it and write a label."],
+      "diagram": "[ Your files ]  --git add-->  [ Ready to save ]  --git commit-->  [ Snapshot saved ]"
+    },
+    {
+      "title": "`git init`: turn Git on",
+      "body": ["Git doesn't watch every folder on your computer. You have to turn it on for each project. Run `git init` inside a project folder, and Git starts tracking it. You only do this once per project."]
+    },
+    {
+      "title": "`git status`: check what's going on",
+      "body": ["`git status` shows what changed and what's ready to save."],
+      "bullets": [
+        "Red files: changed, but not ready to save yet",
+        "Green files: ready to save"
+      ],
+      "footer": "It never changes anything, so use it whenever you're unsure."
+    },
+    {
+      "title": "`git add` and `git commit`: pack and seal",
+      "body": [],
+      "bullets": [
+        "`git add .` puts every change in the folder into the box. The dot means \"everything here.\"",
+        "`git commit -m \"message\"` seals the box and saves the snapshot. The message describes what you changed."
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "Charley's `weather-app` folder isn't tracked by Git yet. Which command starts tracking it?",
+      "options": ["`git start`", "`git commit`", "`git init`"],
+      "correctIndex": 2,
+      "wrongFeedback": "`git init` turns Git on for a folder. You only need it once per project."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "What does `git status` do?",
+      "options": [
+        "Saves a snapshot",
+        "Shows what changed and what's ready to save",
+        "Uploads your project to GitHub"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "`git status` shows what changed and what's ready to save. It never changes anything."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Charley's `app.py` shows up in red. Get all of Charley's changes ready to save.",
+      "startingHistory": [
+        { "text": "$ git init" },
+        { "text": "Initialized empty Git repository in /weather-app/.git/" },
+        { "text": "$ git status" },
+        { "text": "Untracked files:" },
+        { "text": "        app.py", "color": "red" }
+      ],
+      "acceptedAnswers": ["git add .", "git add -A", "git add --all", "git add app.py"],
+      "fakeOutput": []
+    },
+    {
+      "type": "terminal",
+      "prompt": "`app.py` is green now. Save the snapshot using the commit message on Charley's profile card.",
+      "startingHistory": [
+        { "text": "$ git status" },
+        { "text": "Changes to be committed:" },
+        { "text": "        new file:   app.py", "color": "green" }
+      ],
+      "acceptedAnswers": [
+        "git commit -m \"Add weather app\"",
+        "git commit -m 'Add weather app'"
+      ],
+      "fakeOutput": [
+        "[main (root-commit) a1b2c3d] Add weather app",
+        " 1 file changed, 24 insertions(+)",
+        " create mode 100644 app.py"
+      ]
+    }
+  ]
+}

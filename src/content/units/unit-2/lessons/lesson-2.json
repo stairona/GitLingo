@@ -1,0 +1,112 @@
+{
+  "id": "u2-l2",
+  "hash": "c06a9e3",
+  "title": "Merging on GitHub",
+  "user": {
+    "name": "Charley Dunkel",
+    "welcomeTitle": "Dark mode is done!",
+    "backstory": "Charley finished dark mode on the `add-dark-mode` branch and tested it. It works. Now it's time to merge it into `main`, the real version of the app, using GitHub.",
+    "fields": [
+      { "label": "Name", "value": "Charley Dunkel" },
+      { "label": "GitHub username", "value": "charley-dunkel-gitlingo" },
+      { "label": "Repo", "value": "weather-app" },
+      { "label": "Current branch", "value": "add-dark-mode" },
+      { "label": "Merge into", "value": "main" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Merging happens on GitHub",
+      "body": ["Merging brings the snapshots from one branch into another, like copying the progress from your experimental save slot into your main save. Most teams don't merge in the terminal. They merge on GitHub with a pull request: a page that says \"here are my changes, please merge them,\" so teammates can look first."]
+    },
+    {
+      "title": "Step 1: upload your branch",
+      "body": ["GitHub can only merge what it can see, so first push your branch:"],
+      "bullets": ["`git push -u origin add-dark-mode`"],
+      "footer": "It's the same push from Unit 1, just with your branch's name instead of `main`. GitHub will then offer a Compare & pull request button."
+    },
+    {
+      "title": "Step 2: set base and compare",
+      "body": ["When you open a pull request, GitHub asks for two branches:"],
+      "bullets": [
+        "base: the branch you're merging into (usually `main`)",
+        "compare: the branch with your changes"
+      ],
+      "diagram": "base: main  <--  compare: add-dark-mode",
+      "footer": "The arrow shows the direction: changes flow from compare into base."
+    },
+    {
+      "title": "Step 3: merge, then bring it home",
+      "body": [
+        "Click Merge pull request, then Confirm merge. Now `main` on GitHub has dark mode, but your laptop doesn't yet. Switch to `main` and run `git pull` to download it.",
+        "(If both branches changed the same lines, GitHub warns you about a conflict before you can merge.)"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "type": "terminal",
+      "prompt": "Upload Charley's `add-dark-mode` branch to GitHub.",
+      "startingHistory": [
+        { "text": "$ git branch" },
+        { "text": "* add-dark-mode", "color": "green" },
+        { "text": "  main" }
+      ],
+      "acceptedAnswers": [
+        "git push -u origin add-dark-mode",
+        "git push --set-upstream origin add-dark-mode",
+        "git push origin add-dark-mode"
+      ],
+      "fakeOutput": [
+        "Enumerating objects: 5, done.",
+        "Writing objects: 100% (3/3), done.",
+        "remote:",
+        "remote: Create a pull request for 'add-dark-mode' on GitHub by visiting:",
+        "remote:      https://github.com/charley-dunkel-gitlingo/weather-app/pull/new/add-dark-mode",
+        "remote:",
+        "To https://github.com/charley-dunkel-gitlingo/weather-app.git",
+        " * [new branch]      add-dark-mode -> add-dark-mode",
+        "branch 'add-dark-mode' set up to track 'origin/add-dark-mode'."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Charley opens a pull request on GitHub. Which setup merges dark mode into `main`?",
+      "options": [
+        "`base: add-dark-mode  <--  compare: main`",
+        "`base: main  <--  compare: add-dark-mode`",
+        "`base: main  <--  compare: main`"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "Base is where the changes go (`main`). Compare is the branch with the changes (`add-dark-mode`)."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Charley clicked Merge pull request on GitHub. Does Charley's laptop have the new `main` yet?",
+      "options": [
+        "Yes, it updates automatically",
+        "No, Charley has to merge again in the terminal",
+        "No, Charley needs to download it with `git pull`"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "The merge happened on GitHub. Charley's laptop only gets it after a `git pull`."
+    },
+    {
+      "type": "terminal",
+      "prompt": "The merge is done on GitHub. Download the updated `main` to Charley's laptop.",
+      "startingHistory": [
+        { "text": "$ git switch main" },
+        { "text": "Switched to branch 'main'" }
+      ],
+      "acceptedAnswers": ["git pull", "git pull origin main"],
+      "fakeOutput": [
+        "From https://github.com/charley-dunkel-gitlingo/weather-app",
+        "   a1b2c3d..9f8e7d6  main       -> origin/main",
+        "Updating a1b2c3d..9f8e7d6",
+        "Fast-forward",
+        " app.py | 12 ++++++++++++",
+        " 1 file changed, 12 insertions(+)"
+      ]
+    }
+  ]
+}

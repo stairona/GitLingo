@@ -1,0 +1,97 @@
+{
+  "id": "u3-l1",
+  "hash": "6b1d3a9",
+  "title": "The three areas",
+  "user": {
+    "name": "Charley Dunkel",
+    "welcomeTitle": "Charley's back, with a choice to make.",
+    "backstory": "Charley fixed a bug in `app.py`, and also scribbled some messy notes in `notes.txt`. Only the bug fix should go in the next snapshot. Time to find out how Git lets you choose.",
+    "fields": [
+      { "label": "Name", "value": "Charley Dunkel" },
+      { "label": "Project folder", "value": "weather-app" },
+      { "label": "Changed files", "value": "app.py (a bug fix), notes.txt (personal notes, not ready to save)" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Git has three areas",
+      "body": ["Remember packing a box in Unit 1? Each step has a real name:"],
+      "bullets": [
+        "Working directory: the files on your laptop that you edit",
+        "Staging area: the box, holding the changes you picked for the next snapshot",
+        "Repository: your saved snapshots, kept in the hidden `.git` folder"
+      ],
+      "diagram": "[ Working directory ]  --git add-->  [ Staging area ]  --git commit-->  [ Repository ]"
+    },
+    {
+      "title": "Why have a staging area?",
+      "body": ["The staging area lets you choose. If you changed two files but only one is ready, stage just that one. The snapshot will contain only what you put in the box."]
+    },
+    {
+      "title": "`git status` shows the areas",
+      "body": ["Now you know what red and green in `git status` really mean:"],
+      "bullets": [
+        "\"Changes to be committed\" (green): in the staging area",
+        "\"Changes not staged for commit\" (red): only in the working directory"
+      ]
+    },
+    {
+      "title": "Taking something back out of the box",
+      "body": [
+        "`git restore --staged notes.txt` takes a file out of the staging area but keeps your edits in the working directory.",
+        "Careful: don't mix it up with plain `git restore notes.txt` from Unit 2, which throws your edits away. The `--staged` makes all the difference."
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "Charley picked some changes with `git add`. Which area are they in now?",
+      "options": ["Working directory", "Staging area", "Repository"],
+      "correctIndex": 1,
+      "wrongFeedback": "`git add` puts changes in the staging area, the box for the next snapshot. They reach the repository only after `git commit`."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Only the bug fix is ready. Stage just `app.py`.",
+      "startingHistory": [
+        { "text": "$ git status" },
+        { "text": "On branch main" },
+        { "text": "Changes not staged for commit:" },
+        { "text": "        modified:   app.py", "color": "red" },
+        { "text": "        modified:   notes.txt", "color": "red" }
+      ],
+      "acceptedAnswers": ["git add app.py"],
+      "fakeOutput": []
+    },
+    {
+      "type": "terminal",
+      "prompt": "Charley changed their mind: the bug fix needs more work first. Take `app.py` back out of the staging area, without losing the edits.",
+      "startingHistory": [
+        { "text": "$ git status" },
+        { "text": "On branch main" },
+        { "text": "Changes to be committed:" },
+        { "text": "        modified:   app.py", "color": "green" },
+        { "text": "Changes not staged for commit:" },
+        { "text": "        modified:   notes.txt", "color": "red" }
+      ],
+      "acceptedAnswers": [
+        "git restore --staged app.py",
+        "git reset app.py",
+        "git reset HEAD app.py"
+      ],
+      "fakeOutput": []
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "After `git restore --staged app.py`, what happened to Charley's bug-fix edits?",
+      "options": [
+        "They're still in the working directory, just not staged",
+        "They were deleted for good",
+        "They were saved in a snapshot"
+      ],
+      "correctIndex": 0,
+      "wrongFeedback": "`--staged` only takes the file out of the box. The edits are still in the working directory. (Plain `git restore` without `--staged` is the one that throws edits away.)"
+    }
+  ]
+}

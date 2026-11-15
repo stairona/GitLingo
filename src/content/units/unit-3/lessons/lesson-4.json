@@ -1,0 +1,87 @@
+{
+  "id": "u3-l4",
+  "hash": "8e3a7c6",
+  "title": "Centralized vs. distributed",
+  "user": {
+    "name": "Jackson Stark",
+    "welcomeTitle": "The whole crew is back!",
+    "backstory": "Jackson, Charley and Lily are having a late study session at the library, when the Wi-Fi goes down. Lily panics: \"Can we still work without GitHub?\" Time to find out why Git says yes.",
+    "fields": [
+      { "label": "You are", "value": "Jackson Stark" },
+      { "label": "With", "value": "Charley Dunkel, Lily Lurvey" },
+      { "label": "Project", "value": "weather-app" },
+      { "label": "Branch", "value": "add-forecast" },
+      { "label": "Commit message", "value": "Add rain alerts" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Two ways to share a project",
+      "body": [
+        "Centralized: one central server holds the history. Everyone's laptop only has the latest files. Older tools like Subversion (SVN) work this way.",
+        "Distributed: every copy has the full history. Git works this way."
+      ],
+      "diagram": "Centralized:   [laptop]   [laptop]   [laptop]\n                     \\        |        /\n               [ Server: the only history ]\n\nDistributed:   [laptop: full history] <--> [GitHub: full history] <--> [laptop: full history]"
+    },
+    {
+      "title": "You already have everything",
+      "body": ["When you clone a project, you get every snapshot ever made, not just the latest files. That's why `git log`, `git commit`, `git branch` and `git switch` all work with no internet."]
+    },
+    {
+      "title": "Only some commands need internet",
+      "body": ["The commands that talk to GitHub need internet: `git clone`, `git push` and `git pull`. Everything else works anywhere, even on a plane."]
+    },
+    {
+      "title": "No single point of failure",
+      "body": ["In a centralized system, if the server breaks, the history can be lost. With Git, every clone is a full backup. GitHub is just the copy your team agreed to share. That's what \"distributed\" means."]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "What's the big difference between centralized and distributed version control?",
+      "options": [
+        "In distributed (like Git), every copy has the full history",
+        "Distributed only works with internet",
+        "Centralized lets everyone work offline"
+      ],
+      "correctIndex": 0,
+      "wrongFeedback": "In a distributed system like Git, every copy has the full history. In a centralized one, only the server does."
+    },
+    {
+      "type": "terminal",
+      "prompt": "No Wi-Fi, so the push failed. But Jackson can still save new work. Commit the staged changes with the message on the profile card.",
+      "startingHistory": [
+        { "text": "$ git push" },
+        { "text": "fatal: unable to access 'https://github.com/charley-dunkel-gitlingo/weather-app.git/': Could not resolve host: github.com", "color": "red" },
+        { "text": "$ git add ." }
+      ],
+      "acceptedAnswers": [
+        "git commit -m \"Add rain alerts\"",
+        "git commit -m 'Add rain alerts'"
+      ],
+      "fakeOutput": [
+        "[add-forecast 5e6f7a8] Add rain alerts",
+        " 1 file changed, 8 insertions(+)"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "The Wi-Fi is still down. Which of these commands won't work?",
+      "options": ["`git commit`", "`git log`", "`git push`"],
+      "correctIndex": 2,
+      "wrongFeedback": "`git push` talks to GitHub, so it needs internet. `git commit` and `git log` only use your own copy."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Imagine GitHub's copy of the weather app was lost. Could the team get their project back?",
+      "options": [
+        "No, GitHub had the only history",
+        "Yes, any teammate's clone has the full history",
+        "Only the latest files, not the history"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "Every clone is a full copy of the history, so any teammate could put it all back."
+    }
+  ]
+}

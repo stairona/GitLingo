@@ -1,0 +1,95 @@
+{
+  "id": "u2-l3",
+  "hash": "2e7b5d1",
+  "title": "Teamwork",
+  "user": {
+    "name": "Jackson Stark",
+    "welcomeTitle": "Jackson's back, and joining a team!",
+    "backstory": "Charley's weather app is getting popular, and Jackson wants to help by adding a 5-day forecast. Charley invited Jackson to the project on GitHub. Time to work together.",
+    "fields": [
+      { "label": "Name", "value": "Jackson Stark" },
+      { "label": "GitHub username", "value": "jackson-stark-gitlingo" },
+      { "label": "Teammate", "value": "Charley Dunkel" },
+      {
+        "label": "Repo to join",
+        "value": "https://github.com/charley-dunkel-gitlingo/weather-app.git",
+        "copyable": true
+      },
+      { "label": "New branch", "value": "add-forecast" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "How teams share one project",
+      "body": ["A team shares one repo on GitHub. Each person works on their own branch, and changes reach `main` through pull requests, just like Charley did in the last lesson. Charley added Jackson as a collaborator in the repo's settings, so Jackson is allowed to push to it."]
+    },
+    {
+      "title": "Get your own copy with `git clone`",
+      "body": [
+        "`git clone <url>` downloads the whole project, with its full history, into a new folder on your laptop. You only clone once. Copy the URL from GitHub, like Lily did in Unit 1.",
+        "Then move into the new folder with `cd weather-app`, and make your own branch, just like in Lesson 1."
+      ]
+    },
+    {
+      "title": "Review before you merge",
+      "body": ["When a teammate opens a pull request, you review it on GitHub. Read the changes in the Files changed tab, leave comments, then choose Approve or Request changes. Reviews catch bugs before they reach `main`."]
+    },
+    {
+      "title": "Stay up to date",
+      "body": ["Your teammates keep merging things into `main`. Before you start something new, switch to `main` and run `git pull`, so you're building on the latest version and not an old one."]
+    }
+  ],
+  "questions": [
+    {
+      "type": "terminal",
+      "prompt": "Download Charley's project to Jackson's laptop. Use the Copy button on the profile card.",
+      "startingHistory": [],
+      "acceptedAnswers": [
+        "git clone https://github.com/charley-dunkel-gitlingo/weather-app.git",
+        "git clone https://github.com/charley-dunkel-gitlingo/weather-app"
+      ],
+      "fakeOutput": [
+        "Cloning into 'weather-app'...",
+        "remote: Enumerating objects: 24, done.",
+        "Receiving objects: 100% (24/24), done."
+      ]
+    },
+    {
+      "type": "terminal",
+      "prompt": "You're in the project folder. Create a branch called `add-forecast` and switch to it.",
+      "startingHistory": [
+        { "text": "$ cd weather-app" },
+        { "text": "$ git branch" },
+        { "text": "* main", "color": "green" }
+      ],
+      "acceptedAnswers": [
+        "git switch -c add-forecast",
+        "git switch --create add-forecast",
+        "git checkout -b add-forecast"
+      ],
+      "fakeOutput": ["Switched to a new branch 'add-forecast'"]
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Jackson finished the forecast and opened a pull request. While reviewing it, Charley spots a bug. What should Charley do?",
+      "options": [
+        "Leave a review and choose \"Request changes\"",
+        "Merge it anyway and fix the bug later",
+        "Delete Jackson's branch"
+      ],
+      "correctIndex": 0,
+      "wrongFeedback": "That's what reviews are for: Charley chooses \"Request changes\" so Jackson can fix the bug before it reaches `main`."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Jackson fixed the bug, and Charley merged the pull request. Why should Jackson run `git pull` on `main` before starting something new?",
+      "options": [
+        "To upload Jackson's work to GitHub",
+        "To delete old branches",
+        "To get everything the team merged, so new work starts from the latest version"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "`git pull` downloads what teammates merged, so Jackson builds on the newest `main`. Uploading is `git push`."
+    }
+  ]
+}

@@ -158,3 +158,14 @@ How to explain it:
 - The lines in `characters.js` are now the second half of a sentence ("you'll help my friend Charley...").
 - `utils/guideNote.js` puts the next lesson's number and title in front: the lesson right after the guide's lesson, or Lesson 1 of the next unit at the end of a unit.
 - Waiting guides on locked units say "First up, Lesson 1 (...)".
+
+## PR #24: Fun-fact characters on the sides (2026-11-14, Nicolas)
+What it does: six pixel characters are scattered around the empty left and right sides of the home page, three in the sidebar and three under the right panel cards. Each has a small "?" above their head, and hovering over one shows a Git or GitHub fun fact.
+How AI helped: Nicolas asked for characters on both sides with Git and GitHub fun facts. Claude picked six well-documented facts, placed the characters, and reused the guides' hover card.
+How to explain it:
+- The facts live in `content/funFacts.js`. Each one says who tells it, which side it's on, how the character stands, and the text. To add a fact, add one more item to the list.
+- The facts: Git was made by Linus Torvalds in 2005 for Linux; "git" is British slang and Linus joked he names projects after himself; Git works offline because the history is on your computer; a full commit ID is 40 characters and short IDs are the first 7; GitHub launched in 2008 and Microsoft bought it in 2018 for $7.5 billion; GitHub switched new repos to "main" in 2020.
+- `FunFactCharacter.jsx` is a character plus the same `CharacterCard` the guides use, with a custom `label` ("Git fun fact").
+- `align` on the card ('start' or 'end') makes it open to the right in the sidebar and to the left in the right panel, so it never goes off screen.
+- `.filter((fact) => fact.side === 'left')` picks which facts go in the sidebar. The right panel does the same with 'right'.
+- The sidebar got `z-index: 5` so its cards show on top of the map when they open over it.

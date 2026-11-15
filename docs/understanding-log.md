@@ -317,3 +317,16 @@ How to explain it:
 - `color-mix()` blends a little green or red into the dark background, so the colors come from our variables and the text stays readable.
 - Accessibility: `aria-pressed` tells screen readers which option is chosen, `role="status"` reads the result out loud, and `autoFocus` puts the keyboard on CONTINUE.
 - For now hearts can run out with no "Out of hearts" screen. That comes in PR 4 (end screens).
+
+## PR #42: Practice terminal (2026-11-14, Gavin)
+What it does: terminal questions now work. You type a Git command into a pretend terminal and press Enter (or CHECK). A right answer prints the command's output, like `git version 2.47.0`, and shows the green bar. A wrong answer keeps what you typed, costs a heart, and the red bar says "Not quite. The answer is `git --version`". Nothing you type ever really runs.
+How AI helped: this is PR 3 of the lesson screen plan. Claude wrote `PracticeTerminal` and the changes to `Lesson.jsx` at Gavin's request, and tested all 23 terminal questions in our lesson files against the answer checker. Gavin tested and committed each step.
+How to explain it:
+- It follows the same pattern as multiple choice: `Lesson.jsx` keeps a new piece of state, `typed` (the text in the box). `PracticeTerminal` only shows things and reports typing (`onType`) and Enter (`onSubmit`). It never decides if an answer is right.
+- The input sits inside a `<form>`, so pressing Enter submits it for free. `event.preventDefault()` stops the page from reloading, which is what a form normally does.
+- `isAnswerCorrect` (from our helpers PR) ignores extra spaces but not uppercase letters, because Git names are case-sensitive. That's also why the input turns off `autoCapitalize`, `autoCorrect` and `spellCheck`: a phone turning `git` into `Git` would make a right answer wrong.
+- Three small rule functions in `Lesson.jsx` work for both question types, so the rest of the file doesn't care which type it is: `hasAnswer` (is CHECK allowed yet?), `getIsRight` (positions for multiple choice, `isAnswerCorrect` for the terminal) and `getWrongMessage`.
+- Terminal questions have no `wrongFeedback` in the lesson files, so the red bar shows the first accepted answer, `acceptedAnswers[0]`.
+- `showOutput = checked && isRight`: output only appears after CHECK, and only for a right answer, like a command that worked. Some commands really print nothing (like `git config`), so `fakeOutput` can be empty.
+- `startingHistory` lines can have a `color` (`red` or `green`), because real Git shows changed files in red and staged files in green. `white-space: pre-wrap` keeps the spaces inside lines like `        modified:   app.py`.
+- Pasting works on its own, because it's a normal `<input>`. Lesson 4 has you paste Lily's URL from her profile card.

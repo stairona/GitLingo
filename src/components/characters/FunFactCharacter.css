@@ -1,13 +1,11 @@
 .fun-fact {
   width: fit-content;
-  padding-top: var(--space-6);
 }
 
+/* part of the normal layout (not absolute), so it always sits right above the
+   character's head, even where the card is lined up with something else */
 .fun-fact__hint {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: var(--space-2);
   width: 20px;
   height: 20px;
   display: flex;

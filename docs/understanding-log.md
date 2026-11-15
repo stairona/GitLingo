@@ -283,3 +283,11 @@ How to explain it:
 - `position: sticky` keeps something pinned while you scroll, but if it's taller than the window, its bottom part can never be seen. Removing it lets the column scroll like the rest of the page.
 - `above` on `CharacterCard` swaps `top: 100%` for `bottom: 100%`, so the card sits over the character instead of under it.
 - `:focus-within` kept a card open after a mouse click. `:focus-visible` only matches keyboard focus (Tab), so clicking no longer leaves a card stuck open, but keyboard users can still read every card.
+
+## PR #39: Right column stays in view on any screen (2026-11-14, Nicolas)
+What it does: the right column stays pinned while you scroll the map (great on Gavin's big monitor), and if it's taller than the window, it scrolls by itself so nothing is cut off on a laptop.
+How AI helped: Gavin noticed the column scrolled away on a big monitor. Claude planned it as one commit and tested it at 1920x1200, 1440x900 and 1440x800.
+How to explain it:
+- `position: sticky; top: 0` pins the column. `max-height: 100vh` stops it from being taller than the window, and `overflow-y: auto` gives it its own scrollbar only when it needs one.
+- A box that scrolls by itself cuts off anything sticking out of it. So the fun-fact cards now line up with the whole row of characters (`position: static` on each character) instead of with one character, and they always fit inside.
+- The "?" above each character went from `position: absolute` to normal layout, so it stays above its own character.

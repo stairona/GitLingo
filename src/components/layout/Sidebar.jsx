@@ -24,8 +24,8 @@ function Sidebar({ completedLessons }) {
       <UnitSelector completedLessons={completedLessons} />
 
       <div className="sidebar__facts">
-        {FUN_FACTS.filter((fact) => fact.side === 'left').map((fact) => (
-          <FunFactCharacter key={fact.id} fact={fact} cardAlign="start" />
+        {FUN_FACTS.map((fact) => (
+          <FunFactCharacter key={fact.id} fact={fact} cardAlign="start" cardAbove />
         ))}
       </div>
     </nav>

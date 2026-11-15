@@ -1,11 +1,8 @@
-/* stays in view while the map scrolls, but is never taller than the window:
-   if it doesn't fit (smaller screens), the column scrolls by itself */
+/* stays in the same spot while the map scrolls. It's short enough now
+   (no characters) to fit on screen, so it doesn't need its own scrollbar */
 .right-panel {
   position: sticky;
   top: 0;
-  max-height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
   flex: 0 0 340px;
   padding: var(--space-7) 0;
   display: flex;
@@ -53,22 +50,4 @@
   background: var(--accent);
 
   transition: width 0.5s;
-}
-
-.right-panel__facts {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  padding-top: var(--space-4);
-}
-
-.right-panel__facts > :nth-child(2) {
-  margin-top: var(--space-8);
-}
-
-/* the cards line up with the whole row of characters instead of one character,
-   so they always fit inside the column (it cuts off anything sticking out) */
-.right-panel__facts .character-hover {
-  position: static;
 }

@@ -396,3 +396,12 @@ How to explain it:
 - `useRef` gives us the map's `<div>`, and `querySelector('.lesson-bubble--current')` finds the glowing lesson inside it.
 - `scrollIntoView({ block: 'center' })` is built into the browser. It scrolls the page until that element is in the middle of the screen.
 - If nothing is finished yet we skip it, so a new player sees the top of the page first. If everything is finished there's no current lesson, so nothing happens.
+
+## PR #50: Fun facts on the left, right column stays still (2026-11-15, Nicolas)
+What it does: Charley and Lily moved from the right column to the left, so all three fun fact characters stand in a row under the unit list. The right column is now short enough to fit on screen, so it stays in place with no scrollbar of its own.
+How AI helped: Claude made both changes and checked them in Chrome at 1280×720, 1440×900 and 1920×1080 (the right column stays at the top and never needs to scroll).
+How to explain it:
+- Every fun fact in `funFacts.js` used to say which side it goes on (`side`). They all go on the left now, so we removed that field and `Sidebar.jsx` just shows all of them.
+- `.sidebar__facts` is a row (`display: flex`). The cards open above it (`cardAbove`) so they're never cut off at the bottom of the screen.
+- `.character-hover { position: static }` inside the row makes every card line up with the row's left edge instead of with one character, so all three cards open in the same place.
+- The right column keeps `position: sticky; top: 0` (stay at the top while the page scrolls). We removed `max-height` and `overflow-y: auto`, which only existed for when it was too tall.

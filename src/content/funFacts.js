@@ -2,7 +2,6 @@
 export const FUN_FACTS = [
   {
     id: 'git-creator',
-    side: 'left',
     character: 'jackson',
     pose: 'stand',
     flip: false,
@@ -11,7 +10,6 @@ export const FUN_FACTS = [
   },
   {
     id: 'commit-ids',
-    side: 'right',
     character: 'charley',
     pose: 'point',
     flip: true,
@@ -20,7 +18,6 @@ export const FUN_FACTS = [
   },
   {
     id: 'main-branch',
-    side: 'right',
     character: 'lily',
     pose: 'stand',
     flip: false,

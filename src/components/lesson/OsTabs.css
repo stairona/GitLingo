@@ -1,0 +1,46 @@
+.os-tabs {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.os-tabs__list {
+  display: flex;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.os-tabs__tab {
+  flex: 1;
+  padding: var(--space-3);
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.os-tabs__tab:hover {
+  color: var(--text);
+}
+
+.os-tabs__tab:focus-visible {
+  outline: 3px solid var(--accent-tint);
+  outline-offset: -3px;
+}
+
+.os-tabs__tab--open {
+  border-bottom-color: var(--accent);
+  color: var(--text);
+}
+
+.os-tabs__panel {
+  padding: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}

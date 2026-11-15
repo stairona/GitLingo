@@ -1,0 +1,100 @@
+.practice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Same label and prompt style as MultipleChoice, so questions look alike. */
+.practice__label {
+  color: var(--accent-light);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.practice__prompt {
+  color: var(--text);
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.terminal {
+  margin-top: var(--space-4);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--terminal-bg);
+  overflow: hidden;
+}
+
+/* The strip at the top, like a terminal window's title bar. */
+.terminal__header {
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text-dim);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.terminal__screen {
+  padding: var(--space-4);
+  color: var(--terminal-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* pre-wrap keeps the spaces in lines like "        modified:   app.py",
+   but still wraps long lines (like a URL) instead of making the page scroll sideways. */
+.terminal__line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* The colors from "color" in the lesson file. Real Git shows changed files
+   in red and staged files in green, so we do too. */
+.terminal__line--red {
+  color: var(--danger);
+}
+
+.terminal__line--green {
+  color: var(--success);
+}
+
+.terminal__input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.terminal__dollar {
+  color: var(--accent-light);
+}
+
+/* The input looks like part of the terminal, not like a form box. */
+.terminal__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-1) 0;
+  border: none;
+  border-bottom: 2px solid var(--card-border);
+  background: transparent;
+  color: var(--terminal-text);
+  font: inherit;
+  caret-color: var(--accent);
+}
+
+.terminal__input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.terminal__input:disabled {
+  border-bottom-color: transparent;
+  color: var(--terminal-text);
+  -webkit-text-fill-color: var(--terminal-text);
+}

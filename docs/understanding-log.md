@@ -240,3 +240,8 @@ How to explain it:
 - `UnitGuide` has a `waiting` mode: standing, grey, no speech bubble. Its hover card uses the "First up, Lesson 1" text.
 - `guide.says?.[lesson.id]`: the `?.` means "if `says` exists". Lily has no lines yet, so this keeps the app from crashing.
 - `Home.jsx` draws `units.slice(0, 2)` as paths. Unit 3 is still the old card until the next PR.
+
+## PR #34: Charley's bubble no longer covers the title (2026-11-14, Nicolas)
+What it does: Charley stands a bit lower on the map, so at Unit 2 Lesson 1 his speech bubble doesn't overlap the "GitHub Advanced" title.
+How AI helped: Nicolas spotted the overlap. Claude lowered Charley and checked it in screenshots.
+How to explain it: each guide now gets a class with their name (like `unit-guide--charley`), so CSS can move just one character. Charley is taller than Jackson and Lily, so his `bottom` is 26px instead of 58px.

@@ -58,8 +58,8 @@ function StepScreen({ step, picked, onPick, typed, onType, onSubmit, checked, is
 }
 
 // One lesson, played screen by screen: the welcome card, teaching cards, then questions,
-// in the order getLessonSteps gives them.
-function Lesson({ lesson, onFinish, onBack }) {
+// in the order getLessonSteps gives them. review is true when the lesson was already finished.
+function Lesson({ lesson, review = false, onFinish, onBack }) {
   const steps = getLessonSteps(lesson)
   const [stepIndex, setStepIndex] = useState(0)
   const [hearts, setHearts] = useState(STARTING_HEARTS)

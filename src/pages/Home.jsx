@@ -7,18 +7,22 @@ import { units } from '../content/index.js'
 import { UNIT_GUIDES } from '../content/characters.js'
 import './Home.css'
 
-// The first unit is playable, the rest are still "coming soon".
-const [unit1, ...upcomingUnits] = units
+// Units 1 and 2 are drawn as paths. Unit 3 is still a "coming soon" card for now.
+const pathUnits = units.slice(0, 2)
+const upcomingUnits = units.slice(2)
 
 function Home({ completedLessons, onStartLesson }) {
   return (
     <div className="home">
-      <UnitPath
-        unit={unit1}
-        unitIndex={0}
-        completedLessons={completedLessons}
-        onStartLesson={onStartLesson}
-      />
+      {pathUnits.map((unit, index) => (
+        <UnitPath
+          key={unit.id}
+          unit={unit}
+          unitIndex={index}
+          completedLessons={completedLessons}
+          onStartLesson={onStartLesson}
+        />
+      ))}
 
       {upcomingUnits.map((unit) => (
         <section key={unit.number} id={unit.id} className="unit unit--locked">

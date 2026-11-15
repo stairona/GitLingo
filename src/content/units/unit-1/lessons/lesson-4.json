@@ -1,0 +1,98 @@
+{
+  "id": "u1-l4",
+  "hash": "3b7f6c0",
+  "title": "Putting it on GitHub",
+  "user": {
+    "name": "Lily Lurvey",
+    "backstory": "Lily built a portfolio website and has been saving snapshots with Git. But right now it only lives on Lily's laptop. Time to put it on GitHub so the world can see it.",
+    "fields": [
+      { "label": "GitHub username", "value": "lily-lurvey-gitlingo" },
+      { "label": "Repo", "value": "portfolio" },
+      { "label": "Branch", "value": "main" },
+      {
+        "label": "Remote URL",
+        "value": "https://github.com/lily-lurvey-gitlingo/portfolio.git",
+        "copyable": true
+      }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Your saves are only on your laptop",
+      "body": ["Every snapshot you've made so far lives only on your computer. If your laptop breaks, they're gone, and nobody else can see your work. Uploading to GitHub fixes both: it's a backup and a way to share."],
+      "diagram": "[ Your laptop: Git ]  --push-->  [ GitHub ]"
+    },
+    {
+      "title": "Get your repo's address",
+      "body": ["First you create an empty repo on the GitHub website. GitHub then gives you its address, a URL. You don't type it out: you copy it. Lily's repo is already created, and the URL is on the profile card with a Copy button."]
+    },
+    {
+      "title": "`git remote add`: connect to GitHub",
+      "body": ["`git remote add origin <url>` connects your project to your GitHub repo. `origin` is just a nickname for that GitHub address, so you don't have to type the URL ever again. You only do this once per project."]
+    },
+    {
+      "title": "`git push`: upload your snapshots",
+      "body": ["`git push -u origin main` uploads your snapshots to GitHub."],
+      "bullets": [
+        "`origin`: where to send them (your nickname from before)",
+        "`main`: which line of snapshots to send (you'll learn more about this in Unit 2)",
+        "`-u`: remember this, so next time you can just type `git push`"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "What does `git push` do?",
+      "options": [
+        "Saves a new snapshot",
+        "Downloads the project from GitHub",
+        "Uploads your snapshots to GitHub"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "`git push` uploads your snapshots to GitHub. Saving a snapshot is `git commit`."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "In `git remote add origin <url>`, what is `origin`?",
+      "options": [
+        "A nickname for your GitHub repo's address",
+        "The name of your first snapshot",
+        "A folder on your computer"
+      ],
+      "correctIndex": 0,
+      "wrongFeedback": "`origin` is a nickname for the GitHub address, so you don't have to type the URL every time."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Connect Lily's project to the GitHub repo. Use the Copy button on the profile card for the URL.",
+      "startingHistory": [
+        { "text": "$ git status" },
+        { "text": "On branch main" },
+        { "text": "nothing to commit, working tree clean" }
+      ],
+      "acceptedAnswers": [
+        "git remote add origin https://github.com/lily-lurvey-gitlingo/portfolio.git",
+        "git remote add origin https://github.com/lily-lurvey-gitlingo/portfolio"
+      ],
+      "fakeOutput": []
+    },
+    {
+      "type": "terminal",
+      "prompt": "Everything's connected. Upload Lily's snapshots to GitHub.",
+      "startingHistory": [
+        { "text": "$ git remote -v" },
+        { "text": "origin  https://github.com/lily-lurvey-gitlingo/portfolio.git (fetch)" },
+        { "text": "origin  https://github.com/lily-lurvey-gitlingo/portfolio.git (push)" }
+      ],
+      "acceptedAnswers": ["git push -u origin main", "git push --set-upstream origin main"],
+      "fakeOutput": [
+        "Enumerating objects: 12, done.",
+        "Writing objects: 100% (12/12), done.",
+        "To https://github.com/lily-lurvey-gitlingo/portfolio.git",
+        " * [new branch]      main -> main",
+        "branch 'main' set up to track 'origin/main'."
+      ]
+    }
+  ]
+}

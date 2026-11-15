@@ -1,0 +1,92 @@
+{
+  "id": "u1-l2",
+  "hash": "7c3e0b1",
+  "title": "Setting up Git",
+  "user": {
+    "name": "Jackson Stark",
+    "backstory": "Jackson just got a new laptop and needs to set up Git before class tomorrow.",
+    "fields": [
+      { "label": "Name", "value": "Jackson Stark" },
+      { "label": "Email", "value": "jackson.stark@example.com" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Installing Git",
+      "body": ["First, Git has to be on your computer. Pick your system:"],
+      "tabs": [
+        {
+          "label": "Windows",
+          "text": "Download Git from git-scm.com and run the installer. The default options are fine. It also installs Git Bash, a terminal you can use for Git."
+        },
+        {
+          "label": "Mac",
+          "text": "Open Terminal and type `git --version`. If Git isn't installed, your Mac will offer to install it for you."
+        },
+        {
+          "label": "Linux",
+          "text": "Open a terminal and run `sudo apt install git` (Ubuntu/Debian)."
+        }
+      ],
+      "footer": "Then check it worked with `git --version`, just like in Lesson 1."
+    },
+    {
+      "title": "Tell Git who you are",
+      "body": ["Every snapshot you save is signed with your name and email, so everyone on a project can see who changed what. It's like a signature, not a login. You only need to set this up once per computer."]
+    },
+    {
+      "title": "The setup commands",
+      "body": ["Two commands tell Git who you are:"],
+      "bullets": [
+        "`git config --global user.name \"Your Name\"`",
+        "`git config --global user.email \"you@example.com\"`"
+      ],
+      "footer": "`--global` means \"use this for every project on this computer.\" Put your name in quotes because it has a space. If it worked, Git prints nothing. In the terminal, no news is good news."
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "Why does Git need your name and email?",
+      "options": [
+        "To sign each snapshot so people know who made the change",
+        "To log you in to GitHub",
+        "To send you notifications"
+      ],
+      "correctIndex": 0,
+      "wrongFeedback": "Git signs every snapshot with your name and email. It's a signature, not a login."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "What does `--global` mean in `git config --global`?",
+      "options": [
+        "Share the setting with everyone on GitHub",
+        "Use the setting for every project on this computer",
+        "Only use the setting for the current folder"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "`--global` means the setting applies to every project on this computer."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Tell Git to sign Jackson's snapshots with Jackson's name.",
+      "startingHistory": [],
+      "acceptedAnswers": [
+        "git config --global user.name \"Jackson Stark\"",
+        "git config --global user.name 'Jackson Stark'"
+      ],
+      "fakeOutput": []
+    },
+    {
+      "type": "terminal",
+      "prompt": "Now set Jackson's email.",
+      "startingHistory": [],
+      "acceptedAnswers": [
+        "git config --global user.email \"jackson.stark@example.com\"",
+        "git config --global user.email 'jackson.stark@example.com'",
+        "git config --global user.email jackson.stark@example.com"
+      ],
+      "fakeOutput": []
+    }
+  ]
+}

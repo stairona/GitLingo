@@ -132,18 +132,11 @@ const SHARED = {
 export const CHARACTERS = {
   jackson: {
     name: 'Jackson',
-    // What the hover card shows. Everything here comes from our lesson docs
-    // (docs/lessons), and every detail is clearly made up (@example.com).
+    // What the hover card shows. It comes from our lesson docs (docs/lessons).
     fullName: 'Jackson Stark',
     role: 'Unit 1 guide',
     about:
       'Just got a new laptop and needs Git set up before class. Later joins Charley\'s weather app team to add a 5-day forecast.',
-    // \u00a0 is a space that never breaks, so "U3 L4" always stays on one line.
-    facts: [
-      { label: 'GitHub', value: 'jackson-stark-gitlingo' },
-      { label: 'Email', value: 'jackson.stark@example.com' },
-      { label: 'Plays in', value: 'U1\u00a0L2 · U2\u00a0L3 · U3\u00a0L2 · U3\u00a0L4' },
-    ],
     poses: { stand: JACKSON, point: JACKSON_POINT },
     colors: { ...SHARED, H: '--char-hair-brown', T: '--accent-light', D: '--accent-deep' },
   },
@@ -153,11 +146,6 @@ export const CHARACTERS = {
     role: 'Unit 2 guide',
     about:
       'Built a weather app for a class project. Adds dark mode on its own branch, then merges it with a pull request.',
-    facts: [
-      { label: 'GitHub', value: 'charley-dunkel-gitlingo' },
-      { label: 'Project', value: 'weather-app' },
-      { label: 'Plays in', value: 'U1\u00a0L3 · U2\u00a0L1 · U2\u00a0L2 · U3\u00a0L1' },
-    ],
     poses: { stand: CHARLEY, point: CHARLEY_POINT },
     colors: { ...SHARED, H: '--char-hair-brown', T: '--accent', D: '--accent-tint' },
   },
@@ -167,11 +155,6 @@ export const CHARACTERS = {
     role: 'Unit 3 guide',
     about:
       'Built a portfolio website and put it on GitHub. Undid a commit that broke the contact form, then went looking for Git\'s hidden database.',
-    facts: [
-      { label: 'GitHub', value: 'lily-lurvey-gitlingo' },
-      { label: 'Project', value: 'portfolio' },
-      { label: 'Plays in', value: 'U1\u00a0L4 · U2\u00a0L4 · U3\u00a0L3' },
-    ],
     poses: { stand: LILY, point: LILY_POINT },
     colors: { ...SHARED, H: '--char-hair-blond', T: '--accent-tint' },
   },

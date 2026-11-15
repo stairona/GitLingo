@@ -126,3 +126,9 @@ How to explain it:
 - The hovered lesson row gets `z-index: 2`, so the card shows on top of the rows below it.
 - Locked guides use `filter: grayscale(1) brightness(0.6)`, and hovering removes the filter.
 - `\u00a0` is a space that never breaks, so lesson codes like "U3 L4" never split across two lines.
+
+## PR #18: Shorter character hover card (2026-11-14, Nicolas)
+What it does: hovering over Jackson, Charley or Lily now only shows which unit they guide, their full name and their short story. The GitHub name, email and "Plays in" list are gone.
+How AI helped: Nicolas asked for the card to be shorter, and Claude removed the extra rows.
+How to explain it:
+- The extra details lived in a `facts` list in `content/characters.js`, and `CharacterCard.jsx` drew one row per fact. We deleted the list, the code that drew it, and its CSS, so nothing unused is left behind.

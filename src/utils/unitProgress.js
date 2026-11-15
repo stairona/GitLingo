@@ -4,6 +4,13 @@ export function countFinished(unit, completedLessons) {
   return unit.lessons.filter((lesson) => completedLessons.includes(lesson.id)).length
 }
 
+// done if finished, current if it's the first unfinished one, locked otherwise
+export function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons) {
+  if (completedLessons.includes(lessonId)) return 'done'
+  if (index === firstUnfinishedIndex) return 'current'
+  return 'locked'
+}
+
 export function isUnitUnlocked(unitIndex, completedLessons) {
   if (unitIndex === 0) return true
   const previous = units[unitIndex - 1]

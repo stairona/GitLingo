@@ -240,3 +240,26 @@ How to explain it:
 - `UnitGuide` has a `waiting` mode: standing, grey, no speech bubble. Its hover card uses the "First up, Lesson 1" text.
 - `guide.says?.[lesson.id]`: the `?.` means "if `says` exists". Lily has no lines yet, so this keeps the app from crashing.
 - `Home.jsx` draws `units.slice(0, 2)` as paths. Unit 3 is still the old card until the next PR.
+
+## PR #31: Shared units list and guide lines in characters.js (2026-11-14, Gavin)
+What it does: lessons from any unit can now open, not just Unit 1. Everything the guides say on the map moved out of the lesson files and into `characters.js`. Nothing on screen looks different.
+How AI helped: Gavin took on items #1 and #3 from our cleanup list. Claude made both changes, and Gavin tested and committed them as two commits.
+How to explain it:
+- `App.jsx` used to search only `unit1.lessons`, so a Unit 2 lesson would never be found. Now `units.flatMap((unit) => unit.lessons)` joins every unit's lessons into one list before searching.
+- `const [unit1, ...upcomingUnits] = units` is destructuring: the first item gets the name `unit1`, and `...` collects the rest.
+- Why we moved the guide lines: both of us kept editing the same unit JSON files (Gavin for lessons, Nicolas for what the guides say), which caused merge conflicts. Now the unit JSON is lesson content only (Gavin), and `characters.js` is everything the guides say (Nicolas).
+- `UNIT_GUIDES` says which character guides which unit. `CHARACTERS[UNIT_GUIDES[unit.id]]` finds the guide in two steps: unit id, then character name, then that character's info.
+- `says` is keyed by lesson id, not by position, so reordering lessons can't mix up the lines.
+
+## PR #35: One file per lesson (2026-11-14, Gavin)
+What it does: each unit used to be one big JSON file of about 350 lines. Now every unit is a folder with a small `unit.json` (id, number, title) and one file per lesson: `src/content/units/unit-1/lessons/lesson-1.json` and so on. The text of every lesson is exactly the same as before, and nothing on screen changed.
+Why we made this decision (the problem): big shared files were our main source of merge conflicts. Two people changing two different lessons were still editing the same file, and a PR that changed one lesson showed a 350-line file.
+How AI helped: Nicolas wrote the plan. Gavin changed two parts of it (below). Claude split the files with a small script that copied each lesson's lines exactly, rewrote `content/index.js`, and checked the result was identical to the old files. Gavin tested and committed each step.
+How to explain it:
+- Now two people editing two lessons never touch the same file, and the folder path tells you exactly which unit and lesson a file is.
+- `content/index.js` uses `import.meta.glob`, a Vite feature that loads every file matching a pattern, like `./units/unit-*/lessons/lesson-*.json`. A new lesson or unit is just a new file or folder. Nothing has to be added to `index.js` by hand.
+- `eager: true` loads the files right away, like a normal import. `import: 'default'` gives us the JSON data itself.
+- Lessons are sorted by the number in their name, not by text. As text, `lesson-10` would come before `lesson-2`.
+- `index.js` still gives the rest of the app the same `units` list as before (`{ id, number, title, lessons }`), so no screen or component had to change. Keeping that the same was our rule for the whole change.
+- The trade-off: `import.meta.glob` is less obvious than writing out each import, so whoever reads `index.js` needs to know what it does. The comments in the file explain it.
+- What we changed from the plan: the plan had a folder for each lesson (`lesson-1/lesson.json`). We used one file per lesson instead, because each folder would only ever hold one file. We'd only switch to folders if lessons got extra files like images. We also skipped the blank lesson template, because we won't add new lessons in the time we have.

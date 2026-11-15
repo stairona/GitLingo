@@ -1,0 +1,79 @@
+{
+  "id": "u2-l1",
+  "hash": "5d82b4f",
+  "title": "Branches",
+  "user": {
+    "name": "Charley Dunkel",
+    "welcomeTitle": "Charley's back!",
+    "backstory": "Charley's weather app works now, and it's saved on GitHub. Next up: a dark mode. But Charley doesn't want to risk breaking the version that already works.",
+    "fields": [
+      { "label": "Name", "value": "Charley Dunkel" },
+      { "label": "Project folder", "value": "weather-app" },
+      { "label": "Current branch", "value": "main" },
+      { "label": "New branch", "value": "add-dark-mode" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "What is a branch?",
+      "body": ["A branch is a separate line of snapshots. Think of it as a second save slot in a game: you can try something risky there, and your main save stays safe. Every project starts with one branch, called `main`."],
+      "diagram": "main:            o--o--o\n                        \\\nadd-dark-mode:           o--o"
+    },
+    {
+      "title": "Make a branch and move onto it",
+      "body": [
+        "`git switch -c add-dark-mode` creates a new branch called `add-dark-mode` and moves you onto it. The `-c` means \"create.\" From now on, new snapshots go on this branch, and `main` isn't touched.",
+        "Older tutorials use `git checkout -b add-dark-mode`, which does the same thing."
+      ]
+    },
+    {
+      "title": "See your branches",
+      "body": ["`git branch` lists all your branches. The one with a `*` next to it is the branch you're on right now."]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "Why would Charley make a branch for dark mode?",
+      "options": [
+        "To delete old snapshots",
+        "To upload the project to GitHub",
+        "To try changes without affecting `main`"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "A branch is like a second save slot: Charley can experiment there while `main` stays safe."
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "When you run `git branch`, what does the `*` mean?",
+      "options": [
+        "That's the branch you're on right now",
+        "That's the newest branch",
+        "That branch has an error"
+      ],
+      "correctIndex": 0,
+      "wrongFeedback": "The `*` marks the branch you're currently on."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Create a branch called `add-dark-mode` and switch to it.",
+      "startingHistory": [
+        { "text": "$ git branch" },
+        { "text": "* main", "color": "green" }
+      ],
+      "acceptedAnswers": [
+        "git switch -c add-dark-mode",
+        "git switch --create add-dark-mode",
+        "git checkout -b add-dark-mode"
+      ],
+      "fakeOutput": ["Switched to a new branch 'add-dark-mode'"]
+    },
+    {
+      "type": "terminal",
+      "prompt": "List all of Charley's branches to check where you are.",
+      "startingHistory": [],
+      "acceptedAnswers": ["git branch", "git branch --list"],
+      "fakeOutput": ["* add-dark-mode", "  main"]
+    }
+  ]
+}

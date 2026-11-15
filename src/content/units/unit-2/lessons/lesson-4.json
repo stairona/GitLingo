@@ -1,0 +1,100 @@
+{
+  "id": "u2-l4",
+  "hash": "9a4c0f8",
+  "title": "Undoing mistakes",
+  "user": {
+    "name": "Lily Lurvey",
+    "welcomeTitle": "Lily's back, and something broke!",
+    "backstory": "Lily's portfolio has been live on GitHub since Unit 1. But today two things went wrong: an edit Lily hasn't saved yet broke the home page, and a commit Lily already pushed broke the contact form. Time to undo both.",
+    "fields": [
+      { "label": "Name", "value": "Lily Lurvey" },
+      { "label": "GitHub username", "value": "lily-lurvey-gitlingo" },
+      { "label": "Repo", "value": "portfolio" },
+      { "label": "File", "value": "index.html" },
+      { "label": "Broken commit", "value": "Add contact form" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Everyone makes mistakes",
+      "body": ["Undoing mistakes is one of the best things about Git. Which tool you use depends on one question: have you committed yet?"],
+      "bullets": [
+        "Not committed yet: `git restore`",
+        "Already committed: `git revert`"
+      ]
+    },
+    {
+      "title": "`git restore`: throw away changes you haven't committed",
+      "body": [
+        "`git restore index.html` puts the file back the way it was in your last snapshot.",
+        "Careful: those changes are gone for good, because Git never saved them. If it worked, Git prints nothing."
+      ]
+    },
+    {
+      "title": "Find the commit with `git log`",
+      "body": ["`git log --oneline` lists your snapshots, newest first, one per line. HEAD means the snapshot you're on right now, which is usually the newest one."]
+    },
+    {
+      "title": "`git revert`: undo a commit safely",
+      "body": [
+        "`git revert HEAD` makes a new snapshot that undoes the newest one. The broken commit stays in the history, but its changes are reversed. That's safe even after you've pushed, because your teammates' history doesn't get rewritten. Then `git push` to share the fix.",
+        "(In a real terminal, Git opens a text editor for the message. Just save and close it, or add `--no-edit` to skip it.)"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "Lily changed `index.html` and broke the home page, but hasn't committed yet. What will `git restore index.html` do?",
+      "options": [
+        "Delete `index.html`",
+        "Undo Lily's last commit",
+        "Throw away the uncommitted changes and go back to the last snapshot"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "`git restore` throws away changes you haven't committed. The file goes back to the last snapshot."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Throw away Lily's broken changes to `index.html`.",
+      "startingHistory": [
+        { "text": "$ git status" },
+        { "text": "Changes not staged for commit:" },
+        { "text": "        modified:   index.html", "color": "red" }
+      ],
+      "acceptedAnswers": ["git restore index.html", "git checkout -- index.html"],
+      "fakeOutput": []
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "The broken \"Add contact form\" commit is already on GitHub. Why should Lily use `git revert`?",
+      "options": [
+        "It deletes the commit so nobody ever sees it",
+        "It adds a new snapshot that undoes the change, without rewriting history",
+        "It brings back changes Lily never committed"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "`git revert` doesn't delete anything. It adds a new snapshot that reverses the bad one, which is safe for commits already on GitHub."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Undo the newest commit, \"Add contact form\".",
+      "startingHistory": [
+        { "text": "$ git log --oneline" },
+        { "text": "e4f5a6b (HEAD -> main, origin/main) Add contact form" },
+        { "text": "9c8d7e6 Add project page" },
+        { "text": "a1b2c3d First version of portfolio" }
+      ],
+      "acceptedAnswers": [
+        "git revert HEAD",
+        "git revert HEAD --no-edit",
+        "git revert --no-edit HEAD",
+        "git revert e4f5a6b"
+      ],
+      "fakeOutput": [
+        "[main 7d3e2f1] Revert \"Add contact form\"",
+        " 1 file changed, 40 deletions(-)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "id": "u3-l2",
+  "hash": "f27c8e4",
+  "title": "Snapshots & hashes",
+  "user": {
+    "name": "Jackson Stark",
+    "welcomeTitle": "Jackson's back, and Charley has a question.",
+    "backstory": "Charley messaged: \"Which commit added the forecast? Send me its ID so I can take a look.\" Every commit has an ID, but what is it, and where does it come from?",
+    "fields": [
+      { "label": "Name", "value": "Jackson Stark" },
+      { "label": "Email", "value": "jackson.stark@example.com" },
+      { "label": "Project", "value": "weather-app (Charley's repo)" },
+      { "label": "Branch", "value": "add-forecast" },
+      { "label": "Commit to find", "value": "Add 5-day forecast" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Snapshots, not lists of changes",
+      "body": ["Each commit is a snapshot: a picture of your whole project at that moment, not just a list of what changed. Files that didn't change aren't copied again. Git just points to the copy it already has. That's how Git stays fast and small."]
+    },
+    {
+      "title": "Every snapshot has an ID called a hash",
+      "body": ["Every commit gets an ID called a hash: 40 letters and numbers, like `4c5d6e7f8a9b0c1d2e3f...`. Git calculates it from everything in the commit: the files, the author, the time, the message, and the hash of the commit before it. Think of it as the commit's fingerprint."]
+    },
+    {
+      "title": "Why fingerprints matter",
+      "body": ["Change even one letter in a commit, and its hash changes completely. And because every commit includes the hash of the one before it, changing an old commit would change every hash after it too. So Git can always tell if history was changed."]
+    },
+    {
+      "title": "Using hashes",
+      "body": ["You usually only need the first 7 characters, like `4c5d6e7`. That's the short ID you saw with `git log --oneline` in Unit 2."],
+      "bullets": [
+        "`git log` shows your commits with their full hashes",
+        "`git show 4c5d6e7` opens one snapshot and shows what changed in it"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "What is a commit hash?",
+      "options": [
+        "The commit's message",
+        "A password that protects the commit",
+        "A unique ID calculated from everything in the commit"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "A hash is a commit's fingerprint: an ID Git calculates from the files, author, time, message and the commit before it."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Show Jackson's commit history, with the full hashes.",
+      "startingHistory": [],
+      "acceptedAnswers": ["git log"],
+      "fakeOutput": [
+        "commit 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d (HEAD -> add-forecast)",
+        "Author: Jackson Stark <jackson.stark@example.com>",
+        "Date:   Sat Nov 14 21:15:42 2026 -0500",
+        "",
+        "    Add 5-day forecast",
+        "",
+        "commit 7b6a5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b",
+        "Author: Charley Dunkel <charley.dunkel@example.com>",
+        "Date:   Sat Nov 14 19:02:10 2026 -0500",
+        "",
+        "    Add dark mode"
+      ]
+    },
+    {
+      "type": "terminal",
+      "prompt": "Open the \"Add 5-day forecast\" snapshot using its short hash, `4c5d6e7`.",
+      "startingHistory": [
+        { "text": "$ git log" },
+        { "text": "commit 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d (HEAD -> add-forecast)" },
+        { "text": "Author: Jackson Stark <jackson.stark@example.com>" },
+        { "text": "Date:   Sat Nov 14 21:15:42 2026 -0500" },
+        { "text": "" },
+        { "text": "    Add 5-day forecast" },
+        { "text": "" },
+        { "text": "commit 7b6a5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b" },
+        { "text": "Author: Charley Dunkel <charley.dunkel@example.com>" },
+        { "text": "Date:   Sat Nov 14 19:02:10 2026 -0500" },
+        { "text": "" },
+        { "text": "    Add dark mode" }
+      ],
+      "acceptedAnswers": [
+        "git show 4c5d6e7",
+        "git show 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d",
+        "git show HEAD"
+      ],
+      "fakeOutput": [
+        "commit 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d (HEAD -> add-forecast)",
+        "Author: Jackson Stark <jackson.stark@example.com>",
+        "Date:   Sat Nov 14 21:15:42 2026 -0500",
+        "",
+        "    Add 5-day forecast",
+        "",
+        "diff --git a/forecast.py b/forecast.py",
+        "new file mode 100644",
+        "--- /dev/null",
+        "+++ b/forecast.py",
+        "@@ -0,0 +1,3 @@",
+        "+def five_day_forecast(city):",
+        "+    # Get the weather for the next 5 days",
+        "+    ..."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Someone secretly edits an old commit in Jackson's history. What happens to the hashes?",
+      "options": [
+        "Nothing changes",
+        "That commit's hash changes, and so does every hash after it",
+        "Only the newest commit's hash changes"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "Each commit includes the hash of the one before it, so changing an old commit changes its hash and every hash after it."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "u3-l3",
+  "hash": "0d9e5b2",
+  "title": "Git as a database",
+  "user": {
+    "name": "Lily Lurvey",
+    "welcomeTitle": "Lily's back, and curious.",
+    "backstory": "Lily has been saving snapshots for a while now, and even undid a broken commit. But where does Git actually keep all of that? Time to find Git's hidden database.",
+    "fields": [
+      { "label": "Name", "value": "Lily Lurvey" },
+      { "label": "Project folder", "value": "portfolio" },
+      { "label": "Files", "value": "index.html, about.html, style.css" }
+    ]
+  },
+  "cards": [
+    {
+      "title": "Git is a database",
+      "body": [
+        "A database is a place that stores information so you can look it up later. Git's database stores every snapshot of your project. It lives in a hidden folder called `.git` inside your project, created when you ran `git init`.",
+        "`ls -a` lists all files, including hidden ones (names starting with a dot). On Windows, use Git Bash for this."
+      ]
+    },
+    {
+      "title": "What's inside",
+      "body": ["Git stores three kinds of things:"],
+      "bullets": [
+        "File contents: what's inside each file",
+        "Folder lists: which files are in each folder",
+        "Commits: who, when, the message, and which snapshot came before"
+      ],
+      "footer": "(If you're curious, their official names are blobs, trees and commits.)"
+    },
+    {
+      "title": "Everything is filed under its hash",
+      "body": ["Every item is stored under its hash, like a label on a drawer. Two files with exactly the same contents get the same hash, so Git stores them only once. That's why unchanged files aren't copied in every snapshot."]
+    },
+    {
+      "title": "Don't touch `.git`",
+      "body": ["Never edit or delete the `.git` folder yourself. If it's deleted, your current files stay, but every snapshot is gone: your whole history. (Unless it's also on GitHub. Another reason to push!)"]
+    }
+  ],
+  "questions": [
+    {
+      "type": "terminal",
+      "prompt": "List all the files in Lily's project, including hidden ones.",
+      "startingHistory": [
+        { "text": "$ ls" },
+        { "text": "about.html  index.html  style.css" }
+      ],
+      "acceptedAnswers": ["ls -a", "ls -la", "ls -al"],
+      "fakeOutput": [".  ..  .git  about.html  index.html  style.css"]
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Lily deletes the `.git` folder by accident (and never pushed). What's lost?",
+      "options": [
+        "Nothing, Git rebuilds it",
+        "Every snapshot, the whole history. The current files stay.",
+        "The current files, but the history stays"
+      ],
+      "correctIndex": 1,
+      "wrongFeedback": "`.git` is the database. Delete it and every snapshot is gone, though the current files stay."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Ask Git's database for all of Lily's snapshots, one per line.",
+      "startingHistory": [],
+      "acceptedAnswers": ["git log --oneline"],
+      "fakeOutput": [
+        "7d3e2f1 (HEAD -> main, origin/main) Revert \"Add contact form\"",
+        "e4f5a6b Add contact form",
+        "9c8d7e6 Add project page",
+        "a1b2c3d First version of portfolio"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "Lily has two files with exactly the same contents. How many copies of those contents does Git store?",
+      "options": [
+        "Two, one for each file",
+        "None, Git only stores changes",
+        "One, because same contents means the same hash"
+      ],
+      "correctIndex": 2,
+      "wrongFeedback": "Git files everything under its hash. Same contents, same hash, so it's stored only once."
+    }
+  ]
+}

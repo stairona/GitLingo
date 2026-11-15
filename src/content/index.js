@@ -1,6 +1,3 @@
-import unit2 from './units/unit-2.json'
-import unit3 from './units/unit-3.json'
-
 // Vite's import.meta.glob loads every file that matches a pattern, so a new
 // lesson is just a new file: nothing to add here by hand.
 // "eager: true" loads them right away (like a normal import), and
@@ -30,8 +27,8 @@ function buildUnit(unitPath) {
   return { ...unitFiles[unitPath], lessons: lessonPaths.map((lessonPath) => lessonFiles[lessonPath]) }
 }
 
-const folderUnits = Object.keys(unitFiles).map(buildUnit)
-
-// Every unit in the course, in order. Units 2 and 3 are still single files
-// until they're split into folders too.
-export const units = [...folderUnits, unit2, unit3].sort((a, b) => a.number - b.number)
+// Every unit in the course, in order of its number. Adding a Unit 4 means
+// adding a units/unit-4/ folder; this file doesn't change.
+export const units = Object.keys(unitFiles)
+  .map(buildUnit)
+  .sort((a, b) => a.number - b.number)

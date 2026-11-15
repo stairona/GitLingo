@@ -1,0 +1,9 @@
+.code-text {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--terminal-bg);
+  color: var(--accent-tint);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  white-space: nowrap;
+}

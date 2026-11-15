@@ -5,7 +5,9 @@ Built in 24 hours by two beginners for a hackathon (Midnight Mode track, so it's
 
 **Live site:** https://hackathon-project-iota-three.vercel.app/
 
-<!-- TODO: add a screenshot of the map and one of a lesson, e.g. docs/screenshot-map.png -->
+![The GitLingo map: Unit 1 drawn like git log, with Jackson pointing at the first lesson](docs/screenshot-map.png)
+
+![A multiple-choice question in a lesson, with hearts and the progress bar at the top](docs/screenshot-lesson.png)
 
 ## What you can do
 
@@ -72,4 +74,15 @@ Every PR has an entry in [docs/understanding-log.md](docs/understanding-log.md) 
 - **Gavin Rush:** lesson content (all three units), the lesson JSON and helpers (answer checker, lesson steps, code text), multiple-choice questions, the practice terminal, hearts and the back button.
 - **Nicolas Aguirre:** app setup, the theme and map, the guide characters, the lesson screen frame, end screens and demo users.
 
-Out of scope on purpose: accounts, a backend, leaderboards, payments and audio.
+## Future improvements
+
+We left these out on purpose to finish in 24 hours. Here's what we'd add next:
+
+- **More units:** cover topics beginners hit next, like fixing merge conflicts, `git stash`, `git rebase`, and GitHub Actions.
+- **A merge conflict simulator:** a practice screen where you see real conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) and pick which version to keep. Conflicts confused us the most while building this, so we know it's worth teaching.
+- **A live branch diagram:** draw your branches and commits as you type commands, so you can see what `git switch -c` or a merge actually does.
+- **More question types:** for example, put commands in the right order (add, commit, push) or fill in the missing part of a command.
+- **Accounts and cloud saving:** progress is only saved in your browser right now. Accounts would need a backend, but would let you continue on any device.
+- **Streaks and XP:** small daily rewards that bring people back, like Duolingo. We skipped them to focus on the lessons themselves.
+- **A light theme:** every color is already a CSS variable, so a light theme just means a second set of values.
+- **Sound effects:** a short sound for right and wrong answers, with a mute button.

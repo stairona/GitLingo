@@ -406,6 +406,13 @@ How to explain it:
 - `.character-hover { position: static }` inside the row makes every card line up with the row's left edge instead of with one character, so all three cards open in the same place.
 - The right column keeps `position: sticky; top: 0` (stay at the top while the page scrolls). We removed `max-height` and `overflow-y: auto`, which only existed for when it was too tall.
 
+## PR #51: Shorter future improvements list in the README (2026-11-15, Gavin)
+What it does: Takes two ideas out of the "future improvements" list in the README: the merge conflict simulator and the live branch diagram.
+How AI helped: Claude had suggested those two ideas in an earlier README PR. Gavin decided to remove them and made this change by hand.
+How to explain it:
+- It's a 2-line deletion in `README.md`, nothing else changed.
+- The list should only show ideas we actually want to build next, so ideas we didn't pick ourselves came out.
+
 ## PR #52: Spread out the fun fact characters (2026-11-15, Nicolas)
 What it does: Jackson, Charley and Lily zigzag down the empty space on the left (left, right, left) instead of standing bunched in one row. Each fun fact card opens right above its own character.
 How AI helped: Claude made the change and checked it in Chrome at 1280×720, 1440×900 and 1920×1080, hovering each character to make sure every card stays on screen.
@@ -414,3 +421,11 @@ How to explain it:
 - Inside, a grid cuts that space into 4 equal rows. Each character takes 2 rows (Jackson rows 1–2, Charley 2–3, Lily 3–4) and sits in the middle of them, so they overlap by half and spread evenly. A short screen just makes the rows shorter.
 - Two columns put Jackson and Lily on the left and Charley on the right, like the zigzag on the map.
 - Charley's card is centered on him. Lined up with his right edge, it went off the left of the screen.
+
+## PR #53: Fix an old file name and fill in the log gap (2026-11-15, Nicolas)
+What it does: The folder map in `docs/repo-organization.md` still listed `study-notes.md`, a file that was renamed to `react-duolingo reverse engineering.md`. Now it shows the real name. It also adds the missing PR #51 entry to this log.
+How AI helped: Claude found both problems, made the two fixes and wrote the #51 entry from that PR's diff.
+How to explain it:
+- Renaming a file doesn't update the places that mention it. We have to search for the old name (`grep -rn "study-notes" .`) and fix each one.
+- We fixed the reference instead of renaming the file back, because `CLAUDE.md` already uses the new name.
+- Since the file name has spaces, wrap it in quotes in the terminal, like `open "docs/react-duolingo reverse engineering.md"`.

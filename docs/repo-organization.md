@@ -14,7 +14,7 @@ hackathon-project/
 │   ├── gitlingo-outline.md
 │   ├── tools.md
 │   ├── repo-organization.md
-│   ├── study-notes.md
+│   ├── react-duolingo reverse engineering.md
 │   ├── understanding-log.md
 │   └── lessons/
 │       ├── README.md       # UX decisions for every lesson

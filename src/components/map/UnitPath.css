@@ -1,0 +1,29 @@
+.unit__path-area {
+  position: relative;
+  margin: var(--space-10) 0 var(--space-2);
+}
+
+.unit__path {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.unit__step {
+  position: relative;
+}
+
+/* lift the hovered row so its character card shows over the rows below */
+.unit__step:hover,
+.unit__step:focus-within {
+  z-index: 2;
+}
+
+.unit--waiting .unit__label,
+.unit--waiting .unit__title {
+  color: var(--text-dim);
+}

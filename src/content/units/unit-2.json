@@ -2,8 +2,6 @@
   "id": "unit-2",
   "number": 2,
   "title": "GitHub Advanced",
-  "guide": "charley",
-  "guideDone": "Unit 2 done! Lily will take it from here in Unit 3.",
   "lessons": [
     {
       "id": "u2-l1",

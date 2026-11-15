@@ -3,7 +3,7 @@ import Home from './pages/Home.jsx'
 import Lesson from './pages/Lesson.jsx'
 import AppFrame from './components/layout/AppFrame.jsx'
 import { useProgress } from './hooks/useProgress.js'
-import unit1 from './content/units/unit-1.json'
+import { units } from './content/index.js'
 
 function App() {
   const [screen, setScreen] = useState('home')
@@ -25,7 +25,9 @@ function App() {
   }
 
   if (screen === 'lesson') {
-    const lesson = unit1.lessons.find((l) => l.id === openLessonId)
+    // Search every unit, so a Unit 2 or 3 lesson can open too, not just Unit 1.
+    const allLessons = units.flatMap((unit) => unit.lessons)
+    const lesson = allLessons.find((l) => l.id === openLessonId)
     return <Lesson lesson={lesson} onFinish={finishLesson} onBack={goHome} />
   }
 

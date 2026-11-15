@@ -1,10 +1,10 @@
 import { units } from '../content/index.js'
-import { CHARACTERS } from '../content/characters.js'
+import { CHARACTERS, UNIT_GUIDES } from '../content/characters.js'
 
 // lessonIndex is -1 for a guide still waiting on a locked unit
 export function getGuideNote(unitIndex, lessonIndex) {
   const unit = units[unitIndex]
-  const character = CHARACTERS[unit.guide]
+  const character = CHARACTERS[UNIT_GUIDES[unit.id]]
 
   if (lessonIndex === -1) {
     const first = unit.lessons[0]

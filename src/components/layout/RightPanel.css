@@ -54,21 +54,3 @@
 
   transition: width 0.5s;
 }
-
-.right-panel__facts {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  padding-top: var(--space-4);
-}
-
-.right-panel__facts > :nth-child(2) {
-  margin-top: var(--space-8);
-}
-
-/* the cards line up with the whole row of characters instead of one character,
-   so they always fit inside the column (it cuts off anything sticking out) */
-.right-panel__facts .character-hover {
-  position: static;
-}

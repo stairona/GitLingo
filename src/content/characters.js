@@ -162,6 +162,12 @@ export const CHARACTERS = {
     intro: "Hi, I'm Charley! I built a weather app for a class project, and I keep making it better.",
     waiting:
       "you'll help me build dark mode on a branch, so I don't break the version that already works.",
+    says: {
+      'u2-l1': "My weather app finally works! Help me build dark mode on a branch so I don't break it.",
+      'u2-l2': "Dark mode works on my branch. Let's merge it into main on GitHub!",
+      'u2-l3': 'My app is getting popular! Jackson is joining the team to add a 5-day forecast.',
+      'u2-l4': "Uh oh, Lily's portfolio broke in two places. Let's undo both mistakes.",
+    },
     done: 'Unit 2 done! Lily will take it from here in Unit 3.',
     next: {
       'u2-l1':

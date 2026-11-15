@@ -22,3 +22,8 @@
 .unit__step:focus-within {
   z-index: 2;
 }
+
+.unit--waiting .unit__label,
+.unit--waiting .unit__title {
+  color: var(--text-dim);
+}

@@ -6,6 +6,7 @@ import FeedbackBar from '../components/lesson/FeedbackBar.jsx'
 import PracticeTerminal from '../components/lesson/PracticeTerminal.jsx'
 import LessonComplete from '../components/lesson/LessonComplete.jsx'
 import OutOfHearts from '../components/lesson/OutOfHearts.jsx'
+import ReviewFinished from '../components/lesson/ReviewFinished.jsx'
 import MeetUserCard from '../components/lesson/MeetUserCard.jsx'
 import ProfileCard from '../components/lesson/ProfileCard.jsx'
 import { getLessonSteps } from '../utils/lessonSteps.js'
@@ -95,6 +96,11 @@ function Lesson({ lesson, review = false, onFinish, onBack }) {
   // the last heart is gone and its red bar has been closed with CONTINUE
   if (hearts === 0 && !checked) {
     return <OutOfHearts totalHearts={STARTING_HEARTS} onTryAgain={restart} onBack={onBack} />
+  }
+
+  // past the last screen of a review: nothing to save, just go back to the map
+  if (stepIndex >= steps.length && review) {
+    return <ReviewFinished title={lesson.title} onBack={onBack} />
   }
 
   // past the last screen: the lesson is done. CONTINUE calls onFinish, which saves it in App.

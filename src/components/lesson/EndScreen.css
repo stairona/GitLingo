@@ -32,6 +32,17 @@
   color: var(--danger);
 }
 
+/* review: the same check, but quiet, with no glow, since nothing new was earned */
+.end-screen__badge--review {
+  background: var(--card);
+  border: 2px solid var(--accent);
+  color: var(--accent-light);
+}
+
+.end-screen__note {
+  color: var(--text-dim);
+}
+
 .end-screen__title {
   color: var(--text);
   font-size: var(--text-3xl);

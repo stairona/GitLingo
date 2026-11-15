@@ -1,4 +1,4 @@
-import { CHARACTERS } from '../content/characters.js'
+import { CHARACTERS } from '../../content/characters.js'
 import './CharacterCard.css'
 
 function CharacterCard({ id, note, label, align = 'center' }) {

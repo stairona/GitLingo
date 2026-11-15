@@ -1,4 +1,4 @@
-import FunFactCharacter from '../FunFactCharacter.jsx'
+import FunFactCharacter from '../characters/FunFactCharacter.jsx'
 import { FUN_FACTS } from '../../content/funFacts.js'
 import ProgressCard from './ProgressCard.jsx'
 import RecentCommits from './RecentCommits.jsx'

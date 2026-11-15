@@ -1,4 +1,4 @@
-import { CHARACTERS } from '../content/characters.js'
+import { CHARACTERS } from '../../content/characters.js'
 
 const PIXEL = 6
 

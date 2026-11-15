@@ -1,5 +1,5 @@
 import Icon from '../Icon.jsx'
-import FunFactCharacter from '../FunFactCharacter.jsx'
+import FunFactCharacter from '../characters/FunFactCharacter.jsx'
 import UnitSelector from './UnitSelector.jsx'
 import { FUN_FACTS } from '../../content/funFacts.js'
 import './Sidebar.css'

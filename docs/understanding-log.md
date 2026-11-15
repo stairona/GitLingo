@@ -421,3 +421,11 @@ How to explain it:
 - Inside, a grid cuts that space into 4 equal rows. Each character takes 2 rows (Jackson rows 1–2, Charley 2–3, Lily 3–4) and sits in the middle of them, so they overlap by half and spread evenly. A short screen just makes the rows shorter.
 - Two columns put Jackson and Lily on the left and Charley on the right, like the zigzag on the map.
 - Charley's card is centered on him. Lined up with his right edge, it went off the left of the screen.
+
+## PR #53: Fix an old file name and fill in the log gap (2026-11-15, Nicolas)
+What it does: The folder map in `docs/repo-organization.md` still listed `study-notes.md`, a file that was renamed to `react-duolingo reverse engineering.md`. Now it shows the real name. It also adds the missing PR #51 entry to this log.
+How AI helped: Claude found both problems, made the two fixes and wrote the #51 entry from that PR's diff.
+How to explain it:
+- Renaming a file doesn't update the places that mention it. We have to search for the old name (`grep -rn "study-notes" .`) and fix each one.
+- We fixed the reference instead of renaming the file back, because `CLAUDE.md` already uses the new name.
+- Since the file name has spaces, wrap it in quotes in the terminal, like `open "docs/react-duolingo reverse engineering.md"`.

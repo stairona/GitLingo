@@ -59,6 +59,7 @@
   --text-xl: 1.5rem;   /* unit titles */
   --text-2xl: 1.75rem; /* the GitLingo name */
   --text-3xl: 2rem;    /* big page titles and icons */
+  --text-4xl: 2.25rem; /* the GitLingo name in the sidebar */
 
   /* Spacing between letters in uppercase labels and buttons. */
   --tracking-label: 0.1em;

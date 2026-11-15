@@ -2,7 +2,7 @@
    We only design for laptops, so there is no phone layout. */
 .app-frame {
   display: grid;
-  grid-template-columns: 256px 1fr;
+  grid-template-columns: 280px 1fr;
   min-height: 100vh;
 }
 

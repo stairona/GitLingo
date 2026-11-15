@@ -7,6 +7,11 @@
   gap: var(--space-1);
 }
 
+/* charley is taller, so he stands a bit lower to keep his bubble clear of the unit title */
+.unit-guide--charley {
+  bottom: 26px;
+}
+
 .unit-guide--left {
   right: calc(100% + var(--space-5));
 }

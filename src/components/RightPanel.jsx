@@ -1,23 +1,18 @@
 import FunFactCharacter from './FunFactCharacter.jsx'
 import { FUN_FACTS } from '../content/funFacts.js'
+import ProgressCard from './ProgressCard.jsx'
+import RecentCommits from './RecentCommits.jsx'
 import './RightPanel.css'
 
-// The right column: how far you are, plus a short "how it works" card.
+// The right column: your progress, your recent "commits" (finished lessons),
+// a short "how it works" card, and two fun-fact characters.
 // We don't have XP or streaks, so progress is just lessons finished.
-function RightPanel({ finishedCount, totalCount }) {
-  const percent = Math.round((finishedCount / totalCount) * 100)
-
+// completedLessons: the ids of every finished lesson, like ["u1-l1", "u1-l2"].
+function RightPanel({ completedLessons }) {
   return (
     <aside className="right-panel">
-      <section className="panel-card">
-        <span className="panel-card__label">Your progress</span>
-        <h3 className="panel-card__title">
-          {finishedCount} / {totalCount} lessons
-        </h3>
-        <div className="progress" aria-label={`${percent}% of Unit 1 done`}>
-          <div className="progress__fill" style={{ width: `${percent}%` }} />
-        </div>
-      </section>
+      <ProgressCard completedLessons={completedLessons} />
+      <RecentCommits completedLessons={completedLessons} />
 
       <section className="panel-card">
         <span className="panel-card__label">How it works</span>

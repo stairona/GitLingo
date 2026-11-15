@@ -24,3 +24,13 @@ export function getCurrentUnitIndex(completedLessons) {
   )
   return index === -1 ? units.length - 1 : index
 }
+
+// Find a lesson by its id ("u2-l1") in any unit. Returns undefined if no
+// unit has it, for example an old id still saved in the browser.
+export function findLesson(lessonId) {
+  for (const unit of units) {
+    const lesson = unit.lessons.find((l) => l.id === lessonId)
+    if (lesson) return lesson
+  }
+  return undefined
+}

@@ -1,13 +1,10 @@
-/* One lesson on the map: a circle with its name beside it.
-   The name is placed with position: absolute, so it doesn't push the circle
-   off the path's center line. */
 .lesson-bubble {
   position: relative;
 }
 
 .lesson-bubble__label {
   position: absolute;
-  top: 52px; /* the circle's center (half of the 104px slot) */
+  top: 52px;
   transform: translateY(-50%);
   width: 180px;
   display: flex;
@@ -24,8 +21,6 @@
   text-align: right;
 }
 
-/* Same height as CIRCLE_SLOT in utils/pathLayout.js: big enough for the
-   current lesson's 96px circle plus its 8px lip. */
 .lesson-bubble__slot {
   height: 104px;
   display: flex;
@@ -34,7 +29,7 @@
 }
 
 .lesson-bubble__circle {
-  /* Center the icon inside the circle. */
+  --lip: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,14 +42,16 @@
   font-size: var(--text-xl);
   font-family: inherit;
   cursor: default;
-  /* The "lip": a solid shadow straight below the circle, so it looks like
-     a thick physical button you can press, not a flat sticker. */
-  --lip: 6px;
+  /* a solid shadow straight below makes it look like a button you can press */
   box-shadow: 0 var(--lip) 0 var(--card-border);
   transition: transform 0.1s, box-shadow 0.1s, filter 0.15s;
 }
 
-/* The hash line: the hash, plus the HEAD tag on the current lesson. */
+.lesson-bubble__circle:focus-visible {
+  outline: 3px solid var(--accent-tint);
+  outline-offset: 6px;
+}
+
 .lesson-bubble__ref {
   display: flex;
   align-items: center;
@@ -65,8 +62,12 @@
   justify-content: flex-end;
 }
 
-/* "HEAD -> main" as a small tag, the way git log shows where you are.
-   JetBrains Mono joins "->" into an arrow on its own. */
+.lesson-bubble__hash {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-light);
+}
+
 .lesson-bubble__head {
   padding: 0 var(--space-2);
   border: 1px solid var(--accent);
@@ -77,97 +78,12 @@
   font-size: var(--text-xs);
   font-weight: 600;
   white-space: nowrap;
-}
-
-/* The commit hash, in our code font, like a line of git log. */
-.lesson-bubble__hash {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--accent-light);
 }
 
 .lesson-bubble__title {
   color: var(--text-muted);
   font-size: var(--text-sm);
   font-weight: 700;
-}
-
-/* Done: dark inside with a purple ring and check, calm so the current lesson stands out. */
-.lesson-bubble--done .lesson-bubble__circle {
-  border-color: var(--accent);
-  color: var(--accent-light);
-  box-shadow: 0 var(--lip) 0 var(--accent-deep);
-}
-
-/* Current: bigger, bright, glowing, and the only one you can click. */
-.lesson-bubble--current .lesson-bubble__circle {
-  width: 96px;
-  height: 96px;
-  background: var(--accent);
-  border-color: var(--accent-tint);
-  color: var(--text);
-  font-size: var(--text-3xl);
-  cursor: pointer;
-  --lip: 8px;
-  /* Two shadows: the dark lip underneath, plus a soft glow that pulses. */
-  box-shadow: 0 var(--lip) 0 var(--accent-deep), 0 0 24px var(--accent);
-  animation: bubble-glow 2s ease-in-out infinite;
-}
-
-/* Hovering makes it a little brighter, so you know it can be clicked. */
-.lesson-bubble--current .lesson-bubble__circle:hover {
-  filter: brightness(1.12);
-}
-
-/* Pressing it moves the circle down onto its lip, like pushing a real button.
-   The animation stops while pressed so the shadow can flatten. */
-.lesson-bubble--current .lesson-bubble__circle:active {
-  transform: translateY(var(--lip));
-  box-shadow: 0 0 0 var(--accent-deep), 0 0 24px var(--accent);
-  animation: none;
-}
-
-/* Keyboard users see a clear ring when they tab onto the button. */
-.lesson-bubble__circle:focus-visible {
-  outline: 3px solid var(--accent-tint);
-  outline-offset: 6px;
-}
-
-.lesson-bubble--current /* The hash line: the hash, plus the HEAD tag on the current lesson. */
-.lesson-bubble__ref {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.lesson-bubble--label-left .lesson-bubble__ref {
-  justify-content: flex-end;
-}
-
-/* "HEAD -> main" as a small tag, the way git log shows where you are.
-   JetBrains Mono joins "->" into an arrow on its own. */
-.lesson-bubble__head {
-  padding: 0 var(--space-2);
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-pill);
-  background: var(--bg);
-  color: var(--accent-tint);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* The commit hash, in our code font, like a line of git log. */
-.lesson-bubble__hash {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--accent-light);
-}
-
-.lesson-bubble__title {
-  color: var(--text);
-  font-weight: 800;
 }
 
 .lesson-bubble__start {
@@ -178,50 +94,51 @@
   text-transform: uppercase;
 }
 
-/* Locked: grey icon and grey name. We use quieter colors instead of making it
-   see-through, because see-through text washes out on a projector. */
+.lesson-bubble--done .lesson-bubble__circle {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  box-shadow: 0 var(--lip) 0 var(--accent-deep);
+}
+
+.lesson-bubble--current .lesson-bubble__circle {
+  --lip: 8px;
+  width: 96px;
+  height: 96px;
+  background: var(--accent);
+  border-color: var(--accent-tint);
+  color: var(--text);
+  font-size: var(--text-3xl);
+  cursor: pointer;
+  box-shadow: 0 var(--lip) 0 var(--accent-deep), 0 0 24px var(--accent);
+  animation: bubble-glow 2s ease-in-out infinite;
+}
+
+.lesson-bubble--current .lesson-bubble__circle:hover {
+  filter: brightness(1.12);
+}
+
+/* pressing moves the circle down onto its shadow, like pushing a real button */
+.lesson-bubble--current .lesson-bubble__circle:active {
+  transform: translateY(var(--lip));
+  box-shadow: 0 0 0 var(--accent-deep), 0 0 24px var(--accent);
+  animation: none;
+}
+
+.lesson-bubble--current .lesson-bubble__title {
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* grey instead of see-through, because faded text washes out on a projector */
 .lesson-bubble--locked .lesson-bubble__circle {
   color: var(--text-dim);
   cursor: not-allowed;
 }
 
-.lesson-bubble--locked /* The hash line: the hash, plus the HEAD tag on the current lesson. */
-.lesson-bubble__ref {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.lesson-bubble--label-left .lesson-bubble__ref {
-  justify-content: flex-end;
-}
-
-/* "HEAD -> main" as a small tag, the way git log shows where you are.
-   JetBrains Mono joins "->" into an arrow on its own. */
-.lesson-bubble__head {
-  padding: 0 var(--space-2);
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-pill);
-  background: var(--bg);
-  color: var(--accent-tint);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* The commit hash, in our code font, like a line of git log. */
-.lesson-bubble__hash {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--accent-light);
-}
-
-.lesson-bubble__title {
+.lesson-bubble--locked .lesson-bubble__title {
   color: var(--text-dim);
 }
 
-/* The glow pulses but the lip stays put, so both shadows are listed each time. */
 @keyframes bubble-glow {
   0%,
   100% {
@@ -232,7 +149,6 @@
   }
 }
 
-/* People who turn off animations in their system settings get a still glow. */
 @media (prefers-reduced-motion: reduce) {
   .lesson-bubble--current .lesson-bubble__circle {
     animation: none;

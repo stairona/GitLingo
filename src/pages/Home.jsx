@@ -5,6 +5,7 @@ import UnitGuide from '../components/UnitGuide.jsx'
 import PixelCharacter from '../components/PixelCharacter.jsx'
 import CharacterCard from '../components/CharacterCard.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
+import { getGuideNote } from '../utils/guideNote.js'
 import unit1 from '../content/units/unit-1.json'
 import unit2 from '../content/units/unit-2.json'
 import unit3 from '../content/units/unit-3.json'
@@ -67,6 +68,7 @@ function Home({ completedLessons, onStartLesson }) {
                       id={unit1.guide}
                       side={labelSide === 'right' ? 'left' : 'right'}
                       says={unitDone ? unit1.guideDone : lesson.says}
+                      note={getGuideNote(0, guideIndex)}
                       unitDone={unitDone}
                     />
                   )}
@@ -88,7 +90,8 @@ function Home({ completedLessons, onStartLesson }) {
           {/* The unit's guide waits in grey until the unit opens. Hover to meet them. */}
           <div className="unit__waiting-guide character-hover" tabIndex={0}>
             <PixelCharacter id={unit.guide} />
-            <CharacterCard id={unit.guide} />
+            {/* Waiting before the unit's first lesson, so lessonIndex is -1. */}
+            <CharacterCard id={unit.guide} note={getGuideNote(unit.number - 1, -1)} />
           </div>
         </section>
       ))}

@@ -11,7 +11,8 @@ import './UnitGuide.css'
 // side: which side of the circle to stand on ('left' or 'right')
 // says: what the speech bubble says
 // unitDone: true once every lesson in the unit is finished
-function UnitGuide({ id, side, says, unitDone }) {
+// note: the text for the hover card (who they are + what's next)
+function UnitGuide({ id, side, says, note, unitDone }) {
   const character = CHARACTERS[id]
   if (!character) return null
 
@@ -28,7 +29,7 @@ function UnitGuide({ id, side, says, unitDone }) {
       <div className="character-hover" tabIndex={0}>
         <PixelCharacter id={id} pose={pose} flip={flip} />
         <span className="unit-guide__name">{character.name}</span>
-        <CharacterCard id={id} />
+        <CharacterCard id={id} note={note} />
       </div>
     </div>
   )

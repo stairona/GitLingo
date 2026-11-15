@@ -63,6 +63,16 @@
   outline-offset: 4px;
 }
 
+/* A button you can't press yet (CHECK before an option is picked) looks flat and grey. */
+.lesson-button:disabled {
+  background: var(--card);
+  color: var(--text-dim);
+  box-shadow: none;
+  filter: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
 .lesson-link {
   border: none;
   background: none;

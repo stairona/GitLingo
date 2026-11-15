@@ -113,3 +113,16 @@ How to explain it:
 - `HEAD -> main` is exactly what `git log --oneline` prints next to the commit you're on. We put it on the current lesson. JetBrains Mono turns `->` into an arrow by itself (a font "ligature").
 - `PathLine.jsx` now draws two lines: `points.slice(0, head + 1)` for the solid part you've walked, and `points.slice(head)` for the dashed part ahead. Both start or end at the current lesson, so they meet there.
 - `stroke-dasharray: 2 12` draws a 2px dash, then a 12px gap, over and over.
+
+## PR #16: Unit guides (pixel characters) on the map (2026-11-14, Nicolas)
+What it does: each unit has a guide drawn as a little pixel character: Jackson for Unit 1, Charley for Unit 2, Lily for Unit 3. Jackson stands next to your current lesson, points at it and says a line. When you finish a lesson, Jackson moves to the next one. Hover over any guide to see a card with their story. Charley and Lily wait in grey on the locked Unit 2 and 3 cards.
+How AI helped: Nicolas chose the idea (one guide per unit, moving lesson to lesson, hover info) and the looks (pixel style; Jackson short brown hair, Charley tall with brown hair, Lily medium blond hair). Claude drew our own sprites in that style (nothing copied from the reference), wrote the components, and took each character's story from our lesson docs.
+How to explain it:
+- Each sprite in `content/characters.js` is a list of strings. Every letter is one pixel (H hair, S skin, T shirt, P pants...) and a dot is empty. Each character has two poses: `stand` and `point`.
+- `PixelCharacter.jsx` goes through every row and letter and draws a 6x6 square in that letter's color. To point left, it mirrors the drawing inside the SVG with `scale(-1 1)`.
+- Which guide belongs to which unit is in the unit files (`"guide": "jackson"` in `units/unit-1.json`). Each lesson's `says` line is what the guide says there, and `guideDone` is what they say once the unit is finished.
+- `Home.jsx` works out `guideIndex`: the first unfinished lesson, or the last lesson if all are done. Only that row draws `<UnitGuide>`, so finishing a lesson moves the guide down one row. A short CSS animation makes it slide in.
+- `CharacterCard.jsx` is always in the page but hidden (`visibility: hidden; opacity: 0`). CSS shows it on `:hover` or `:focus-within`, so it also works with the keyboard (`tabIndex={0}` makes the character reachable with Tab).
+- The hovered lesson row gets `z-index: 2`, so the card shows on top of the rows below it.
+- Locked guides use `filter: grayscale(1) brightness(0.6)`, and hovering removes the filter.
+- `\u00a0` is a space that never breaks, so lesson codes like "U3 L4" never split across two lines.

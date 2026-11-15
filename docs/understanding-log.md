@@ -348,3 +348,17 @@ How to explain it:
 - `OsTabs` keeps one number, `openIndex`, and only shows that tab's text. `TeachingCard` shows it only if the card has `tabs`.
 - `ProfileCard` shows every field. A field with `copyable: true` gets a Copy button that uses Gavin's `copyText`. It says "Copied!" or "Couldn't copy" for 2 seconds, then goes back to "Copy" (a `setTimeout`).
 - In `Lesson.jsx`, `showProfile` is true on questions in lessons that have a user, and the body switches to two columns.
+
+## PR #45: Back button inside a lesson (2026-11-15, Gavin)
+What it does: a BACK button shows the screen before the one you're on. It's hidden on the first screen. Questions you already checked come back locked, with your answer and the green or red bar, so going back and forth never changes your hearts. The progress bar moves back too.
+How AI helped: this is PR 7 of the lesson screen plan. Claude wrote it at Gavin's request. The plan had 5 commits, including a new `answered` prop for `MultipleChoice` and `PracticeTerminal`. Claude noticed both components already show a locked answer when `checked` is true, so we reused that and did it in 3 commits instead. Claude also noticed `FeedbackBar` needed its own BACK button, which the plan didn't mention.
+How to explain it:
+- `Lesson.jsx` has a new `answers` object that remembers every checked answer by screen number, like `{ 4: { picked: 0, typed: '' } }`. CHECK saves the answer there.
+- `checked` is no longer its own state. It's worked out each time: "does this screen have a saved answer?" Don't store what you can calculate: two things that have to stay in sync are how bugs happen.
+- `draftPicked` and `draftTyped` hold the answer you're working on before CHECK. On a checked screen, the saved answer is shown instead.
+- `{ ...answers, [stepIndex]: {...} }` copies the saved answers and adds one. We make a new object instead of changing the old one, because React only notices state changes when it gets a new object.
+- Hearts can't be won back: a screen with a saved answer is locked, so it can never be checked again.
+- `goBack()` clears the draft and goes back one screen. A pick that wasn't checked is only a draft, so it's thrown away.
+- BACK is hidden on the first screen and once the last heart is gone (then the lesson is over, and CONTINUE goes to Out of hearts).
+- After CHECK, `FeedbackBar` replaces the bottom bar, so it got its own optional BACK (`onBack`). Without it you could go back to an answered question but never past it.
+- TRY AGAIN clears `answers`, so every question can be answered again.

@@ -4,10 +4,11 @@ export function countFinished(unit, completedLessons) {
   return unit.lessons.filter((lesson) => completedLessons.includes(lesson.id)).length
 }
 
-// done if finished, current if it's the first unfinished one, locked otherwise
-export function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons) {
+// done if finished, current if it's the first unfinished one in an open unit,
+// locked otherwise (every lesson of a locked unit is locked)
+export function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons, unitUnlocked = true) {
   if (completedLessons.includes(lessonId)) return 'done'
-  if (index === firstUnfinishedIndex) return 'current'
+  if (unitUnlocked && index === firstUnfinishedIndex) return 'current'
   return 'locked'
 }
 

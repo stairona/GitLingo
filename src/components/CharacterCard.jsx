@@ -12,14 +12,6 @@ function CharacterCard({ id }) {
       <span className="character-card__role">{character.role}</span>
       <h3 className="character-card__name">{character.fullName}</h3>
       <p className="character-card__about">{character.about}</p>
-      <dl className="character-card__facts">
-        {character.facts.map((fact) => (
-          <div key={fact.label} className="character-card__fact">
-            <dt>{fact.label}</dt>
-            <dd>{fact.value}</dd>
-          </div>
-        ))}
-      </dl>
     </div>
   )
 }

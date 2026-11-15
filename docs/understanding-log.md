@@ -405,3 +405,12 @@ How to explain it:
 - `.sidebar__facts` is a row (`display: flex`). The cards open above it (`cardAbove`) so they're never cut off at the bottom of the screen.
 - `.character-hover { position: static }` inside the row makes every card line up with the row's left edge instead of with one character, so all three cards open in the same place.
 - The right column keeps `position: sticky; top: 0` (stay at the top while the page scrolls). We removed `max-height` and `overflow-y: auto`, which only existed for when it was too tall.
+
+## PR #52: Spread out the fun fact characters (2026-11-15, Nicolas)
+What it does: Jackson, Charley and Lily zigzag down the empty space on the left (left, right, left) instead of standing bunched in one row. Each fun fact card opens right above its own character.
+How AI helped: Claude made the change and checked it in Chrome at 1280×720, 1440×900 and 1920×1080, hovering each character to make sure every card stays on screen.
+How to explain it:
+- `.sidebar__facts` gets `flex: 1`, so it takes all the empty height left in the sidebar.
+- Inside, a grid cuts that space into 4 equal rows. Each character takes 2 rows (Jackson rows 1–2, Charley 2–3, Lily 3–4) and sits in the middle of them, so they overlap by half and spread evenly. A short screen just makes the rows shorter.
+- Two columns put Jackson and Lily on the left and Charley on the right, like the zigzag on the map.
+- Charley's card is centered on him. Lined up with his right edge, it went off the left of the screen.

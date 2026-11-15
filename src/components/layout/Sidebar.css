@@ -58,17 +58,37 @@
   color: var(--accent-light);
 }
 
-/* the three fun fact characters stand in a row under the unit list */
+/* the three fun fact characters zigzag down the empty space under the unit list,
+   like the lesson path on the map. The space is cut into 4 rows and each character
+   takes 2 of them, overlapping the next one, so they spread out on tall screens
+   and squeeze closer (without bumping) on short ones */
 .sidebar__facts {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   padding: 0 var(--space-3);
 }
 
-/* every card opens above the row from its left edge (not above each character),
-   so all three cards show up in the same spot */
-.sidebar__facts .character-hover {
-  position: static;
+.sidebar__facts > * {
+  align-self: center;
+}
+
+.sidebar__facts > :nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  justify-self: start;
+}
+
+.sidebar__facts > :nth-child(2) {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  justify-self: end;
+}
+
+.sidebar__facts > :nth-child(3) {
+  grid-column: 1;
+  grid-row: 3 / 5;
+  justify-self: start;
 }

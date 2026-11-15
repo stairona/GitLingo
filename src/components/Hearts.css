@@ -1,0 +1,16 @@
+.hearts {
+  display: flex;
+  gap: var(--space-1);
+}
+
+/* The icon is drawn in "currentColor", so setting color here colors the heart. */
+.hearts__heart {
+  display: flex;
+  color: var(--danger);
+  /* When a heart is lost, the color fades to grey instead of jumping. */
+  transition: color 0.3s;
+}
+
+.hearts__heart--lost {
+  color: var(--text-dim);
+}

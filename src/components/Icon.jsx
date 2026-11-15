@@ -22,6 +22,14 @@ const SHAPES = {
       d="M12 3l2.8 5.9 6.2.7-4.6 4.4 1.2 6.3L12 17.2l-5.6 3.1 1.2-6.3L3 9.6l6.2-.7z"
     />
   ),
+  // Two round bumps (circles of radius 4 centered at x=8 and x=16) and a point at
+  // the bottom. Each "A" draws most of one circle, and the straight lines meet at the tip.
+  heart: (
+    <path
+      fill="currentColor"
+      d="M12 20 5.17 11.83A4 4 0 1 1 12 9a4 4 0 1 1 6.83 2.83z"
+    />
+  ),
 }
 
 // Usage: <Icon name="lock" size={20} />

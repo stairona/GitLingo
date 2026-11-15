@@ -1,11 +1,13 @@
 import Icon from './Icon.jsx'
 import FunFactCharacter from './FunFactCharacter.jsx'
+import UnitSelector from './UnitSelector.jsx'
 import { FUN_FACTS } from '../content/funFacts.js'
 import './Sidebar.css'
 
-// The left column: our logo and the main menu.
+// The left column: our logo, the main menu, the unit list and a fun-fact character.
 // For now LEARN is the only page, so it is always the highlighted one.
-function Sidebar() {
+// completedLessons is passed down so the unit list can show progress and locks.
+function Sidebar({ completedLessons }) {
   return (
     <nav className="sidebar">
       {/* The moon image is decoration, so alt="" lets screen readers skip it and just read the name. */}
@@ -23,7 +25,9 @@ function Sidebar() {
         </li>
       </ul>
 
-      {/* Characters hanging around the sidebar, each with a fun fact on hover. */}
+      <UnitSelector completedLessons={completedLessons} />
+
+      {/* A character hanging around the sidebar with a fun fact on hover. */}
       <div className="sidebar__facts">
         {FUN_FACTS.filter((fact) => fact.side === 'left').map((fact) => (
           <FunFactCharacter key={fact.id} fact={fact} cardAlign="start" />

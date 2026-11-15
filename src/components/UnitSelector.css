@@ -1,0 +1,100 @@
+/* The unit list in the sidebar. */
+.unit-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.unit-selector__label {
+  padding-left: var(--space-3);
+  color: var(--text-dim);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.unit-selector__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* One row: number badge, unit name, then progress (like 2/4) or a lock. */
+.unit-selector__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.unit-selector__item:hover {
+  background: var(--card);
+}
+
+.unit-selector__item:focus-visible {
+  outline: 3px solid var(--accent-tint);
+  outline-offset: 2px;
+}
+
+/* The unit you're working on now. */
+.unit-selector__item--current {
+  border-color: var(--card-border);
+  background: var(--card);
+  color: var(--text);
+}
+
+/* Locked units: quieter grey, but you can still click to look at them. */
+.unit-selector__item--locked {
+  color: var(--text-dim);
+}
+
+.unit-selector__number {
+  flex: 0 0 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--card-border);
+  font-size: var(--text-xs);
+  font-weight: 900;
+}
+
+.unit-selector__item--current .unit-selector__number {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.unit-selector__title {
+  flex: 1;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+}
+
+/* "2/4" in our code font, like a small counter. */
+.unit-selector__status {
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-light);
+}
+
+.unit-selector__item--locked .unit-selector__status {
+  color: var(--text-dim);
+}

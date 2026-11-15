@@ -23,7 +23,10 @@
   transition: transform 0.15s;
 }
 
-/* Hidden until you hover over or tab onto the character. */
+/* Hidden until you hover over or tab onto the character.
+   display: none (not just invisible) so a hidden card takes up no room at all.
+   An invisible card hanging below the last unit made the page taller than the
+   layout, which stopped the sidebar from staying in place when you scroll. */
 .character-card {
   position: absolute;
   top: calc(100% + var(--space-2));
@@ -35,45 +38,40 @@
   border: 1px solid var(--accent);
   border-radius: var(--radius);
   box-shadow: 0 8px 24px var(--bg);
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: var(--space-2);
   text-align: left;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate(-50%, 4px);
-  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  transform: translateX(-50%);
 }
 
 .character-hover:hover .character-card,
 .character-hover:focus-within .character-card {
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, 0);
+  display: flex;
+  animation: card-fade-in 0.15s ease-out;
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* align="start": the card starts at the character's left edge instead of
    being centered under it, so it doesn't fall off the left side of the screen. */
 .character-card--start {
   left: 0;
-  transform: translate(0, 4px);
-}
-
-.character-hover:hover .character-card--start,
-.character-hover:focus-within .character-card--start {
-  transform: translate(0, 0);
+  transform: none;
 }
 
 /* align="end": the card ends at the character's right edge, for characters near the right side. */
 .character-card--end {
   left: auto;
   right: 0;
-  transform: translate(0, 4px);
-}
-
-.character-hover:hover .character-card--end,
-.character-hover:focus-within .character-card--end {
-  transform: translate(0, 0);
+  transform: none;
 }
 
 .character-card__role {
@@ -97,7 +95,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .character-card,
+  .character-card {
+    animation: none !important;
+  }
+
   .character-hover svg {
     transition: none;
   }

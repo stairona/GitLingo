@@ -35,7 +35,8 @@ function Home({ completedLessons, onStartLesson }) {
 
   return (
     <div className="home">
-      <section className="unit">
+      {/* The id lets the unit list in the sidebar scroll to this unit. */}
+      <section id={unit1.id} className="unit">
         <div className="unit__banner">
           <span className="unit__label">Unit {unit1.number}</span>
           <h2 className="unit__title">{unit1.title}</h2>
@@ -80,7 +81,7 @@ function Home({ completedLessons, onStartLesson }) {
       </section>
 
       {upcomingUnits.map((unit) => (
-        <section key={unit.number} className="unit unit--locked">
+        <section key={unit.number} id={unit.id} className="unit unit--locked">
           <div className="unit__banner">
             <span className="unit__label">
               <Icon name="lock" size={14} /> Unit {unit.number} · Coming soon

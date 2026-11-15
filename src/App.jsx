@@ -36,7 +36,11 @@ function App() {
   const finishedCount = unit1.lessons.filter((l) => completedLessons.includes(l.id)).length
 
   return (
-    <AppFrame finishedCount={finishedCount} totalCount={unit1.lessons.length}>
+    <AppFrame
+      finishedCount={finishedCount}
+      totalCount={unit1.lessons.length}
+      completedLessons={completedLessons}
+    >
       <Home completedLessons={completedLessons} onStartLesson={startLesson} />
     </AppFrame>
   )

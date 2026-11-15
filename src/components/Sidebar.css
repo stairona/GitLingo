@@ -60,18 +60,10 @@
   color: var(--accent-light);
 }
 
-/* The fun-fact characters, scattered down the sidebar instead of in a neat column. */
+/* The fun-fact character in the sidebar, set in a little from the edge. */
 .sidebar__facts {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
   padding: 0 var(--space-3);
-}
-
-.sidebar__facts > :nth-child(2) {
-  margin-left: auto; /* the middle one stands on the right */
-}
-
-.sidebar__facts > :nth-child(3) {
-  margin-left: var(--space-8);
 }

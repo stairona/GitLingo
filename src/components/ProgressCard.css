@@ -1,0 +1,25 @@
+/* The progress card. The box and the small purple label come from .panel-card
+   in RightPanel.css, and the bar from .progress, so they match the other cards. */
+.progress-card {
+  gap: var(--space-3);
+}
+
+.progress-card__title {
+  color: var(--text);
+  font-size: var(--text-lg);
+}
+
+/* "50% complete · 2 done · 2 open": small grey words with the numbers in white,
+   like the line under a milestone on GitHub. */
+.progress-card__meta {
+  display: flex;
+  gap: var(--space-4);
+  color: var(--text-dim);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.progress-card__meta strong {
+  color: var(--text);
+  font-weight: 900;
+}

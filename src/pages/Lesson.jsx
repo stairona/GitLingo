@@ -131,6 +131,19 @@ function Lesson({ lesson, onFinish, onBack }) {
     setStepIndex(stepIndex + 1)
   }
 
+  // BACK: show the screen before this one. An answer that was already checked
+  // comes back locked (it's saved in answers), so going back never changes hearts.
+  // An answer that wasn't checked yet is just a draft, so it's cleared.
+  function goBack() {
+    setDraftPicked(null)
+    setDraftTyped('')
+    setStepIndex(stepIndex - 1)
+  }
+
+  // No BACK on the first screen (there's nothing before it). Also none once the
+  // last heart is gone: the lesson is over, and CONTINUE leads to Out of hearts.
+  const canGoBack = stepIndex > 0 && hearts > 0
+
   return (
     <div className="lesson-screen">
       <div className="lesson-screen__top">
@@ -151,10 +164,20 @@ function Lesson({ lesson, onFinish, onBack }) {
       </main>
 
       {checked ? (
-        <FeedbackBar isRight={isRight} message={getWrongMessage(step)} onContinue={goToNextStep} />
+        <FeedbackBar
+          isRight={isRight}
+          message={getWrongMessage(step)}
+          onContinue={goToNextStep}
+          onBack={canGoBack ? goBack : null}
+        />
       ) : (
         <footer className="lesson-screen__bottom">
           <div className="lesson-screen__bottom-inner">
+            {canGoBack && (
+              <button className="lesson-back" onClick={goBack}>
+                Back
+              </button>
+            )}
             {isQuestion ? (
               // CHECK stays grey until there's an answer, so you can't check an empty one.
               <button className="lesson-button" onClick={checkAnswer} disabled={!hasAnswer(step, picked, typed)}>

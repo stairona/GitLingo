@@ -229,3 +229,14 @@ How to explain it:
 - A component you can reuse: `<UnitPath unit={unit1} unitIndex={0} ... />` draws one unit. Next we can loop over all units and draw one `UnitPath` each.
 - `getLessonStatus` (done, current or locked) moved into `utils/unitProgress.js`, next to the other progress rules, since it's a plain function and not drawing.
 - `getGuideNote(unitIndex, ...)` now gets the real unit number instead of a fixed 0, so it works for any unit.
+
+## PR #33: Unit 2 on the map (2026-11-14, Nicolas)
+What it does: Unit 2 now shows its full lesson path under Unit 1, with Charley as its guide. It stays locked (grey, dashed line, "Finish Unit 1 to unlock") until every Unit 1 lesson is done. Then Branches becomes the current lesson and Charley points at it with a speech bubble.
+How AI helped: Claude built it on top of the UnitPath component. Nicolas approved Charley's four lines, which come from the "Welcome back" cards in `docs/lessons/unit-2/`.
+How to explain it:
+- `isUnitUnlocked` (in `utils/unitProgress.js`) says a unit opens once every lesson of the unit before it is done. `UnitPath` asks it for its own unit.
+- `getLessonStatus` got one more input, `unitUnlocked`. In a locked unit, no lesson can be "current", so they all show as locked.
+- A locked unit passes `reachedIndex={0}` to the path line, so the whole line is dashed.
+- `UnitGuide` has a `waiting` mode: standing, grey, no speech bubble. Its hover card uses the "First up, Lesson 1" text.
+- `guide.says?.[lesson.id]`: the `?.` means "if `says` exists". Lily has no lines yet, so this keeps the app from crashing.
+- `Home.jsx` draws `units.slice(0, 2)` as paths. Unit 3 is still the old card until the next PR.

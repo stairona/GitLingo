@@ -362,3 +362,13 @@ How to explain it:
 - BACK is hidden on the first screen and once the last heart is gone (then the lesson is over, and CONTINUE goes to Out of hearts).
 - After CHECK, `FeedbackBar` replaces the bottom bar, so it got its own optional BACK (`onBack`). Without it you could go back to an answered question but never past it.
 - TRY AGAIN clears `answers`, so every question can be answered again.
+
+## PR #47: Review finished lessons (2026-11-15, Nicolas)
+What it does: the ✓ circles on the map can be clicked now. A finished lesson opens in review mode: a "Review" label replaces the hearts, wrong answers cost nothing, and the end shows "Review finished" with Back to map. Nothing is saved, so progress, Recent commits and the guide stay the same.
+How AI helped: Claude built PR 8 of the plan on top of Gavin's back button, and tested it in Chrome (a finished lesson with 4 wrong answers, then checked the saved progress didn't change).
+How to explain it:
+- `LessonBubble` used to only let the current lesson be clicked. Now anything that isn't locked can be (`canOpen`).
+- `App.jsx` works out review mode with one line: `completedLessons.includes(openLessonId)`. If you already finished it, it's a review. It passes `review` to `Lesson`.
+- In `Lesson.jsx`, `checkAnswer` only takes a heart if `!review`, so hearts stay at 3 and Out of hearts can never show.
+- Every review starts with an empty `answers` list, so all the questions can be answered again. We didn't need to change `MultipleChoice` or `PracticeTerminal`.
+- After the last screen, a review shows `ReviewFinished`, which calls `onBack`, not `onFinish`, so nothing is saved.

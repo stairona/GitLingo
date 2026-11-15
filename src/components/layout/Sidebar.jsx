@@ -24,8 +24,10 @@ function Sidebar({ completedLessons }) {
       <UnitSelector completedLessons={completedLessons} />
 
       <div className="sidebar__facts">
-        {FUN_FACTS.map((fact) => (
-          <FunFactCharacter key={fact.id} fact={fact} cardAlign="start" cardAbove />
+        {/* the middle one stands on the right, so its card is centered on it
+            (lined up with its right edge, the card would go off the left of the screen) */}
+        {FUN_FACTS.map((fact, index) => (
+          <FunFactCharacter key={fact.id} fact={fact} cardAlign={index === 1 ? 'center' : 'start'} cardAbove />
         ))}
       </div>
     </nav>

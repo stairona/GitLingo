@@ -2,14 +2,11 @@
   "id": "unit-1",
   "number": 1,
   "title": "GitHub Fundamentals",
-  "guide": "jackson",
-  "guideDone": "Unit 1 done! Charley is waiting for you in Unit 2.",
   "lessons": [
     {
       "id": "u1-l1",
       "hash": "a1f9c2e",
       "title": "Git vs GitHub",
-      "says": "Hi, I'm Jackson! I'm new to Git too. Let's start here.",
       "user": null,
       "cards": [
         {
@@ -75,7 +72,6 @@
       "id": "u1-l2",
       "hash": "7c3e0b1",
       "title": "Setting up Git",
-      "says": "I just got a new laptop. Help me set up Git before class!",
       "user": {
         "name": "Jackson Stark",
         "backstory": "Jackson just got a new laptop and needs to set up Git before class tomorrow.",
@@ -168,7 +164,6 @@
       "id": "u1-l3",
       "hash": "e94d2a8",
       "title": "Main commands",
-      "says": "Git is ready. Now let's learn the commands that save our work.",
       "user": {
         "name": "Charley Dunkel",
         "backstory": "Charley just built a small weather app for a class project. Now Charley wants to start saving it with Git, so nothing gets lost.",
@@ -263,7 +258,6 @@
       "id": "u1-l4",
       "hash": "3b7f6c0",
       "title": "Putting it on GitHub",
-      "says": "Last step: let's put our work on GitHub so everyone can see it!",
       "user": {
         "name": "Lily Lurvey",
         "backstory": "Lily built a portfolio website and has been saving snapshots with Git. But right now it only lives on Lily's laptop. Time to put it on GitHub so the world can see it.",

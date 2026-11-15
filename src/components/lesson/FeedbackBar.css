@@ -1,0 +1,90 @@
+/* Each tone sets one color variable, and everything below uses it,
+   so green and red share all the same rules. */
+.feedback-bar--right {
+  --feedback-color: var(--success);
+}
+
+.feedback-bar--wrong {
+  --feedback-color: var(--danger);
+}
+
+/* A dark background with a little of the result color mixed in, so the text
+   stays readable while the bar still looks green or red. */
+.feedback-bar {
+  border-top: 2px solid var(--feedback-color);
+  background: color-mix(in srgb, var(--feedback-color) 15%, var(--bg-alt));
+  animation: feedback-slide-up 0.2s ease-out;
+}
+
+/* Same width and spacing as the normal bottom bar, so nothing jumps. */
+.feedback-bar__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.feedback-bar__result {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.feedback-bar__icon {
+  display: flex;
+  padding: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--feedback-color);
+  color: var(--bg);
+}
+
+.feedback-bar__title {
+  color: var(--feedback-color);
+  font-size: var(--text-xl);
+  font-weight: 900;
+}
+
+.feedback-bar__message {
+  margin-top: var(--space-1);
+  color: var(--text);
+}
+
+/* The CONTINUE button takes the result color instead of the usual purple. */
+.feedback-bar__button {
+  flex-shrink: 0;
+  background: var(--feedback-color);
+  color: var(--bg);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--feedback-color) 60%, var(--bg));
+}
+
+.feedback-bar__button:active {
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Slides up from below, like Duolingo's result bar. */
+@keyframes feedback-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* People who turn off animations in their computer settings get no slide. */
+@media (prefers-reduced-motion: reduce) {
+  .feedback-bar {
+    animation: none;
+  }
+}
+
+/* On a narrow phone screen, put the button under the message. */
+@media (max-width: 600px) {
+  .feedback-bar__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

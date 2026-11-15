@@ -5,6 +5,8 @@ import './ProgressCard.css'
 // "Your progress", laid out like a milestone on GitHub: the goal's name,
 // a bar, then "% complete", how many are done and how many are still open.
 // The goal is the unit you're working on now.
+// Under it, a bar for the whole course, split into one piece per unit
+// (like the colored language bar on a GitHub repo, in our purples).
 function ProgressCard({ completedLessons }) {
   const unit = units[getCurrentUnitIndex(completedLessons)]
   const done = countFinished(unit, completedLessons)
@@ -33,6 +35,34 @@ function ProgressCard({ completedLessons }) {
           <strong>{open}</strong> open
         </span>
       </p>
+
+      <span className="progress-card__course-label">Whole course</span>
+      <div className="course-bar">
+        {units.map((u) => (
+          // Each piece's width matches how many lessons the unit has,
+          // and fills up as you finish that unit's lessons.
+          <div
+            key={u.id}
+            className={`course-bar__unit course-bar__unit--${u.number}`}
+            style={{ flex: u.lessons.length }}
+          >
+            <div
+              className="course-bar__fill"
+              style={{ width: `${(countFinished(u, completedLessons) / u.lessons.length) * 100}%` }}
+            />
+          </div>
+        ))}
+      </div>
+      <ul className="course-bar__legend">
+        {units.map((u) => (
+          <li key={u.id} className={`course-bar__key course-bar__key--${u.number}`}>
+            Unit {u.number}{' '}
+            <code>
+              {countFinished(u, completedLessons)}/{u.lessons.length}
+            </code>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

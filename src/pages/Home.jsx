@@ -13,7 +13,9 @@ function Home({ completedLessons, onStartLesson }) {
   useEffect(() => {
     if (completedLessons.length === 0) return
     const current = homeRef.current.querySelector('.lesson-bubble--current')
-    if (current) current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    // people who turn off animations in their system settings get an instant jump instead of a slide
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (current) current.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' })
   }, [completedLessons.length])
 
   return (

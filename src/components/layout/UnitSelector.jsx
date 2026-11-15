@@ -1,6 +1,6 @@
-import Icon from './Icon.jsx'
-import { units } from '../content/index.js'
-import { countFinished, isUnitUnlocked, getCurrentUnitIndex } from '../utils/unitProgress.js'
+import Icon from '../Icon.jsx'
+import { units } from '../../content/index.js'
+import { countFinished, isUnitUnlocked, getCurrentUnitIndex } from '../../utils/unitProgress.js'
 import './UnitSelector.css'
 
 function UnitSelector({ completedLessons }) {

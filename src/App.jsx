@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Home from './pages/Home.jsx'
 import Lesson from './pages/Lesson.jsx'
-import AppFrame from './components/AppFrame.jsx'
+import AppFrame from './components/layout/AppFrame.jsx'
 import { useProgress } from './hooks/useProgress.js'
 import unit1 from './content/units/unit-1.json'
 

@@ -1,7 +1,7 @@
-import Icon from './Icon.jsx'
-import FunFactCharacter from './FunFactCharacter.jsx'
+import Icon from '../Icon.jsx'
+import FunFactCharacter from '../FunFactCharacter.jsx'
 import UnitSelector from './UnitSelector.jsx'
-import { FUN_FACTS } from '../content/funFacts.js'
+import { FUN_FACTS } from '../../content/funFacts.js'
 import './Sidebar.css'
 
 function Sidebar({ completedLessons }) {

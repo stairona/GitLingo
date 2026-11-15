@@ -1,5 +1,5 @@
-import { units } from '../content/index.js'
-import { countFinished, getCurrentUnitIndex } from '../utils/unitProgress.js'
+import { units } from '../../content/index.js'
+import { countFinished, getCurrentUnitIndex } from '../../utils/unitProgress.js'
 import './ProgressCard.css'
 
 function ProgressCard({ completedLessons }) {

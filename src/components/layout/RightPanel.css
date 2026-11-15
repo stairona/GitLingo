@@ -1,6 +1,6 @@
+/* not sticky: the column is taller than most screens, so it scrolls with the page
+   and the fun-fact characters at the bottom can be reached */
 .right-panel {
-  position: sticky;
-  top: 0;
   flex: 0 0 340px;
   padding: var(--space-7) 0;
   display: flex;

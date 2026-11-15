@@ -66,6 +66,24 @@
   align-items: center;
 }
 
+/* Locked units: the title on the left, the waiting guide on the right. */
+.unit--locked {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.unit__waiting-guide svg {
+  filter: grayscale(1) brightness(0.6);
+}
+
+/* Hovering a waiting guide brings back their colors. */
+.unit__waiting-guide:hover svg,
+.unit__waiting-guide:focus-visible svg {
+  filter: none;
+}
+
 /* Units that aren't ready yet use quieter colors (not see-through, so they stay readable). */
 .unit--locked .unit__label,
 .unit--locked .unit__title {

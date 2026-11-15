@@ -2,9 +2,12 @@ import LessonBubble from '../components/LessonBubble.jsx'
 import Icon from '../components/Icon.jsx'
 import PathLine from '../components/PathLine.jsx'
 import UnitGuide from '../components/UnitGuide.jsx'
+import PixelCharacter from '../components/PixelCharacter.jsx'
+import CharacterCard from '../components/CharacterCard.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
 import unit1 from '../content/units/unit-1.json'
-import upcomingUnits from '../content/upcoming-units.json'
+import unit2 from '../content/units/unit-2.json'
+import unit3 from '../content/units/unit-3.json'
 import './Home.css'
 
 // Decide how one lesson looks on the map.
@@ -14,6 +17,9 @@ function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons
   if (index === firstUnfinishedIndex) return 'current'
   return 'locked'
 }
+
+// Units 2 and 3 show as locked cards for now, with their guide waiting.
+const upcomingUnits = [unit2, unit3]
 
 // The home screen: the Unit 1 path, then the units that aren't ready yet.
 function Home({ completedLessons, onStartLesson }) {
@@ -78,6 +84,11 @@ function Home({ completedLessons, onStartLesson }) {
               <Icon name="lock" size={14} /> Unit {unit.number} · Coming soon
             </span>
             <h2 className="unit__title">{unit.title}</h2>
+          </div>
+          {/* The unit's guide waits in grey until the unit opens. Hover to meet them. */}
+          <div className="unit__waiting-guide character-hover" tabIndex={0}>
+            <PixelCharacter id={unit.guide} />
+            <CharacterCard id={unit.guide} />
           </div>
         </section>
       ))}

@@ -38,10 +38,11 @@
 
 /* The path: lessons stacked in a column. Each row's height and its
    left/right shift come from utils/pathLayout.js, so the path zig-zags. */
-/* Holds the line and the lessons on top of each other. */
+/* Holds the line and the lessons on top of each other.
+   The big top margin leaves room for the guide's speech bubble at Lesson 1. */
 .unit__path-area {
   position: relative;
-  margin: var(--space-7) 0 var(--space-2);
+  margin: var(--space-10) 0 var(--space-2);
 }
 
 .unit__step {

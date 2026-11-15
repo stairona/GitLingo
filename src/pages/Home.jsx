@@ -1,7 +1,7 @@
 import LessonBubble from '../components/LessonBubble.jsx'
 import Icon from '../components/Icon.jsx'
 import PathLine from '../components/PathLine.jsx'
-import PathCharacter from '../components/PathCharacter.jsx'
+import UnitGuide from '../components/UnitGuide.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
 import unit1 from '../content/units/unit-1.json'
 import upcomingUnits from '../content/upcoming-units.json'
@@ -20,6 +20,11 @@ function Home({ completedLessons, onStartLesson }) {
   const firstUnfinishedIndex = unit1.lessons.findIndex(
     (lesson) => !completedLessons.includes(lesson.id),
   )
+
+  // The guide stands at your current lesson. Once the unit is done
+  // (findIndex gave -1), it waits at the last lesson instead.
+  const unitDone = firstUnfinishedIndex === -1
+  const guideIndex = unitDone ? unit1.lessons.length - 1 : firstUnfinishedIndex
 
   return (
     <div className="home">
@@ -49,13 +54,16 @@ function Home({ completedLessons, onStartLesson }) {
                     labelSide={labelSide}
                     onStart={() => onStartLesson(lesson.id)}
                   />
-                  {/* The demo user stands on the other side from the lesson's name. */}
-                  <PathCharacter
-                    user={lesson.user}
-                    says={lesson.says}
-                    side={labelSide === 'right' ? 'left' : 'right'}
-                    status={status}
-                  />
+                  {/* The unit's guide stands here only if this is the guide's lesson,
+                      on the other side from the lesson's name. */}
+                  {index === guideIndex && (
+                    <UnitGuide
+                      id={unit1.guide}
+                      side={labelSide === 'right' ? 'left' : 'right'}
+                      says={unitDone ? unit1.guideDone : lesson.says}
+                      unitDone={unitDone}
+                    />
+                  )}
                 </li>
               )
             })}

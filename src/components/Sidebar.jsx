@@ -1,4 +1,6 @@
 import Icon from './Icon.jsx'
+import FunFactCharacter from './FunFactCharacter.jsx'
+import { FUN_FACTS } from '../content/funFacts.js'
 import './Sidebar.css'
 
 // The left column: our logo and the main menu.
@@ -20,6 +22,13 @@ function Sidebar() {
           </span>
         </li>
       </ul>
+
+      {/* Characters hanging around the sidebar, each with a fun fact on hover. */}
+      <div className="sidebar__facts">
+        {FUN_FACTS.filter((fact) => fact.side === 'left').map((fact) => (
+          <FunFactCharacter key={fact.id} fact={fact} cardAlign="start" />
+        ))}
+      </div>
     </nav>
   )
 }

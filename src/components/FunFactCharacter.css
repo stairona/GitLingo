@@ -1,0 +1,29 @@
+/* A fun-fact character. The hover card itself is styled in CharacterCard.css. */
+.fun-fact {
+  width: fit-content;
+  padding-top: var(--space-6); /* room for the "?" bubble above the head */
+}
+
+/* The little "?" bubble over the character's head, so people know to hover. */
+.fun-fact__hint {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text);
+  font-size: var(--text-xs);
+  font-weight: 900;
+}
+
+/* Once you've found the fact, the "?" steps aside. */
+.fun-fact:hover .fun-fact__hint,
+.fun-fact:focus-within .fun-fact__hint {
+  background: var(--accent-deep);
+}

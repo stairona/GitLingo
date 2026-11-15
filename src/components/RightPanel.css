@@ -51,3 +51,19 @@
   /* Slide smoothly when a lesson is finished. */
   transition: width 0.5s;
 }
+
+/* The fun-fact characters, scattered at different heights instead of in a straight line. */
+.right-panel__facts {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: var(--space-4);
+}
+
+.right-panel__facts > :nth-child(2) {
+  margin-top: var(--space-8);
+}
+
+.right-panel__facts > :nth-child(3) {
+  margin-top: var(--space-4);
+}

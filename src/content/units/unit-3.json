@@ -2,8 +2,6 @@
   "id": "unit-3",
   "number": 3,
   "title": "GitHub Theory",
-  "guide": "lily",
-  "guideDone": "You finished the whole course. Nice work!",
   "lessons": [
     {
       "id": "u3-l1",

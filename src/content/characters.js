@@ -118,12 +118,30 @@ const SHARED = {
   K: '--char-shoes',
 }
 
+// Which character guides each unit on the map. This lives here, not in the
+// unit JSON, so the lesson files only hold lesson content and the map's
+// words all live in this one file.
+export const UNIT_GUIDES = {
+  'unit-1': 'jackson',
+  'unit-2': 'charley',
+  'unit-3': 'lily',
+}
+
 export const CHARACTERS = {
   jackson: {
     name: 'Jackson',
     fullName: 'Jackson Stark',
     role: 'Unit 1 guide',
     intro: "Hi, I'm Jackson! I just got a new laptop, and I need Git set up before class tomorrow.",
+    // The speech bubble next to the current lesson on the map, one per lesson id.
+    says: {
+      'u1-l1': "Hi, I'm Jackson! I'm new to Git too. Let's start here.",
+      'u1-l2': 'I just got a new laptop. Help me set up Git before class!',
+      'u1-l3': "Git is ready. Now let's learn the commands that save our work.",
+      'u1-l4': "Last step: let's put our work on GitHub so everyone can see it!",
+    },
+    // The speech bubble once every lesson in the unit is finished.
+    done: 'Unit 1 done! Charley is waiting for you in Unit 2.',
     next: {
       'u1-l1':
         "you'll help me set up Git on my computer, so every change I save is signed with my name and email.",
@@ -144,6 +162,7 @@ export const CHARACTERS = {
     intro: "Hi, I'm Charley! I built a weather app for a class project, and I keep making it better.",
     waiting:
       "you'll help me build dark mode on a branch, so I don't break the version that already works.",
+    done: 'Unit 2 done! Lily will take it from here in Unit 3.',
     next: {
       'u2-l1':
         "you'll help me merge my dark mode branch into main with a pull request on GitHub.",
@@ -164,6 +183,7 @@ export const CHARACTERS = {
     intro: "Hi, I'm Lily! I built a portfolio website, and now I want to know how Git really works.",
     waiting:
       "you'll help Charley put only a bug fix in the next snapshot and leave some messy notes out.",
+    done: 'You finished the whole course. Nice work!',
     next: {
       'u3-l1':
         "you'll help Jackson find the ID of the commit that added the forecast, and see where those IDs come from.",

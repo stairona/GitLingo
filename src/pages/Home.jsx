@@ -7,6 +7,7 @@ import CharacterCard from '../components/CharacterCard.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
 import { getGuideNote } from '../utils/guideNote.js'
 import { units } from '../content/index.js'
+import { CHARACTERS, UNIT_GUIDES } from '../content/characters.js'
 import './Home.css'
 
 function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons) {
@@ -25,6 +26,8 @@ function Home({ completedLessons, onStartLesson }) {
 
   const unitDone = firstUnfinishedIndex === -1
   const guideIndex = unitDone ? unit1.lessons.length - 1 : firstUnfinishedIndex
+  const guideId = UNIT_GUIDES[unit1.id]
+  const guide = CHARACTERS[guideId]
 
   return (
     <div className="home">
@@ -56,9 +59,9 @@ function Home({ completedLessons, onStartLesson }) {
                   />
                   {index === guideIndex && (
                     <UnitGuide
-                      id={unit1.guide}
+                      id={guideId}
                       side={labelSide === 'right' ? 'left' : 'right'}
-                      says={unitDone ? unit1.guideDone : lesson.says}
+                      says={unitDone ? guide.done : guide.says[lesson.id]}
                       note={getGuideNote(0, guideIndex)}
                       unitDone={unitDone}
                     />
@@ -79,8 +82,8 @@ function Home({ completedLessons, onStartLesson }) {
             <h2 className="unit__title">{unit.title}</h2>
           </div>
           <div className="unit__waiting-guide character-hover" tabIndex={0}>
-            <PixelCharacter id={unit.guide} />
-            <CharacterCard id={unit.guide} note={getGuideNote(unit.number - 1, -1)} />
+            <PixelCharacter id={UNIT_GUIDES[unit.id]} />
+            <CharacterCard id={UNIT_GUIDES[unit.id]} note={getGuideNote(unit.number - 1, -1)} />
           </div>
         </section>
       ))}

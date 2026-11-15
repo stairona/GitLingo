@@ -4,7 +4,6 @@
 //
 //   H hair   S skin   B cheek (blush)   E eye
 //   T shirt  D tie or shirt detail      P pants   K shoes
-//   R skirt  L legs (skin under a skirt)
 
 // Jackson Stark: short brown hair.
 const JACKSON = [
@@ -46,7 +45,7 @@ const CHARLEY = [
   '.KKK..KKK.',
 ]
 
-// Lily Lurvey: medium-length blond hair down to her shoulders.
+// Lily Lurvey: medium-length blond hair down to the shoulders.
 const LILY = [
   '..HHHHHH..',
   '.HHHHHHHH.',
@@ -55,19 +54,18 @@ const LILY = [
   '.HBSSSSBH.',
   '.HHSSSSHH.',
   '.TTTTTTTT.',
+  'TTTTTTTTTT',
   'STTTTTTTTS',
   '.TTTTTTTT.',
-  '.RRRRRRRR.',
-  '.RRRRRRRR.',
-  '..LL..LL..',
-  '..LL..LL..',
-  '..KK..KK..',
+  '.PPPPPPPP.',
+  '.PPP..PPP.',
+  '.PPP..PPP.',
+  '.KKK..KKK.',
 ]
 
 // Which color each letter uses, per character. Every value is a variable from global.css.
 const SHARED = {
   S: '--char-skin',
-  L: '--char-skin',
   B: '--char-blush',
   E: '--char-eye',
   P: '--char-pants',
@@ -88,6 +86,6 @@ export const CHARACTERS = {
   lily: {
     name: 'Lily',
     sprite: LILY,
-    colors: { ...SHARED, H: '--char-hair-blond', T: '--accent-tint', R: '--accent-deep' },
+    colors: { ...SHARED, H: '--char-hair-blond', T: '--accent-tint' },
   },
 }

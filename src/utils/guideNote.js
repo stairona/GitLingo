@@ -1,28 +1,27 @@
 import { units } from '../content/index.js'
 import { CHARACTERS } from '../content/characters.js'
 
-// The text on a guide's hover card: who they are, plus what's coming next.
+// The text on a guide's hover card, in the guide's own words:
+// who they are (intro), then what you'll do next.
 //
 // unitIndex: which unit the guide belongs to (0 = Unit 1)
 // lessonIndex: the lesson the guide is standing at. Use -1 for a guide
 //              still waiting on a locked unit, before its first lesson.
 //
-// The next lesson is the one right after lessonIndex. On a unit's last lesson,
-// that's the first lesson of the next unit. After the very last lesson of the
-// course there's nothing next, so the card shows the guide's full story instead.
+// What comes next is written in characters.js:
+// - waiting: a locked unit's guide talking about its first lesson
+// - next[lessonId]: the guide talking about the lesson after this one
+//   (on a unit's last lesson, that's the next unit's first lesson)
+// - finale: the very last lesson of the course, when nothing comes next
 export function getGuideNote(unitIndex, lessonIndex) {
   const unit = units[unitIndex]
   const character = CHARACTERS[unit.guide]
 
-  const nextInUnit = unit.lessons[lessonIndex + 1]
-  if (nextInUnit) {
-    return `${character.intro} Next up: Lesson ${lessonIndex + 2}, ${nextInUnit.title}.`
+  if (lessonIndex === -1) {
+    return `${character.intro} ${character.waiting}`
   }
 
-  const nextUnit = units[unitIndex + 1]
-  if (nextUnit) {
-    return `${character.intro} Next up: Unit ${nextUnit.number}, Lesson 1, ${nextUnit.lessons[0].title}.`
-  }
-
-  return character.about
+  const lesson = unit.lessons[lessonIndex]
+  const whatsNext = character.next[lesson.id] ?? character.finale
+  return `${character.intro} ${whatsNext}`
 }

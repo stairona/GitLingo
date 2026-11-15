@@ -132,14 +132,23 @@ const SHARED = {
 export const CHARACTERS = {
   jackson: {
     name: 'Jackson',
-    // What the hover card shows. It comes from our lesson docs (docs/lessons).
     fullName: 'Jackson Stark',
     role: 'Unit 1 guide',
-    // intro: who they are. The hover card adds a sentence about the next lesson after it.
-    intro: 'Just got a new laptop and needs Git set up before class.',
-    // about: the longer story, shown when there's no next lesson left (the very end).
-    about:
-      'Just got a new laptop and needs Git set up before class. Later joins Charley\'s weather app team to add a 5-day forecast.',
+    // What the hover card says, in Jackson's own words, talking to you.
+    // It all comes from our lesson docs (docs/lessons).
+    // intro: who they are. next: what you'll do in the lesson after the one
+    // the guide is standing at, looked up by that lesson's id.
+    intro: "Hi, I'm Jackson! I just got a new laptop, and I need Git set up before class tomorrow.",
+    next: {
+      'u1-l1':
+        "In the next lesson, you'll help me set up Git on my computer, so every change I save is signed with my name and email.",
+      'u1-l2':
+        "Next, you'll help my friend Charley start saving a weather app with Git, so nothing gets lost.",
+      'u1-l3':
+        "Next, you'll help Lily put a portfolio website on GitHub, so it's backed up and everyone can see it.",
+      'u1-l4':
+        "That's Unit 1! Next, Charley will show you branches, so you can try a new idea without breaking what already works.",
+    },
     poses: { stand: JACKSON, point: JACKSON_POINT },
     colors: { ...SHARED, H: '--char-hair-brown', T: '--accent-light', D: '--accent-deep' },
   },
@@ -147,9 +156,20 @@ export const CHARACTERS = {
     name: 'Charley',
     fullName: 'Charley Dunkel',
     role: 'Unit 2 guide',
-    intro: 'Built a weather app for a class project.',
-    about:
-      'Built a weather app for a class project. Adds dark mode on its own branch, then merges it with a pull request.',
+    intro: "Hi, I'm Charley! I built a weather app for a class project, and I keep making it better.",
+    // waiting: what the guide says on a locked unit, about its first lesson.
+    waiting:
+      "In my first lesson, you'll help me build dark mode on a branch, so I don't break the version that already works.",
+    next: {
+      'u2-l1':
+        "Next, you'll help me merge my dark mode branch into main with a pull request on GitHub.",
+      'u2-l2':
+        "Next, Jackson joins my weather app team, and you'll help Jackson copy the project and add a 5-day forecast.",
+      'u2-l3':
+        "Next, you'll help Lily undo two mistakes: an edit that broke the home page, and a pushed commit that broke the contact form.",
+      'u2-l4':
+        "That's Unit 2! Next, Lily takes you under the hood, starting with the three areas every change moves through.",
+    },
     poses: { stand: CHARLEY, point: CHARLEY_POINT },
     colors: { ...SHARED, H: '--char-hair-brown', T: '--accent', D: '--accent-tint' },
   },
@@ -157,9 +177,19 @@ export const CHARACTERS = {
     name: 'Lily',
     fullName: 'Lily Lurvey',
     role: 'Unit 3 guide',
-    intro: 'Built a portfolio website and put it on GitHub.',
-    about:
-      'Built a portfolio website and put it on GitHub. Undid a commit that broke the contact form, then went looking for Git\'s hidden database.',
+    intro: "Hi, I'm Lily! I built a portfolio website, and now I want to know how Git really works.",
+    waiting:
+      "In my first lesson, you'll help Charley put only a bug fix in the next snapshot and leave some messy notes out.",
+    next: {
+      'u3-l1':
+        "Next, you'll help Jackson find the ID of the commit that added the forecast, and see where those IDs come from.",
+      'u3-l2': "Next, you'll help me find the hidden folder where Git keeps its whole database.",
+      'u3-l3':
+        "Next, the Wi-Fi goes down while the three of us are working, and you'll see why Git keeps working anyway.",
+    },
+    // finale: what Lily says at the very last lesson, when nothing comes next.
+    finale:
+      "I put my portfolio on GitHub, undid a commit that broke my contact form, and found Git's hidden database. Thanks for helping all three of us!",
     poses: { stand: LILY, point: LILY_POINT },
     colors: { ...SHARED, H: '--char-hair-blond', T: '--accent-tint' },
   },

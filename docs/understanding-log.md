@@ -141,3 +141,12 @@ How to explain it:
 - `utils/guideNote.js` builds the text from where the guide stands: the lesson right after it in the same unit, or else Lesson 1 of the next unit, or else (no next unit) the full `about`.
 - It uses Gavin's `content/index.js`, which lists all units in order, so "the next unit" is just the next item in that list.
 - Waiting guides on locked units pass `-1` as their lesson, so their "next lesson" is their unit's Lesson 1.
+
+## PR #20: Guides talk to you on their hover card (2026-11-14, Nicolas)
+What it does: the hover card is now in the guide's own voice, talking to you, and a bit longer. For example: "Hi, I'm Jackson! I just got a new laptop... In the next lesson, you'll help me set up Git on my computer, so every change I save is signed with my name and email."
+How AI helped: Nicolas asked for first person and a fuller description of the next lesson. Claude wrote every line from the lesson docs and checked all 14 cards.
+How to explain it:
+- `characters.js` keeps what each guide says: `intro` (hello, who they are), `next` (one line per lesson id about the lesson after it), `waiting` (for locked units, about their first lesson) and `finale` (Lily's goodbye at the very end).
+- `utils/guideNote.js` picks the right line: `waiting` if the guide is still on a locked unit (`-1`), otherwise `next[lesson.id]`, and if there's no next line (the last lesson of the course), `finale`.
+- `??` means "use the left side, or the right side if the left is missing". That's how the last lesson falls back to `finale`.
+- The lines describe the next lesson's story from our docs, like Charley's dark mode branch or Lily's broken contact form, so the map and the lessons tell the same story.

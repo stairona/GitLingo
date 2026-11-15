@@ -1,0 +1,109 @@
+/* The hover target: the character picture plus its hidden info card.
+   tabIndex on it lets keyboard users reach it too. */
+.character-hover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: help;
+  border-radius: var(--radius);
+}
+
+.character-hover:focus-visible {
+  outline: 3px solid var(--accent-tint);
+  outline-offset: 4px;
+}
+
+/* A little hop when you point at a character, so it feels alive. */
+.character-hover:hover svg {
+  transform: translateY(-4px);
+}
+
+.character-hover svg {
+  transition: transform 0.15s;
+}
+
+/* Hidden until you hover over or tab onto the character. */
+.character-card {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 50%;
+  z-index: 10;
+  width: 310px;
+  padding: var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+}
+
+.character-hover:hover .character-card,
+.character-hover:focus-within .character-card {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.character-card__role {
+  color: var(--accent-light);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.character-card__name {
+  color: var(--text);
+  font-size: var(--text-lg);
+}
+
+.character-card__about {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Label on the left, value on the right, like a small profile card. */
+.character-card__facts {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.character-card__fact {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+}
+
+.character-card__fact dt {
+  color: var(--text-dim);
+  font-weight: 800;
+  white-space: nowrap; /* keep labels like "Plays in" on one line */
+}
+
+.character-card__fact dd {
+  margin: 0;
+  color: var(--accent-tint);
+  font-family: var(--font-mono);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-card,
+  .character-hover svg {
+    transition: none;
+  }
+}

@@ -1,4 +1,5 @@
 import PixelCharacter from './PixelCharacter.jsx'
+import CharacterCard from './CharacterCard.jsx'
 import { CHARACTERS } from '../content/characters.js'
 import './UnitGuide.css'
 
@@ -23,8 +24,12 @@ function UnitGuide({ id, side, says, unitDone }) {
   return (
     <div className={`unit-guide unit-guide--${side}`}>
       {says && <p className="unit-guide__speech">{says}</p>}
-      <PixelCharacter id={id} pose={pose} flip={flip} />
-      <span className="unit-guide__name">{character.name}</span>
+      {/* Hover over (or tab onto) the guide to see their info card. */}
+      <div className="character-hover" tabIndex={0}>
+        <PixelCharacter id={id} pose={pose} flip={flip} />
+        <span className="unit-guide__name">{character.name}</span>
+        <CharacterCard id={id} />
+      </div>
     </div>
   )
 }

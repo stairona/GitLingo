@@ -35,11 +35,13 @@ function PixelCharacter({ id, pose = 'stand', flip = false }) {
       width={columns * PIXEL}
       height={rows.length * PIXEL}
       shapeRendering="crispEdges"
-      style={flip ? { transform: 'scaleX(-1)' } : undefined}
       role="img"
       aria-label={character.name}
     >
-      {squares}
+      {/* To flip, mirror the drawing inside the SVG: scale(-1, 1) mirrors it,
+          and translate moves it back into view. Doing it here (not with CSS)
+          leaves CSS free to animate the character, like the hover hop. */}
+      <g transform={flip ? `translate(${columns * PIXEL} 0) scale(-1 1)` : undefined}>{squares}</g>
     </svg>
   )
 }

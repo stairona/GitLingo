@@ -132,3 +132,12 @@ What it does: hovering over Jackson, Charley or Lily now only shows which unit t
 How AI helped: Nicolas asked for the card to be shorter, and Claude removed the extra rows.
 How to explain it:
 - The extra details lived in a `facts` list in `content/characters.js`, and `CharacterCard.jsx` drew one row per fact. We deleted the list, the code that drew it, and its CSS, so nothing unused is left behind.
+
+## PR #19: Guide cards point to the next lesson (2026-11-14, Nicolas)
+What it does: a guide's hover card now says who they are plus the next lesson, for example "Next up: Lesson 3, Main commands". On a unit's last lesson it points to the next unit's first lesson. Lily at the very end of the course keeps her full story.
+How AI helped: Nicolas described the rule, and Claude wrote it and checked every case.
+How to explain it:
+- `characters.js` now has a short `intro` (who they are) next to the longer `about`.
+- `utils/guideNote.js` builds the text from where the guide stands: the lesson right after it in the same unit, or else Lesson 1 of the next unit, or else (no next unit) the full `about`.
+- It uses Gavin's `content/index.js`, which lists all units in order, so "the next unit" is just the next item in that list.
+- Waiting guides on locked units pass `-1` as their lesson, so their "next lesson" is their unit's Lesson 1.

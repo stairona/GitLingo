@@ -52,6 +52,18 @@
   transform: translate(-50%, 0);
 }
 
+/* align="start": the card starts at the character's left edge instead of
+   being centered under it, so it doesn't fall off the left side of the screen. */
+.character-card--start {
+  left: 0;
+  transform: translate(0, 4px);
+}
+
+.character-hover:hover .character-card--start,
+.character-hover:focus-within .character-card--start {
+  transform: translate(0, 0);
+}
+
 .character-card__role {
   color: var(--accent-light);
   font-size: var(--text-xs);

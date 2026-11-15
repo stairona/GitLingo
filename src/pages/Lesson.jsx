@@ -5,6 +5,7 @@ import CodeText from '../components/lesson/CodeText.jsx'
 import MultipleChoice from '../components/lesson/MultipleChoice.jsx'
 import FeedbackBar from '../components/lesson/FeedbackBar.jsx'
 import PracticeTerminal from '../components/lesson/PracticeTerminal.jsx'
+import LessonComplete from '../components/lesson/LessonComplete.jsx'
 import { getLessonSteps } from '../utils/lessonSteps.js'
 import { isAnswerCorrect } from '../utils/answerChecker.js'
 import './Lesson.css'
@@ -85,24 +86,15 @@ function Lesson({ lesson, onFinish, onBack }) {
   // the bar fills as you move through the screens, and is full once you pass the last one
   const progress = stepIndex / steps.length
 
+  // past the last screen: the lesson is done. CONTINUE calls onFinish, which saves it in App.
   if (stepIndex >= steps.length) {
     return (
-      <div className="lesson-screen">
-        <div className="lesson-screen__top">
-          <TopBar progress={1} hearts={hearts} onQuit={onBack} />
-        </div>
-        <main className="lesson-screen__body">
-          <ComingSoon label="End of lesson" title={lesson.title} note="The real lesson complete screen comes in a later PR." />
-          <div className="lesson-screen__test-actions">
-            <button className="lesson-button" onClick={onFinish}>
-              Finish lesson (test)
-            </button>
-            <button className="lesson-link" onClick={onBack}>
-              Back to map
-            </button>
-          </div>
-        </main>
-      </div>
+      <LessonComplete
+        title={lesson.title}
+        hearts={hearts}
+        totalHearts={STARTING_HEARTS}
+        onContinue={onFinish}
+      />
     )
   }
 

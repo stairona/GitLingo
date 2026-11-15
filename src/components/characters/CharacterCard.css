@@ -40,8 +40,10 @@
   transform: translateX(-50%);
 }
 
+/* focus-visible (keyboard Tab) instead of focus-within, so clicking a character
+   doesn't leave its card stuck open while you hover another one */
 .character-hover:hover .character-card,
-.character-hover:focus-within .character-card {
+.character-hover:focus-visible .character-card {
   display: flex;
   animation: card-fade-in 0.15s ease-out;
 }
@@ -58,6 +60,11 @@
 .character-card--start {
   left: 0;
   transform: none;
+}
+
+.character-card--above {
+  top: auto;
+  bottom: calc(100% + var(--space-2));
 }
 
 .character-card--end {

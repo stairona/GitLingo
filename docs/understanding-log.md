@@ -275,3 +275,11 @@ How to explain it:
 - `Home.jsx` is now just `units.map(...)`, one `UnitPath` per unit. A fourth unit would show up on the map without changing `Home.jsx`.
 - Lily's lines live in `characters.js` under `says`, keyed by lesson id (`u3-l1`...), like Jackson's and Charley's.
 - The README said "No late-night story", but Unit 3 Lesson 4 starts at a late study session. The rule now says there's no late-night storyline, and names that lesson as the one late-night moment.
+
+## PR #37: Right column scrolls and fun-fact cards stay on screen (2026-11-14, Nicolas)
+What it does: the right column now scrolls with the page, so Charley and Lily at its bottom can be reached. Their fun-fact cards open above them instead of below, and only one character card shows at a time.
+How AI helped: Nicolas spotted the cards going off screen. Claude found the cause (the column was sticky but taller than the screen) and tested the fix on an 800px tall window.
+How to explain it:
+- `position: sticky` keeps something pinned while you scroll, but if it's taller than the window, its bottom part can never be seen. Removing it lets the column scroll like the rest of the page.
+- `above` on `CharacterCard` swaps `top: 100%` for `bottom: 100%`, so the card sits over the character instead of under it.
+- `:focus-within` kept a card open after a mouse click. `:focus-visible` only matches keyboard focus (Tab), so clicking no longer leaves a card stuck open, but keyboard users can still read every card.

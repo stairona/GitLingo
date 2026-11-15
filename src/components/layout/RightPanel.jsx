@@ -20,7 +20,7 @@ function RightPanel({ completedLessons }) {
 
       <div className="right-panel__facts">
         {FUN_FACTS.filter((fact) => fact.side === 'right').map((fact) => (
-          <FunFactCharacter key={fact.id} fact={fact} cardAlign="end" />
+          <FunFactCharacter key={fact.id} fact={fact} cardAlign="end" cardAbove />
         ))}
       </div>
     </aside>

@@ -33,24 +33,3 @@
   color: var(--text);
   font-size: var(--text-xl);
 }
-
-.unit--locked {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.unit__waiting-guide svg {
-  filter: grayscale(1) brightness(0.6);
-}
-
-.unit__waiting-guide:hover svg,
-.unit__waiting-guide:focus-visible svg {
-  filter: none;
-}
-
-.unit--locked .unit__label,
-.unit--locked .unit__title {
-  color: var(--text-dim);
-}

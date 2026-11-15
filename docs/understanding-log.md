@@ -181,3 +181,12 @@ How to explain it:
 - `align` on the card ('start' or 'end') makes it open to the right in the sidebar and to the left in the right panel, so it never goes off screen.
 - `.filter((fact) => fact.side === 'left')` picks which facts go in the sidebar. The right panel does the same with 'right'.
 - The sidebar got `z-index: 5` so its cards show on top of the map when they open over it.
+
+## PR #25: Unit selector and three fun facts (2026-11-14, Nicolas)
+What it does: the sidebar now has a list of the three units. The one you're on is highlighted with how many lessons are done (like 2/4), and locked units show a lock. Clicking a unit scrolls the map to it. The fun facts are down to three, one per character: Jackson on the left, Charley and Lily on the right. Also fixes the sidebar scrolling away.
+How AI helped: Nicolas asked for the unit selector and fewer fun facts. Claude built them, found the cause of the sidebar bug while testing the scrolling, and fixed it.
+How to explain it:
+- `utils/unitProgress.js` works out three things from the finished-lessons list: how many lessons of a unit are done, whether a unit is unlocked (every lesson of the unit before is done), and which unit you're on.
+- `UnitSelector.jsx` draws one button per unit. Clicking runs `document.getElementById('unit-3').scrollIntoView(...)`. Each unit's section in `Home.jsx` got `id={unit.id}` so it can be found.
+- `completedLessons` is passed from `App` to `AppFrame` to `Sidebar` to `UnitSelector`, so the list knows the progress.
+- The sidebar bug: `position: sticky` only works inside its parent's box. Hidden hover cards were invisible but still took up room, and the one under Unit 3 stuck out below the page. The page got taller than the layout, so the sidebar ran out of room to stick. Hidden cards now use `display: none`, which takes no room at all.

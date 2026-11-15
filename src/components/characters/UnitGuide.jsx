@@ -12,7 +12,7 @@ function UnitGuide({ id, side, says, note, unitDone, waiting = false }) {
   const flip = side === 'right'
 
   return (
-    <div className={`unit-guide unit-guide--${side}${waiting ? ' unit-guide--waiting' : ''}`}>
+    <div className={`unit-guide unit-guide--${side} unit-guide--${id}${waiting ? ' unit-guide--waiting' : ''}`}>
       {says && !waiting && <p className="unit-guide__speech">{says}</p>}
       <div className="character-hover" tabIndex={0}>
         <PixelCharacter id={id} pose={pose} flip={flip} />

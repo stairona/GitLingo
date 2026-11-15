@@ -221,3 +221,11 @@ How to explain it:
 - `git mv` moves a file and keeps its history, so `git log --follow` still shows every change it ever had.
 - Moving a file one folder deeper means its imports need one more `../`. For example `'../content/characters.js'` became `'../../content/characters.js'`.
 - Nothing about how the app works changed. Only where files live and the import lines that point to them.
+
+## PR #32: One component for a unit's path (2026-11-14, Nicolas)
+What it does: moves everything that draws one unit on the map (banner, path line, lesson buttons, guide) out of `Home.jsx` into `components/map/UnitPath.jsx`. Unit 1 looks exactly the same. This is groundwork so Units 2 and 3 can use the same piece.
+How AI helped: Claude did the move and checked with screenshots that nothing changed.
+How to explain it:
+- A component you can reuse: `<UnitPath unit={unit1} unitIndex={0} ... />` draws one unit. Next we can loop over all units and draw one `UnitPath` each.
+- `getLessonStatus` (done, current or locked) moved into `utils/unitProgress.js`, next to the other progress rules, since it's a plain function and not drawing.
+- `getGuideNote(unitIndex, ...)` now gets the real unit number instead of a fixed 0, so it works for any unit.

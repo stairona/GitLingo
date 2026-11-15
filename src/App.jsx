@@ -32,15 +32,8 @@ function App() {
     return <Lesson lesson={lesson} onFinish={finishLesson} onBack={goHome} />
   }
 
-  // Count only Unit 1 lessons, in case old ids are still saved in the browser.
-  const finishedCount = unit1.lessons.filter((l) => completedLessons.includes(l.id)).length
-
   return (
-    <AppFrame
-      finishedCount={finishedCount}
-      totalCount={unit1.lessons.length}
-      completedLessons={completedLessons}
-    >
+    <AppFrame completedLessons={completedLessons}>
       <Home completedLessons={completedLessons} onStartLesson={startLesson} />
     </AppFrame>
   )

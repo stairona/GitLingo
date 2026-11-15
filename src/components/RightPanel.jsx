@@ -1,10 +1,16 @@
 import FunFactCharacter from './FunFactCharacter.jsx'
 import { FUN_FACTS } from '../content/funFacts.js'
+import { units } from '../content/index.js'
+import { countFinished } from '../utils/unitProgress.js'
 import './RightPanel.css'
 
 // The right column: how far you are, plus a short "how it works" card.
 // We don't have XP or streaks, so progress is just lessons finished.
-function RightPanel({ finishedCount, totalCount }) {
+// completedLessons: the ids of every finished lesson, like ["u1-l1", "u1-l2"].
+function RightPanel({ completedLessons }) {
+  const unit1 = units[0]
+  const finishedCount = countFinished(unit1, completedLessons)
+  const totalCount = unit1.lessons.length
   const percent = Math.round((finishedCount / totalCount) * 100)
 
   return (

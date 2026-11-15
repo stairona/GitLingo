@@ -291,3 +291,14 @@ How to explain it:
 - `position: sticky; top: 0` pins the column. `max-height: 100vh` stops it from being taller than the window, and `overflow-y: auto` gives it its own scrollbar only when it needs one.
 - A box that scrolls by itself cuts off anything sticking out of it. So the fun-fact cards now line up with the whole row of characters (`position: static` on each character) instead of with one character, and they always fit inside.
 - The "?" above each character went from `position: absolute` to normal layout, so it stays above its own character.
+
+## PR #40: Lesson frame and teaching cards (2026-11-14, Nicolas)
+What it does: opening a lesson now shows the real lesson screen: a top bar (✕ to quit, a progress bar, hearts), the lesson's teaching cards one at a time, and a CONTINUE button at the bottom. Questions and the welcome card show a "coming soon" screen until their own PRs.
+How AI helped: Claude built PR 1 of the Unit 1 plan. Study notes used: section 3 (the lesson keeps its state in a few useState values, and the progress bar is a width that changes with a transition).
+How to explain it:
+- `getLessonSteps(lesson)` (Gavin's) turns a lesson file into one list of screens. `Lesson.jsx` keeps one number, `stepIndex`, and CONTINUE adds 1.
+- The progress bar is `stepIndex / steps.length`, so it fills as you go and is full after the last screen.
+- `CodeText` uses Gavin's `splitCode` to show anything in backticks in the code font.
+- `Diagram` checks if the text looks like `[ box ] --label--> [ box ]`. If it does, it draws real boxes and arrows. If not (hand-drawn ones like the Unit 2 branch picture), it shows the text as is so the spacing stays right.
+- `TeachingCard` shows the title and paragraphs, plus a diagram, bullets or footer only if the card has them.
+- `Hearts` moved into `components/lesson/`, where every lesson piece lives now.

@@ -1,3 +1,5 @@
+import FunFactCharacter from './FunFactCharacter.jsx'
+import { FUN_FACTS } from '../content/funFacts.js'
 import './RightPanel.css'
 
 // The right column: how far you are, plus a short "how it works" card.
@@ -24,6 +26,14 @@ function RightPanel({ finishedCount, totalCount }) {
           terminal. You have 3 hearts per lesson.
         </p>
       </section>
+
+      {/* Characters hanging around under the cards, each with a fun fact on hover.
+          Their cards open toward the left so they don't go off the right edge. */}
+      <div className="right-panel__facts">
+        {FUN_FACTS.filter((fact) => fact.side === 'right').map((fact) => (
+          <FunFactCharacter key={fact.id} fact={fact} cardAlign="end" />
+        ))}
+      </div>
     </aside>
   )
 }

@@ -64,6 +64,18 @@
   transform: translate(0, 0);
 }
 
+/* align="end": the card ends at the character's right edge, for characters near the right side. */
+.character-card--end {
+  left: auto;
+  right: 0;
+  transform: translate(0, 4px);
+}
+
+.character-hover:hover .character-card--end,
+.character-hover:focus-within .character-card--end {
+  transform: translate(0, 0);
+}
+
 .character-card__role {
   color: var(--accent-light);
   font-size: var(--text-xs);

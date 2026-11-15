@@ -66,3 +66,16 @@
     animation: none;
   }
 }
+
+.unit-guide--waiting svg {
+  filter: grayscale(1) brightness(0.6);
+}
+
+.unit-guide--waiting .character-hover:hover svg,
+.unit-guide--waiting .character-hover:focus-visible svg {
+  filter: none;
+}
+
+.unit-guide--waiting .unit-guide__name {
+  color: var(--text-dim);
+}

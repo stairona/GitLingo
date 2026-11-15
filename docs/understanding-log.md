@@ -200,3 +200,11 @@ How to explain it:
 - The whole-course bar has one piece per unit. `flex: u.lessons.length` makes each piece as wide as its share of lessons, and the fill inside grows as you finish that unit.
 - Each unit's purple is set once as a CSS variable (`--unit-color`) and used by both its bar piece and its legend dot.
 - `RecentCommits.jsx`: `completedLessons` is saved in the order you finished, so `[...list].reverse()` puts the newest first. (We copy it with `[...]` first, because `reverse()` would change the original list.) `findLesson` turns each id into its hash and title, and `.slice(0, 4)` keeps the newest four.
+
+## PR #27: Bigger logo and more even sidebar (2026-11-14, Nicolas)
+What it does: the GitLingo name and moon logo in the sidebar are bigger, and the sidebar is a bit wider so everything has even room on both sides.
+How AI helped: Nicolas asked for a bigger title and icon and more even spacing. Claude changed the sizes and checked the result in screenshots.
+How to explain it:
+- The name uses a new text size, `--text-4xl` (2.25rem), added to the list in `global.css`. The moon image went from 56px to 76px.
+- The moon file has empty room around it for the glow, so a small negative `margin-left` lines the moon up with the boxes below it.
+- In `AppFrame.css`, the first grid column (the sidebar) went from 256px to 280px.

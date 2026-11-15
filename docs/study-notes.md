@@ -80,7 +80,7 @@ This is the most useful file. Read it in this order:
 7. `ReviewLesson` (line 747): a list of the questions you got wrong, your answer next to the right one. Nice to have, stretch goal.
 8. `QuitMessage` (line 285): the "are you sure you want to quit?" popup. Stretch.
 
-They check answers with a simple `selected === correct` (or by comparing lists of indexes). That's all we need for multiple choice and ordering. For our type-the-command question, we trim spaces, lowercase the input and compare it against a list of accepted answers.
+They check answers with a simple `selected === correct` (or by comparing lists of indexes). That's all we need for multiple choice: `picked === question.correctIndex`. For our terminal questions, `isAnswerCorrect` in `src/utils/answerChecker.js` trims the ends, squashes extra spaces into one and compares against the question's `acceptedAnswers`. We do **not** lowercase the input: in real Git, branch names, file names and commit messages are case-sensitive, so `Add-Dark-Mode` is a different branch from `add-dark-mode`.
 
 ### Profile, from `pages/profile.tsx` (207 lines)
 
@@ -126,41 +126,55 @@ For animation they only use CSS `transition` (width, position, opacity), no libr
 
 ### Lesson JSON (one file per unit)
 
-Every question has an `id`, `type`, `prompt` and `explanation`.
+Updated to match what we built. The real files are `src/content/units/unit-1.json`, `unit-2.json` and `unit-3.json`, and `src/content/index.js` gathers them into one `units` list. The lesson docs in `docs/lessons/` are where the text is written first, then copied into the JSON.
+
+Shortened example (one card and one question of each type):
 
 ```json
 {
-  "unit": 1,
-  "title": "GitHub fundamentals",
+  "id": "unit-2",
+  "number": 2,
+  "title": "GitHub Advanced",
   "lessons": [
     {
-      "id": "u1-l1",
-      "title": "Git vs GitHub",
-      "xp": 10,
+      "id": "u2-l1",
+      "hash": "5d82b4f",
+      "title": "Branches",
+      "user": {
+        "name": "Charley Dunkel",
+        "welcomeTitle": "Charley's back!",
+        "backstory": "Charley's weather app works now...",
+        "fields": [
+          { "label": "New branch", "value": "add-dark-mode" },
+          { "label": "Remote URL", "value": "https://github.com/...", "copyable": true }
+        ]
+      },
+      "cards": [
+        {
+          "title": "What is a branch?",
+          "body": ["A branch is a separate line of snapshots..."],
+          "bullets": ["optional list items"],
+          "diagram": "optional text drawing, can span several lines with \n",
+          "footer": "optional small text under the card"
+        }
+      ],
       "questions": [
         {
-          "id": "u1-l1-q1",
-          "type": "multiple_choice",
-          "prompt": "Which one stores your project online so others can see it?",
-          "options": ["Git", "GitHub", "VS Code", "Terminal"],
-          "correct": 1,
-          "explanation": "Git tracks changes on your computer. GitHub hosts repos online."
+          "type": "multiple-choice",
+          "prompt": "When you run `git branch`, what does the `*` mean?",
+          "options": ["That's the branch you're on right now", "That's the newest branch"],
+          "correctIndex": 0,
+          "wrongFeedback": "The `*` marks the branch you're currently on."
         },
         {
-          "id": "u1-l1-q2",
-          "type": "type_command",
-          "prompt": "Type the command that saves your staged changes with the message \"first commit\".",
-          "accepted": ["git commit -m \"first commit\"", "git commit -m 'first commit'"],
-          "explanation": "git commit records a snapshot. -m adds the message."
-        },
-        {
-          "id": "u1-l1-q3",
-          "type": "order_steps",
-          "prompt": "Put these steps in order to share a change.",
-          "steps": ["git push", "git add .", "git commit -m \"msg\""],
-          "correctOrder": [1, 2, 0],
-          "distractors": ["git pull"],
-          "explanation": "Stage it, commit it, then push it to GitHub."
+          "type": "terminal",
+          "prompt": "Create a branch called `add-dark-mode` and switch to it.",
+          "startingHistory": [
+            { "text": "$ git branch" },
+            { "text": "* main", "color": "green" }
+          ],
+          "acceptedAnswers": ["git switch -c add-dark-mode", "git checkout -b add-dark-mode"],
+          "fakeOutput": ["Switched to a new branch 'add-dark-mode'"]
         }
       ]
     }
@@ -168,28 +182,27 @@ Every question has an `id`, `type`, `prompt` and `explanation`.
 }
 ```
 
-`correct` is an index into `options`, same as their `correctAnswer`. `correctOrder` lists the indexes of `steps` in the right order, like their tile ordering. `distractors` are extra wrong tiles that show up in the tray but aren't part of the answer. Later we could add `os: "mac" | "windows" | "linux"` for questions that depend on the machine.
+What each part is for:
+- `hash`: a made-up short commit code shown on the map bubble, so the path looks like `git log`. Every lesson's hash is different.
+- `user`: the demo character for the welcome card. It's `null` when a lesson has no character (Unit 1 Lesson 1). `welcomeTitle` is only used for returning characters. A field with `copyable: true` gets a Copy button.
+- `cards`: the teaching screens. Only `title` and `body` are always there. `bullets`, `diagram`, `footer` and `tabs` (Mac/Windows/Linux, Unit 1 Lesson 2) are optional.
+- `questions`: two types only, `multiple-choice` and `terminal`. We dropped the order-the-steps idea. They're shown in the order they're listed, which in Units 2 and 3 follows the real workflow.
+  - Multiple choice: `correctIndex` is the position of the right option, like their `correctAnswer`. `wrongFeedback` explains why, and is shown after a wrong answer.
+  - Terminal: `startingHistory` is what's already on screen (`color` is optional), `acceptedAnswers` is every command we count as right, and `fakeOutput` is what the fake terminal prints after a right answer (plain strings, can be empty).
+- Backticks in any text mark code. `splitCode` in `src/utils/splitCode.js` finds them so they can be shown in a code font.
+
+`src/utils/lessonSteps.js` turns a lesson into one list of screens: the welcome card (if there's a user), then the cards, then the questions.
 
 Progress stores lesson ids, so reordering lessons won't break anyone's saved progress.
 
 ### `useProgress` state and functions
 
-Everything is saved in localStorage under one key, like `gitlingo-progress`.
+Updated to match what we built. We decided against XP and streaks, so the hook is small. It saves one list of finished lesson ids in localStorage under the key `gitlingo-progress`, like `["u1-l1", "u1-l2"]`, with try/catch around every read and write.
 
-```js
-{
-  xp: 0,                 // total XP
-  activeDays: [],        // ["2025-01-01", ...] days with at least one finished lesson
-  completedLessons: [],  // ["u1-l1", ...]
-}
-```
+- `completedLessons`: the list of finished lesson ids.
+- `completeLesson(lessonId)`: adds the id to the list (only once) and saves it.
 
-Hearts live in the Lesson page for the current lesson. Streak and unlock status are calculated, not stored.
-
-- `completeLesson(lessonId, xp)` adds the id to `completedLessons` (only once), adds the XP and adds today to `activeDays`.
-- `isUnlocked(lessonId)` returns true for the first lesson, or if the previous one is completed.
-- `getStreak()` counts consecutive days back from today in `activeDays`.
-- `resetProgress()` clears everything, which is handy for demos.
+Hearts (3 per lesson) aren't built yet. When they are, they live in the lesson screen's state and reset every lesson, so they're never saved. Unlocking isn't stored either: `Home.jsx` works it out, and the first unfinished lesson is the current one.
 
 ---
 

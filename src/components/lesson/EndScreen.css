@@ -1,0 +1,83 @@
+/* shared by LessonComplete and OutOfHearts: one centered column on an empty screen */
+.end-screen {
+  min-height: 100vh;
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  text-align: center;
+}
+
+.end-screen__badge {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  animation: badge-pop 0.5s ease-out;
+}
+
+.end-screen__badge--done {
+  background: var(--accent);
+  box-shadow: 0 8px 0 var(--accent-deep), 0 0 48px var(--accent);
+}
+
+.end-screen__badge--out {
+  background: var(--card);
+  border: 2px solid var(--danger);
+  color: var(--danger);
+}
+
+.end-screen__title {
+  color: var(--text);
+  font-size: var(--text-3xl);
+}
+
+.end-screen__subtitle {
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+}
+
+.end-screen__hearts {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.end-screen__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* the small celebration: the badge pops in a little too big, then settles */
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .end-screen__badge {
+    animation: none;
+  }
+}

@@ -106,10 +106,3 @@
 .coming-soon__note {
   color: var(--text-dim);
 }
-
-.lesson-screen__test-actions {
-  margin-top: var(--space-7);
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-}

@@ -330,3 +330,12 @@ How to explain it:
 - `showOutput = checked && isRight`: output only appears after CHECK, and only for a right answer, like a command that worked. Some commands really print nothing (like `git config`), so `fakeOutput` can be empty.
 - `startingHistory` lines can have a `color` (`red` or `green`), because real Git shows changed files in red and staged files in green. `white-space: pre-wrap` keeps the spaces inside lines like `        modified:   app.py`.
 - Pasting works on its own, because it's a normal `<input>`. Lesson 4 has you paste Lily's URL from her profile card.
+
+## PR #43: Finishing a lesson (2026-11-14, Nicolas)
+What it does: a lesson now ends on a real "Lesson complete!" screen, and its CONTINUE saves the lesson, so the next one unlocks, the guide moves on and it shows in Recent commits. Losing the last heart shows "Out of hearts", and TRY AGAIN starts the lesson over. The "Finish lesson (test)" button is gone.
+How AI helped: Claude built PR 4 of the Unit 1 plan on top of Gavin's question PRs, and played Lesson 1 in Chrome twice (all right, then 3 wrong) to check both endings.
+How to explain it:
+- When `stepIndex` goes past the last screen, `Lesson.jsx` shows `LessonComplete`. Its CONTINUE calls `onFinish`, which `App.jsx` already had: `completeLesson(id)` saves to localStorage and goes back to the map.
+- Out of hearts is worked out, not stored: `hearts === 0 && !checked`. The `!checked` part means you still see the red bar for the answer that cost the last heart, and the end screen comes after its CONTINUE.
+- `restart()` puts every piece of state back to the start: step 0, 3 hearts, no answer.
+- Both end screens share `EndScreen.css`. The check badge "pops" with a small CSS animation that's turned off for people who turn off animations in their system settings.

@@ -2,7 +2,6 @@
 // lesson is just a new file: nothing to add here by hand.
 // "eager: true" loads them right away (like a normal import), and
 // "import: 'default'" gives us the JSON data itself.
-// The patterns start with "unit-", so the "_template" folder is never loaded.
 // The result is an object like { './units/unit-1/unit.json': { id, number, title } }.
 const unitFiles = import.meta.glob('./units/unit-*/unit.json', { eager: true, import: 'default' })
 const lessonFiles = import.meta.glob('./units/unit-*/lessons/lesson-*.json', {

@@ -15,19 +15,23 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  /* The moon image has empty room on its left for the glow, so pull it
+     back a little to line the moon up with the boxes below. */
+  margin-left: calc(-1 * var(--space-3));
 }
 
 /* The logo file has extra space around the moon for its glow,
    so the image is a bit bigger than the moon itself looks. */
 .sidebar__mark {
-  width: 56px;
-  height: 56px;
+  width: 76px;
+  height: 76px;
 }
 
 .sidebar__logo {
   color: var(--accent);
-  font-size: var(--text-2xl);
+  font-size: var(--text-4xl);
   font-weight: 900;
+  line-height: 1;
 }
 
 .sidebar__menu {

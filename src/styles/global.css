@@ -23,6 +23,17 @@
   --success: #22c55e;
   --danger: #ef4444;
 
+  /* Pixel characters (Jackson, Charley, Lily). Skin and hair aren't brand colors,
+     but they still live here so no component has a hex code in it.
+     Their clothes use our purples so they fit the midnight theme. */
+  --char-skin: #f5c7a9;
+  --char-blush: #ef9a9a;
+  --char-eye: #1b1230;
+  --char-hair-brown: #6b3e23;
+  --char-hair-blond: #e9c46a;
+  --char-pants: #2b1d4a;
+  --char-shoes: #0b0712;
+
   /* Practice terminal: darker than the page so it stands out */
   --terminal-bg: #07040b;
   --terminal-text: #e9d5ff;

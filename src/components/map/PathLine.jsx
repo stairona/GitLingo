@@ -1,4 +1,4 @@
-import { ROW_HEIGHT, CIRCLE_SLOT, getPathOffset } from '../utils/pathLayout.js'
+import { ROW_HEIGHT, CIRCLE_SLOT, getPathOffset } from '../../utils/pathLayout.js'
 import './PathLine.css'
 
 const WIDTH = 400

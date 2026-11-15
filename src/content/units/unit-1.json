@@ -72,6 +72,7 @@
       "id": "u1-l2",
       "hash": "7c3e0b1",
       "title": "Setting up Git",
+      "says": "I just got a new laptop. Help me set up Git before class!",
       "user": {
         "name": "Jackson Stark",
         "backstory": "Jackson just got a new laptop and needs to set up Git before class tomorrow.",
@@ -164,6 +165,7 @@
       "id": "u1-l3",
       "hash": "e94d2a8",
       "title": "Main commands",
+      "says": "I built a weather app. Let's save it with Git so nothing gets lost.",
       "user": {
         "name": "Charley Dunkel",
         "backstory": "Charley just built a small weather app for a class project. Now Charley wants to start saving it with Git, so nothing gets lost.",
@@ -258,6 +260,7 @@
       "id": "u1-l4",
       "hash": "3b7f6c0",
       "title": "Putting it on GitHub",
+      "says": "My portfolio only lives on my laptop. Time to put it on GitHub!",
       "user": {
         "name": "Lily Lurvey",
         "backstory": "Lily built a portfolio website and has been saving snapshots with Git. But right now it only lives on Lily's laptop. Time to put it on GitHub so the world can see it.",

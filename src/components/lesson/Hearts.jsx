@@ -1,4 +1,4 @@
-import Icon from './Icon.jsx'
+import Icon from '../Icon.jsx'
 import './Hearts.css'
 
 // Shows how many hearts are left in this lesson, like ♥ ♥ ♡.

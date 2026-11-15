@@ -6,9 +6,7 @@ import PixelCharacter from '../components/PixelCharacter.jsx'
 import CharacterCard from '../components/CharacterCard.jsx'
 import { ROW_HEIGHT, getPathOffset } from '../utils/pathLayout.js'
 import { getGuideNote } from '../utils/guideNote.js'
-import unit1 from '../content/units/unit-1.json'
-import unit2 from '../content/units/unit-2.json'
-import unit3 from '../content/units/unit-3.json'
+import { units } from '../content/index.js'
 import './Home.css'
 
 function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons) {
@@ -17,7 +15,8 @@ function getLessonStatus(lessonId, index, firstUnfinishedIndex, completedLessons
   return 'locked'
 }
 
-const upcomingUnits = [unit2, unit3]
+// The first unit is playable, the rest are still "coming soon".
+const [unit1, ...upcomingUnits] = units
 
 function Home({ completedLessons, onStartLesson }) {
   const firstUnfinishedIndex = unit1.lessons.findIndex(

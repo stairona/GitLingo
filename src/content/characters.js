@@ -135,6 +135,9 @@ export const CHARACTERS = {
     // What the hover card shows. It comes from our lesson docs (docs/lessons).
     fullName: 'Jackson Stark',
     role: 'Unit 1 guide',
+    // intro: who they are. The hover card adds a sentence about the next lesson after it.
+    intro: 'Just got a new laptop and needs Git set up before class.',
+    // about: the longer story, shown when there's no next lesson left (the very end).
     about:
       'Just got a new laptop and needs Git set up before class. Later joins Charley\'s weather app team to add a 5-day forecast.',
     poses: { stand: JACKSON, point: JACKSON_POINT },
@@ -144,6 +147,7 @@ export const CHARACTERS = {
     name: 'Charley',
     fullName: 'Charley Dunkel',
     role: 'Unit 2 guide',
+    intro: 'Built a weather app for a class project.',
     about:
       'Built a weather app for a class project. Adds dark mode on its own branch, then merges it with a pull request.',
     poses: { stand: CHARLEY, point: CHARLEY_POINT },
@@ -153,6 +157,7 @@ export const CHARACTERS = {
     name: 'Lily',
     fullName: 'Lily Lurvey',
     role: 'Unit 3 guide',
+    intro: 'Built a portfolio website and put it on GitHub.',
     about:
       'Built a portfolio website and put it on GitHub. Undid a commit that broke the contact form, then went looking for Git\'s hidden database.',
     poses: { stand: LILY, point: LILY_POINT },

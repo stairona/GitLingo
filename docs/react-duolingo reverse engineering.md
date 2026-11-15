@@ -124,59 +124,62 @@ For animation they only use CSS `transition` (width, position, opacity), no libr
 
 ## 6. Our data shapes
 
-### Lesson JSON (one file per unit)
+### Lesson JSON (one file per lesson)
 
-Updated to match what we built. The real files are `src/content/units/unit-1.json`, `unit-2.json` and `unit-3.json`, and `src/content/index.js` gathers them into one `units` list. The lesson docs in `docs/lessons/` are where the text is written first, then copied into the JSON.
+Updated to match what we built. Each unit is a folder, like `src/content/units/unit-2/`. Inside it, `unit.json` holds the unit's id, number and title, and `lessons/` has one file per lesson (`lesson-1.json`, `lesson-2.json`, ...). `src/content/index.js` finds all of these files by itself with Vite's `import.meta.glob` and gathers them into one `units` list, so adding a lesson means just adding a file. The lesson docs in `docs/lessons/` are where the text is written first, then copied into the JSON.
 
-Shortened example (one card and one question of each type):
+`unit.json`:
 
 ```json
 {
   "id": "unit-2",
   "number": 2,
-  "title": "GitHub Advanced",
-  "lessons": [
+  "title": "GitHub Advanced"
+}
+```
+
+A lesson file like `lessons/lesson-1.json`, shortened (one card and one question of each type):
+
+```json
+{
+  "id": "u2-l1",
+  "hash": "5d82b4f",
+  "title": "Branches",
+  "user": {
+    "name": "Charley Dunkel",
+    "welcomeTitle": "Charley's back!",
+    "backstory": "Charley's weather app works now...",
+    "fields": [
+      { "label": "New branch", "value": "add-dark-mode" },
+      { "label": "Remote URL", "value": "https://github.com/...", "copyable": true }
+    ]
+  },
+  "cards": [
     {
-      "id": "u2-l1",
-      "hash": "5d82b4f",
-      "title": "Branches",
-      "user": {
-        "name": "Charley Dunkel",
-        "welcomeTitle": "Charley's back!",
-        "backstory": "Charley's weather app works now...",
-        "fields": [
-          { "label": "New branch", "value": "add-dark-mode" },
-          { "label": "Remote URL", "value": "https://github.com/...", "copyable": true }
-        ]
-      },
-      "cards": [
-        {
-          "title": "What is a branch?",
-          "body": ["A branch is a separate line of snapshots..."],
-          "bullets": ["optional list items"],
-          "diagram": "optional text drawing, can span several lines with \n",
-          "footer": "optional small text under the card"
-        }
+      "title": "What is a branch?",
+      "body": ["A branch is a separate line of snapshots..."],
+      "bullets": ["optional list items"],
+      "diagram": "optional text drawing, can span several lines with \n",
+      "footer": "optional small text under the card"
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "prompt": "When you run `git branch`, what does the `*` mean?",
+      "options": ["That's the branch you're on right now", "That's the newest branch"],
+      "correctIndex": 0,
+      "wrongFeedback": "The `*` marks the branch you're currently on."
+    },
+    {
+      "type": "terminal",
+      "prompt": "Create a branch called `add-dark-mode` and switch to it.",
+      "startingHistory": [
+        { "text": "$ git branch" },
+        { "text": "* main", "color": "green" }
       ],
-      "questions": [
-        {
-          "type": "multiple-choice",
-          "prompt": "When you run `git branch`, what does the `*` mean?",
-          "options": ["That's the branch you're on right now", "That's the newest branch"],
-          "correctIndex": 0,
-          "wrongFeedback": "The `*` marks the branch you're currently on."
-        },
-        {
-          "type": "terminal",
-          "prompt": "Create a branch called `add-dark-mode` and switch to it.",
-          "startingHistory": [
-            { "text": "$ git branch" },
-            { "text": "* main", "color": "green" }
-          ],
-          "acceptedAnswers": ["git switch -c add-dark-mode", "git checkout -b add-dark-mode"],
-          "fakeOutput": ["Switched to a new branch 'add-dark-mode'"]
-        }
-      ]
+      "acceptedAnswers": ["git switch -c add-dark-mode", "git checkout -b add-dark-mode"],
+      "fakeOutput": ["Switched to a new branch 'add-dark-mode'"]
     }
   ]
 }

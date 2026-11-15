@@ -429,3 +429,12 @@ How to explain it:
 - Renaming a file doesn't update the places that mention it. We have to search for the old name (`grep -rn "study-notes" .`) and fix each one.
 - We fixed the reference instead of renaming the file back, because `CLAUDE.md` already uses the new name.
 - Since the file name has spaces, wrap it in quotes in the terminal, like `open "docs/react-duolingo reverse engineering.md"`.
+
+## PR #54: Bring the folder map up to date (2026-11-15, Nicolas)
+What it does: The folder map in `docs/repo-organization.md` was written before we built the app, so it was missing a lot. Now it shows units 2 and 3, the screenshots, the new `content/units/` layout, the component subfolders and the fun fact files. It also fixes the lesson JSON section in `docs/react-duolingo reverse engineering.md`, which still described one file per unit.
+How AI helped: Claude compared both docs with the real files in the repo and rewrote the out-of-date parts.
+How to explain it:
+- `git ls-files` lists every file Git tracks. We compared that list with the map to find what was missing.
+- Components are now grouped into folders by where they show up on screen (layout, map, lesson, characters).
+- Lessons live in `src/content/units/unit-N/lessons/`, and `index.js` finds them automatically, so adding a lesson is just adding a file.
+- A unit is now a folder: `unit.json` has the id, number and title, and each lesson is its own file in `lessons/`. The example in the notes file was split the same way.

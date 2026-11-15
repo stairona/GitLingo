@@ -63,12 +63,22 @@ function Lesson({ lesson, onFinish, onBack }) {
   const steps = getLessonSteps(lesson)
   const [stepIndex, setStepIndex] = useState(0)
   const [hearts, setHearts] = useState(STARTING_HEARTS)
-  // Which option the player chose on this question (0, 1, 2...), or null for none yet.
-  const [picked, setPicked] = useState(null)
-  // What the player typed in the practice terminal on this question.
-  const [typed, setTyped] = useState('')
-  // Becomes true when CHECK is pressed. The answer is locked and the feedback bar shows.
-  const [checked, setChecked] = useState(false)
+  // The answer being worked on right now, before CHECK:
+  // which option is picked (0, 1, 2... or null), and what's typed in the terminal.
+  const [draftPicked, setDraftPicked] = useState(null)
+  const [draftTyped, setDraftTyped] = useState('')
+  // Every answer that has been CHECKed, remembered by screen number, like
+  // { 4: { picked: 0, typed: '' }, 6: { picked: null, typed: 'git help' } }.
+  // Remembering them is what lets a player go back and still see their answers.
+  const [answers, setAnswers] = useState({})
+
+  // A screen counts as checked once it has a saved answer. Then the answer is
+  // locked and the feedback bar shows, the same as right after pressing CHECK.
+  const savedAnswer = answers[stepIndex]
+  const checked = savedAnswer !== undefined
+  // Show the saved answer if there is one, otherwise the one being worked on.
+  const picked = checked ? savedAnswer.picked : draftPicked
+  const typed = checked ? savedAnswer.typed : draftTyped
 
   // the bar fills as you move through the screens, and is full once you pass the last one
   const progress = stepIndex / steps.length
@@ -77,9 +87,9 @@ function Lesson({ lesson, onFinish, onBack }) {
   function restart() {
     setStepIndex(0)
     setHearts(STARTING_HEARTS)
-    setPicked(null)
-    setTyped('')
-    setChecked(false)
+    setDraftPicked(null)
+    setDraftTyped('')
+    setAnswers({})
   }
 
   // the last heart is gone and its red bar has been closed with CONTINUE
@@ -105,21 +115,34 @@ function Lesson({ lesson, onFinish, onBack }) {
   const showProfile = isQuestion && lesson.user
   const isRight = isQuestion && getIsRight(step, picked, typed)
 
-  // CHECK: lock the answer in, and take a heart if it's wrong.
+  // CHECK: save the answer for this screen (which locks it), and take a heart if it's wrong.
+  // A saved answer can never be checked again, so hearts can't be won back.
   // Math.max keeps hearts from going below 0.
   function checkAnswer() {
-    setChecked(true)
+    setAnswers({ ...answers, [stepIndex]: { picked: draftPicked, typed: draftTyped } })
     if (!isRight) setHearts(Math.max(0, hearts - 1))
   }
 
-  // CONTINUE: clear this question's answer so the next question starts fresh, then move on.
+  // CONTINUE: clear the draft so the next question starts fresh, then move on.
   // The lesson moves on whether the answer was right or wrong (no retries).
   function goToNextStep() {
-    setPicked(null)
-    setTyped('')
-    setChecked(false)
+    setDraftPicked(null)
+    setDraftTyped('')
     setStepIndex(stepIndex + 1)
   }
+
+  // BACK: show the screen before this one. An answer that was already checked
+  // comes back locked (it's saved in answers), so going back never changes hearts.
+  // An answer that wasn't checked yet is just a draft, so it's cleared.
+  function goBack() {
+    setDraftPicked(null)
+    setDraftTyped('')
+    setStepIndex(stepIndex - 1)
+  }
+
+  // No BACK on the first screen (there's nothing before it). Also none once the
+  // last heart is gone: the lesson is over, and CONTINUE leads to Out of hearts.
+  const canGoBack = stepIndex > 0 && hearts > 0
 
   return (
     <div className="lesson-screen">
@@ -130,9 +153,9 @@ function Lesson({ lesson, onFinish, onBack }) {
         <StepScreen
           step={step}
           picked={picked}
-          onPick={setPicked}
+          onPick={setDraftPicked}
           typed={typed}
-          onType={setTyped}
+          onType={setDraftTyped}
           onSubmit={checkAnswer}
           checked={checked}
           isRight={isRight}
@@ -141,10 +164,20 @@ function Lesson({ lesson, onFinish, onBack }) {
       </main>
 
       {checked ? (
-        <FeedbackBar isRight={isRight} message={getWrongMessage(step)} onContinue={goToNextStep} />
+        <FeedbackBar
+          isRight={isRight}
+          message={getWrongMessage(step)}
+          onContinue={goToNextStep}
+          onBack={canGoBack ? goBack : null}
+        />
       ) : (
         <footer className="lesson-screen__bottom">
           <div className="lesson-screen__bottom-inner">
+            {canGoBack && (
+              <button className="lesson-back" onClick={goBack}>
+                Back
+              </button>
+            )}
             {isQuestion ? (
               // CHECK stays grey until there's an answer, so you can't check an empty one.
               <button className="lesson-button" onClick={checkAnswer} disabled={!hasAnswer(step, picked, typed)}>

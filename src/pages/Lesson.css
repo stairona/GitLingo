@@ -63,6 +63,34 @@
   outline-offset: 4px;
 }
 
+/* BACK: a quieter outlined button, so CONTINUE and CHECK stay the main action.
+   margin-right: auto pushes it to the left edge, while the bar keeps the
+   main button on the right. */
+.lesson-back {
+  margin-right: auto;
+  padding: var(--space-3) var(--space-5);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.lesson-back:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.lesson-back:focus-visible {
+  outline: 3px solid var(--accent-tint);
+  outline-offset: 4px;
+}
+
 /* A button you can't press yet (CHECK before an option is picked) looks flat and grey. */
 .lesson-button:disabled {
   background: var(--card);

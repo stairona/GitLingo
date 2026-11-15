@@ -6,7 +6,8 @@ import './FeedbackBar.css'
 // It only shows the result: Lesson.jsx decides if the answer was right
 // and what happens on CONTINUE.
 // "message" is the question's wrongFeedback; it's only shown when the answer is wrong.
-function FeedbackBar({ isRight, message, onContinue }) {
+// onBack is optional: without it there's no BACK button (like on the first screen).
+function FeedbackBar({ isRight, message, onContinue, onBack }) {
   const tone = isRight ? 'right' : 'wrong'
 
   return (
@@ -26,9 +27,16 @@ function FeedbackBar({ isRight, message, onContinue }) {
             )}
           </div>
         </div>
-        <button className="lesson-button feedback-bar__button" onClick={onContinue} autoFocus>
-          Continue
-        </button>
+        <div className="feedback-bar__actions">
+          {onBack && (
+            <button className="lesson-back" onClick={onBack}>
+              Back
+            </button>
+          )}
+          <button className="lesson-button feedback-bar__button" onClick={onContinue} autoFocus>
+            Continue
+          </button>
+        </div>
       </div>
     </footer>
   )

@@ -406,6 +406,13 @@ How to explain it:
 - `.character-hover { position: static }` inside the row makes every card line up with the row's left edge instead of with one character, so all three cards open in the same place.
 - The right column keeps `position: sticky; top: 0` (stay at the top while the page scrolls). We removed `max-height` and `overflow-y: auto`, which only existed for when it was too tall.
 
+## PR #51: Shorter future improvements list in the README (2026-11-15, Gavin)
+What it does: Takes two ideas out of the "future improvements" list in the README: the merge conflict simulator and the live branch diagram.
+How AI helped: Claude had suggested those two ideas in an earlier README PR. Gavin decided to remove them and made this change by hand.
+How to explain it:
+- It's a 2-line deletion in `README.md`, nothing else changed.
+- The list should only show ideas we actually want to build next, so ideas we didn't pick ourselves came out.
+
 ## PR #52: Spread out the fun fact characters (2026-11-15, Nicolas)
 What it does: Jackson, Charley and Lily zigzag down the empty space on the left (left, right, left) instead of standing bunched in one row. Each fun fact card opens right above its own character.
 How AI helped: Claude made the change and checked it in Chrome at 1280×720, 1440×900 and 1920×1080, hovering each character to make sure every card stays on screen.

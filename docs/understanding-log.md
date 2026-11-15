@@ -245,3 +245,11 @@ How to explain it:
 What it does: Charley stands a bit lower on the map, so at Unit 2 Lesson 1 his speech bubble doesn't overlap the "GitHub Advanced" title.
 How AI helped: Nicolas spotted the overlap. Claude lowered Charley and checked it in screenshots.
 How to explain it: each guide now gets a class with their name (like `unit-guide--charley`), so CSS can move just one character. Charley is taller than Jackson and Lily, so his `bottom` is 26px instead of 58px.
+
+## PR #35: Unit 3 on the map (2026-11-14, Nicolas)
+What it does: Unit 3 now shows its full lesson path with Lily as its guide, locked until Unit 2 is done. All three units are drawn the same way, and the old "Coming soon" card is gone. Lily has a speech-bubble line for each Unit 3 lesson. The lessons README now names Unit 3 Lesson 4 as the one late-night moment.
+How AI helped: Claude built it on top of UnitPath and checked every line against `docs/lessons/unit-3/`. Nicolas approved Lily's lines and asked to update the README so the docs agree with each other.
+How to explain it:
+- `Home.jsx` is now just `units.map(...)`, one `UnitPath` per unit. A fourth unit would show up on the map without changing `Home.jsx`.
+- Lily's lines live in `characters.js` under `says`, keyed by lesson id (`u3-l1`...), like Jackson's and Charley's.
+- The README said "No late-night story", but Unit 3 Lesson 4 starts at a late study session. The rule now says there's no late-night storyline, and names that lesson as the one late-night moment.

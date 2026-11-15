@@ -46,7 +46,7 @@ How Git works under the hood, from most familiar to deepest. Reuses the same cha
 - **Who it's for:** Total beginners. CS students who have never used Git.
 - **Device:** Laptops (desktop layout only; no mobile layout).
 - **Hackathon:** 24 hours, team of 2, both coding.
-- **Track:** Games & Late Night Experiences. We lean on *game feel* (hearts, unlocking lessons, satisfying feedback, a win screen) and a midnight theme. **No late-night story.**
+- **Track:** Games & Late Night Experiences. We lean on *game feel* (hearts, unlocking lessons, satisfying feedback, a win screen) and a midnight theme. There's no late-night storyline running through the lessons. The one late-night moment is Unit 3 Lesson 4, where the three characters are at a late study session at the library when the Wi-Fi goes down.
 - **Demo scope:** All 3 units, 4 lessons each. Every lesson uses the same screens and question types, so Units 2 & 3 are mostly new lesson data. Build and polish Unit 1 first, then add Units 2 & 3.
 - **Dropped:** "GitHub for students" (from the original outline). It isn't a Git command, so it doesn't fit the terminal-question format.
 

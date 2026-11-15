@@ -189,6 +189,12 @@ export const CHARACTERS = {
     intro: "Hi, I'm Lily! I built a portfolio website, and now I want to know how Git really works.",
     waiting:
       "you'll help Charley put only a bug fix in the next snapshot and leave some messy notes out.",
+    says: {
+      'u3-l1': "Charley fixed a bug but also scribbled messy notes. Let's put only the fix in the next snapshot!",
+      'u3-l2': 'Charley asked Jackson for the ID of the forecast commit. Where do those IDs even come from?',
+      'u3-l3': "I've saved lots of snapshots and even undid a broken commit. Where does Git keep it all?",
+      'u3-l4': "We're studying at the library and the Wi-Fi just went down! Can we still work without GitHub?",
+    },
     done: 'You finished the whole course. Nice work!',
     next: {
       'u3-l1':

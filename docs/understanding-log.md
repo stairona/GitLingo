@@ -302,3 +302,18 @@ How to explain it:
 - `Diagram` checks if the text looks like `[ box ] --label--> [ box ]`. If it does, it draws real boxes and arrows. If not (hand-drawn ones like the Unit 2 branch picture), it shows the text as is so the spacing stays right.
 - `TeachingCard` shows the title and paragraphs, plus a diagram, bullets or footer only if the card has them.
 - `Hearts` moved into `components/lesson/`, where every lesson piece lives now.
+
+## PR #41: Multiple-choice questions and hearts (2026-11-14, Gavin)
+What it does: multiple-choice questions now work. You pick an option and press CHECK. A green bar says "Correct!", or a red bar says "Not quite." with the explanation. After CHECK, the right answer turns green (and a wrong pick turns red), so you always see the correct answer. A wrong answer costs one of your 3 hearts, and CONTINUE moves on either way (no retries).
+How AI helped: this is PR 2 of the lesson screen plan. Claude wrote `FeedbackBar`, `MultipleChoice` and the changes to `Lesson.jsx` at Gavin's request. Gavin tested and committed each step.
+How to explain it:
+- `Lesson.jsx` keeps three pieces of state: `hearts` (starts at 3), `picked` (the chosen option's position, or `null`) and `checked` (whether CHECK was pressed). They live in `Lesson.jsx`, the parent, because the top bar, the question and the bottom bar all need them. That's called "lifting state up".
+- `MultipleChoice` and `FeedbackBar` only draw things and report clicks. They never decide if an answer is right. `Lesson.jsx` does that with `picked === step.correctIndex`.
+- CHECK is `disabled` until something is picked, so you can't check an empty answer.
+- `checkAnswer()` sets `checked` to true and takes a heart if the answer is wrong. `Math.max(0, hearts - 1)` stops hearts from going below 0.
+- `goToNextStep()` resets `picked` and `checked` before moving on. Without that, the next question would start with an answer already chosen.
+- `checked ? <FeedbackBar /> : <footer>` shows one or the other: the feedback bar replaces the bottom bar after CHECK.
+- `getOptionState` gives each option one of five looks (idle, picked, correct, wrong, faded). Each look only changes one CSS variable, `--choice-color`, and the border, shadow and number badge all use it. `FeedbackBar` does the same with `--feedback-color`.
+- `color-mix()` blends a little green or red into the dark background, so the colors come from our variables and the text stays readable.
+- Accessibility: `aria-pressed` tells screen readers which option is chosen, `role="status"` reads the result out loud, and `autoFocus` puts the keyboard on CONTINUE.
+- For now hearts can run out with no "Out of hearts" screen. That comes in PR 4 (end screens).

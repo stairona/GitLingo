@@ -113,3 +113,14 @@ How to explain it:
 - `HEAD -> main` is exactly what `git log --oneline` prints next to the commit you're on. We put it on the current lesson. JetBrains Mono turns `->` into an arrow by itself (a font "ligature").
 - `PathLine.jsx` now draws two lines: `points.slice(0, head + 1)` for the solid part you've walked, and `points.slice(head)` for the dashed part ahead. Both start or end at the current lesson, so they meet there.
 - `stroke-dasharray: 2 12` draws a 2px dash, then a 12px gap, over and over.
+
+## PR #16: Pixel characters along the path (2026-11-14, Nicolas)
+What it does: Jackson, Charley and Lily now stand in the empty space beside their lessons on the map, drawn as little pixel characters. The current lesson's character says a line in a speech bubble, and locked lessons' characters wait in grey.
+How AI helped: Nicolas picked the style (pixel people like a sprite sheet) and the looks: Jackson with short brown hair, Charley tall with brown hair, Lily with medium blond hair. Claude drew our own sprites in that style (nothing copied from the reference) and wrote the components.
+How to explain it:
+- Each sprite in `content/characters.js` is a list of strings. Every letter is one pixel (H hair, S skin, T shirt, P pants...) and a dot is empty. You can "see" the character by reading the rows.
+- `PixelCharacter.jsx` goes through every row and every letter and draws a 6x6 square in that letter's color. `shapeRendering="crispEdges"` keeps the squares sharp instead of blurry.
+- Colors still come from `global.css`: skin and hair got their own `--char-*` variables, and clothes use our purples.
+- Who stands next to a lesson comes from the `user` field Gavin added to `units/unit-1.json`: "Jackson Stark" becomes "jackson", which is the key in `characters.js`. We only added a short first-person `says` line per lesson.
+- `PathCharacter.jsx` is `position: absolute` on the opposite side from the lesson's name, so it fills empty space without moving the circle off the path.
+- Locked characters use `filter: grayscale(1) brightness(0.6)` to look grey. The speech bubble's little tail is a square rotated 45 degrees.

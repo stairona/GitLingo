@@ -1,8 +1,7 @@
-/* Right column: stays in view while the middle scrolls. */
 .right-panel {
   position: sticky;
   top: 0;
-  flex: 0 0 340px; /* always 340px wide */
+  flex: 0 0 340px;
   padding: var(--space-7) 0;
   display: flex;
   flex-direction: column;
@@ -36,7 +35,6 @@
   color: var(--text-muted);
 }
 
-/* Progress bar: a dark track with a purple fill whose width is the percent. */
 .progress {
   height: 16px;
   border-radius: var(--radius-pill);
@@ -48,11 +46,10 @@
   height: 100%;
   border-radius: var(--radius-pill);
   background: var(--accent);
-  /* Slide smoothly when a lesson is finished. */
+
   transition: width 0.5s;
 }
 
-/* The fun-fact characters, scattered at different heights instead of in a straight line. */
 .right-panel__facts {
   display: flex;
   justify-content: space-around;

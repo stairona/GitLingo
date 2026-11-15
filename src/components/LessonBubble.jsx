@@ -1,26 +1,18 @@
 import Icon from './Icon.jsx'
 import './LessonBubble.css'
 
-// Which icon each status shows inside the circle.
 const ICONS = {
   done: 'check',
   current: 'star',
   locked: 'lock',
 }
 
-// One round lesson button on the map.
-// status is 'done', 'current' or 'locked'. Only the current lesson can be clicked.
-// labelSide ('left' or 'right') puts the name on the outside of the path's bend,
-// so the line joining the lessons never runs through the text.
-// hash is the lesson's short commit code. Like in Git, a commit only exists once
-// you get there, so locked lessons don't show one yet.
 function LessonBubble({ title, hash, status, labelSide, onStart }) {
   const isCurrent = status === 'current'
   const showHash = status !== 'locked'
 
   return (
     <div className={`lesson-bubble lesson-bubble--${status} lesson-bubble--label-${labelSide}`}>
-      {/* Fixed-height slot so every circle's center sits at the same height in its row. */}
       <div className="lesson-bubble__slot">
         <button
           className="lesson-bubble__circle"
@@ -35,7 +27,6 @@ function LessonBubble({ title, hash, status, labelSide, onStart }) {
         {showHash && (
           <div className="lesson-bubble__ref">
             <code className="lesson-bubble__hash">{hash}</code>
-            {/* In git log, "HEAD -> main" marks where you are right now. */}
             {isCurrent && <code className="lesson-bubble__head">HEAD -&gt; main</code>}
           </div>
         )}

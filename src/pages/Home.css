@@ -1,4 +1,3 @@
-/* The home screen is one centered column. */
 .home {
   padding: var(--space-7) 0 var(--space-10);
   display: flex;
@@ -6,7 +5,6 @@
   gap: var(--space-7);
 }
 
-/* A unit is a card with a banner on top and the lesson path below. */
 .unit {
   background: var(--card);
   border: 1px solid var(--card-border);
@@ -36,28 +34,23 @@
   font-size: var(--text-xl);
 }
 
-/* The path: lessons stacked in a column. Each row's height and its
-   left/right shift come from utils/pathLayout.js, so the path zig-zags. */
-/* Holds the line and the lessons on top of each other.
-   The big top margin leaves room for the guide's speech bubble at Lesson 1. */
 .unit__path-area {
   position: relative;
   margin: var(--space-10) 0 var(--space-2);
 }
 
 .unit__step {
-  position: relative; /* characters are placed relative to their lesson row */
+  position: relative;
 }
 
-/* Bring the row you're pointing at to the front, so a character's info card
-   shows on top of the lessons below it instead of underneath them. */
+/* lift the hovered row so its character card shows over the rows below */
 .unit__step:hover,
 .unit__step:focus-within {
   z-index: 2;
 }
 
 .unit__path {
-  position: relative; /* sits above the line */
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -66,7 +59,6 @@
   align-items: center;
 }
 
-/* Locked units: the title on the left, the waiting guide on the right. */
 .unit--locked {
   display: flex;
   justify-content: space-between;
@@ -78,13 +70,11 @@
   filter: grayscale(1) brightness(0.6);
 }
 
-/* Hovering a waiting guide brings back their colors. */
 .unit__waiting-guide:hover svg,
 .unit__waiting-guide:focus-visible svg {
   filter: none;
 }
 
-/* Units that aren't ready yet use quieter colors (not see-through, so they stay readable). */
 .unit--locked .unit__label,
 .unit--locked .unit__title {
   color: var(--text-dim);

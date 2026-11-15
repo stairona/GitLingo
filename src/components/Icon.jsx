@@ -1,6 +1,3 @@
-// Our own small icons, drawn as SVG on a 24x24 grid.
-// Emoji look different on every computer and clash with our colors.
-// These use `currentColor`, so an icon takes the text color of whatever it sits in.
 const SHAPES = {
   home: (
     <>
@@ -32,8 +29,6 @@ const SHAPES = {
   ),
 }
 
-// Usage: <Icon name="lock" size={20} />
-// aria-hidden because the icon is decoration: the words next to it say what it means.
 function Icon({ name, size = 24 }) {
   return (
     <svg

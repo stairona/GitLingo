@@ -1,13 +1,4 @@
-// Fun facts about Git and GitHub, one for each of our characters.
-// Jackson stands in the sidebar on the left, Charley and Lily under the
-// right panel cards, and hovering over one shows their fact.
-//
-// side: 'left' (in the sidebar) or 'right' (under the right panel cards)
-// character: who tells it ('jackson', 'charley', 'lily')
-// pose / flip: how they stand ('stand' or 'point', and flip to face the other way)
-// label: the small line on top of the card
-//
-// Facts must be true. Each one is something well documented about Git or GitHub.
+// these have to be true, so stick to well documented facts
 export const FUN_FACTS = [
   {
     id: 'git-creator',

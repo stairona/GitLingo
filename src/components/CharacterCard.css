@@ -1,5 +1,3 @@
-/* The hover target: the character picture plus its hidden info card.
-   tabIndex on it lets keyboard users reach it too. */
 .character-hover {
   position: relative;
   display: flex;
@@ -14,7 +12,6 @@
   outline-offset: 4px;
 }
 
-/* A little hop when you point at a character, so it feels alive. */
 .character-hover:hover svg {
   transform: translateY(-4px);
 }
@@ -23,10 +20,6 @@
   transition: transform 0.15s;
 }
 
-/* Hidden until you hover over or tab onto the character.
-   display: none (not just invisible) so a hidden card takes up no room at all.
-   An invisible card hanging below the last unit made the page taller than the
-   layout, which stopped the sidebar from staying in place when you scroll. */
 .character-card {
   position: absolute;
   top: calc(100% + var(--space-2));
@@ -38,6 +31,8 @@
   border: 1px solid var(--accent);
   border-radius: var(--radius);
   box-shadow: 0 8px 24px var(--bg);
+  /* display: none, not just invisible, so hidden cards don't make the page taller
+     (that stopped the sidebar from staying in place) */
   display: none;
   flex-direction: column;
   gap: var(--space-2);
@@ -60,14 +55,11 @@
   }
 }
 
-/* align="start": the card starts at the character's left edge instead of
-   being centered under it, so it doesn't fall off the left side of the screen. */
 .character-card--start {
   left: 0;
   transform: none;
 }
 
-/* align="end": the card ends at the character's right edge, for characters near the right side. */
 .character-card--end {
   left: auto;
   right: 0;

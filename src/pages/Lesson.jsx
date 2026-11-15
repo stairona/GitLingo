@@ -1,7 +1,5 @@
 import './Lesson.css'
 
-// Placeholder lesson screen until the real one (cards, questions, hearts) is built.
-// The "finish" button lets us test that finishing a lesson unlocks the next one.
 function Lesson({ lesson, onFinish, onBack }) {
   return (
     <div className="lesson">

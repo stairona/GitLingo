@@ -1,11 +1,5 @@
-// Our three demo users, drawn as pixel art.
-// Each sprite is a list of rows. Each letter is one pixel, and a dot is empty.
-// PixelCharacter.jsx turns every letter into a little square of that color.
-//
-//   H hair   S skin   B cheek (blush)   E eye
-//   T shirt  D tie or shirt detail      P pants   K shoes
-
-// Jackson Stark: short brown hair.
+// each letter is one pixel, a dot is empty:
+// H hair, S skin, B cheek, E eye, T shirt, D tie, P pants, K shoes
 const JACKSON = [
   '..HHHHHH..',
   '..HHHHHH..',
@@ -23,7 +17,6 @@ const JACKSON = [
   '.KKK..KKK.',
 ]
 
-// Charley Dunkel: tall, brown hair with a swoop.
 const CHARLEY = [
   '..HHHHHH..',
   '.HHHHHHH..',
@@ -45,7 +38,6 @@ const CHARLEY = [
   '.KKK..KKK.',
 ]
 
-// Lily Lurvey: medium-length blond hair down to the shoulders.
 const LILY = [
   '..HHHHHH..',
   '.HHHHHHHH.',
@@ -63,8 +55,6 @@ const LILY = [
   '.KKK..KKK.',
 ]
 
-// Pointing poses: the same characters with one arm stretched out to the right,
-// pointing at a lesson. (To point left, the picture is just flipped.)
 const JACKSON_POINT = [
   '..HHHHHH.....',
   '..HHHHHH.....',
@@ -120,7 +110,6 @@ const LILY_POINT = [
   '.KKK..KKK....',
 ]
 
-// Which color each letter uses, per character. Every value is a variable from global.css.
 const SHARED = {
   S: '--char-skin',
   B: '--char-blush',
@@ -134,12 +123,6 @@ export const CHARACTERS = {
     name: 'Jackson',
     fullName: 'Jackson Stark',
     role: 'Unit 1 guide',
-    // What the hover card says, in Jackson's own words, talking to you.
-    // It all comes from our lesson docs (docs/lessons).
-    // intro: who they are. next: what you'll do in the lesson after the one
-    // the guide is standing at, looked up by that lesson's id. guideNote.js
-    // puts the next lesson's number and name in front, like
-    // "Next up, Lesson 3 (Main commands): you'll help..."
     intro: "Hi, I'm Jackson! I just got a new laptop, and I need Git set up before class tomorrow.",
     next: {
       'u1-l1':
@@ -159,7 +142,6 @@ export const CHARACTERS = {
     fullName: 'Charley Dunkel',
     role: 'Unit 2 guide',
     intro: "Hi, I'm Charley! I built a weather app for a class project, and I keep making it better.",
-    // waiting: what the guide says on a locked unit, about its first lesson.
     waiting:
       "you'll help me build dark mode on a branch, so I don't break the version that already works.",
     next: {
@@ -189,7 +171,6 @@ export const CHARACTERS = {
       'u3-l3':
         "the Wi-Fi goes down while the three of us are working, and you'll see why Git keeps working anyway.",
     },
-    // finale: what Lily says at the very last lesson, when nothing comes next.
     finale:
       "I put my portfolio on GitHub, undid a commit that broke my contact form, and found Git's hidden database. Thanks for helping all three of us!",
     poses: { stand: LILY, point: LILY_POINT },

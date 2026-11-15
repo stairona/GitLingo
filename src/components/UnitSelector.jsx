@@ -3,10 +3,6 @@ import { units } from '../content/index.js'
 import { countFinished, isUnitUnlocked, getCurrentUnitIndex } from '../utils/unitProgress.js'
 import './UnitSelector.css'
 
-// The list of units in the sidebar. Each row shows the unit's number and name,
-// plus how many lessons are done (or a lock if it hasn't opened yet).
-// Clicking a row scrolls the map to that unit. Home.jsx gives each unit's
-// section an id like "unit-1", which is how we find it.
 function UnitSelector({ completedLessons }) {
   const currentIndex = getCurrentUnitIndex(completedLessons)
 

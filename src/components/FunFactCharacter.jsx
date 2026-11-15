@@ -2,11 +2,6 @@ import PixelCharacter from './PixelCharacter.jsx'
 import CharacterCard from './CharacterCard.jsx'
 import './FunFactCharacter.css'
 
-// A character standing around the edges of the page with a fun fact.
-// The little "?" bubble hints that there's something to see.
-// Hover over (or tab onto) them and the fact pops up in their card.
-// fact: one item from content/funFacts.js
-// cardAlign: where the card opens ('center' or 'start', see CharacterCard)
 function FunFactCharacter({ fact, cardAlign = 'center' }) {
   return (
     <div className="fun-fact character-hover" tabIndex={0}>

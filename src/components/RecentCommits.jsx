@@ -1,18 +1,13 @@
 import { findLesson } from '../utils/unitProgress.js'
 import './RecentCommits.css'
 
-// How many finished lessons to show at most.
 const SHOW = 4
 
-// Your finished lessons, shown the way `git log --oneline` shows commits:
-// newest first, each with its short hash and its name.
-// completedLessons is saved in the order you finished them, so the newest
-// ones are at the end. We reverse it to put the newest on top.
 function RecentCommits({ completedLessons }) {
   const recent = [...completedLessons]
-    .reverse()
+    .reverse() // on a copy, so the saved list keeps its order
     .map(findLesson)
-    .filter(Boolean) // skip any old ids that don't match a lesson anymore
+    .filter(Boolean)
     .slice(0, SHOW)
 
   return (

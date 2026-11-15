@@ -1,4 +1,3 @@
-/* Temporary lesson screen: one centered card. */
 .lesson {
   max-width: 560px;
   margin: var(--space-10) auto;
@@ -36,7 +35,6 @@
   gap: var(--space-3);
 }
 
-/* Main button: purple with a darker bottom edge so it looks pressable. */
 .lesson__button {
   padding: var(--space-3) var(--space-6);
   border: none;

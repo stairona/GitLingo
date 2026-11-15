@@ -1,6 +1,5 @@
-/* Left column: stays in place while the middle scrolls. */
 .sidebar {
-  z-index: 5; /* keeps the fun-fact cards on top of the map when they open over it */
+  z-index: 5;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -15,13 +14,10 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
-  /* The moon image has empty room on its left for the glow, so pull it
-     back a little to line the moon up with the boxes below. */
+
   margin-left: calc(-1 * var(--space-3));
 }
 
-/* The logo file has extra space around the moon for its glow,
-   so the image is a bit bigger than the moon itself looks. */
 .sidebar__mark {
   width: 76px;
   height: 76px;
@@ -43,7 +39,6 @@
   gap: var(--space-2);
 }
 
-/* One menu row: icon + bold uppercase word. */
 .sidebar__item {
   display: flex;
   align-items: center;
@@ -57,14 +52,12 @@
   text-transform: uppercase;
 }
 
-/* The page you're on gets a purple outline and purple text. */
 .sidebar__item--active {
   border-color: var(--accent);
   background: var(--card);
   color: var(--accent-light);
 }
 
-/* The fun-fact character in the sidebar, set in a little from the edge. */
 .sidebar__facts {
   display: flex;
   flex-direction: column;

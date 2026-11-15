@@ -2,9 +2,6 @@ import Sidebar from './Sidebar.jsx'
 import RightPanel from './RightPanel.jsx'
 import './AppFrame.css'
 
-// The layout around every main page: sidebar on the left, then the page and
-// the right panel sitting side by side, centered in the space that's left.
-// `children` is whatever page we put inside, like <Home />.
 function AppFrame({ children, completedLessons }) {
   return (
     <div className="app-frame">

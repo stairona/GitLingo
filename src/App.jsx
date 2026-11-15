@@ -5,8 +5,6 @@ import AppFrame from './components/AppFrame.jsx'
 import { useProgress } from './hooks/useProgress.js'
 import unit1 from './content/units/unit-1.json'
 
-// The whole app starts here. Instead of a routing library, we keep track of
-// which screen to show ('home' or 'lesson') and which lesson is open.
 function App() {
   const [screen, setScreen] = useState('home')
   const [openLessonId, setOpenLessonId] = useState(null)
@@ -26,7 +24,6 @@ function App() {
     goHome()
   }
 
-  // Lessons take the full screen with no sidebar, so you can focus.
   if (screen === 'lesson') {
     const lesson = unit1.lessons.find((l) => l.id === openLessonId)
     return <Lesson lesson={lesson} onFinish={finishLesson} onBack={goHome} />

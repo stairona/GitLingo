@@ -251,7 +251,7 @@ How to explain it:
 - `UNIT_GUIDES` says which character guides which unit. `CHARACTERS[UNIT_GUIDES[unit.id]]` finds the guide in two steps: unit id, then character name, then that character's info.
 - `says` is keyed by lesson id, not by position, so reordering lessons can't mix up the lines.
 
-## PR #35: One file per lesson (2026-11-14, Gavin)
+## PR #36: One file per lesson (2026-11-14, Gavin)
 What it does: each unit used to be one big JSON file of about 350 lines. Now every unit is a folder with a small `unit.json` (id, number, title) and one file per lesson: `src/content/units/unit-1/lessons/lesson-1.json` and so on. The text of every lesson is exactly the same as before, and nothing on screen changed.
 Why we made this decision (the problem): big shared files were our main source of merge conflicts. Two people changing two different lessons were still editing the same file, and a PR that changed one lesson showed a 350-line file.
 How AI helped: Nicolas wrote the plan. Gavin changed two parts of it (below). Claude split the files with a small script that copied each lesson's lines exactly, rewrote `content/index.js`, and checked the result was identical to the old files. Gavin tested and committed each step.

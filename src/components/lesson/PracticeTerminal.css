@@ -65,6 +65,28 @@
   color: var(--success);
 }
 
+/* What the "command" printed after a right answer. It fades in, so it feels like
+   the command just ran. Blank lines in git log output still take up a line. */
+.terminal__line--output {
+  min-height: 1.6em;
+  animation: terminal-output-in 0.3s ease-out;
+}
+
+@keyframes terminal-output-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal__line--output {
+    animation: none;
+  }
+}
+
 .terminal__input-row {
   display: flex;
   align-items: center;

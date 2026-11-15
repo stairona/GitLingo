@@ -5,8 +5,14 @@ import './PracticeTerminal.css'
 // Lesson.jsx compares the text with the question's acceptedAnswers.
 // Like MultipleChoice, it only shows things and reports what happens:
 // typed is the text in the box, onType reports each change, onSubmit means "check it".
-function PracticeTerminal({ question, typed, onType, onSubmit, checked }) {
-  const { prompt, startingHistory = [] } = question
+// isRight comes from Lesson.jsx after CHECK, so the terminal knows whether to "run" the command.
+function PracticeTerminal({ question, typed, onType, onSubmit, checked, isRight }) {
+  const { prompt, startingHistory = [], fakeOutput = [] } = question
+
+  // Only a right answer prints output, like a real command that worked.
+  // A wrong answer just stays in the box, so the player can compare it with
+  // the right answer shown in the red bar.
+  const showOutput = checked && isRight
 
   // The input sits inside a <form>, so pressing Enter submits it for free.
   // preventDefault stops the browser from reloading the page, which is what a
@@ -55,6 +61,15 @@ function PracticeTerminal({ question, typed, onType, onSubmit, checked }) {
               spellCheck={false}
             />
           </form>
+
+          {/* Some commands really print nothing (like git config), so fakeOutput
+              can be empty. Then nothing shows here, just like in a real terminal. */}
+          {showOutput &&
+            fakeOutput.map((line, index) => (
+              <div key={index} className="terminal__line terminal__line--output">
+                {line}
+              </div>
+            ))}
         </div>
       </div>
     </section>

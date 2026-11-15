@@ -373,6 +373,21 @@ How to explain it:
 - Every review starts with an empty `answers` list, so all the questions can be answered again. We didn't need to change `MultipleChoice` or `PracticeTerminal`.
 - After the last screen, a review shows `ReviewFinished`, which calls `onBack`, not `onFinish`, so nothing is saved.
 
+## PR #46: A full README (2026-11-15, Gavin)
+What it does: replaces the 3-line README with what judges and new readers need: what GitLingo does, the live link, how to run it locally, how it's built, the main decisions we made and why, how we used AI, and who did what.
+How AI helped: Claude drafted the README from our code, our understanding log and the git history. We checked it for accuracy, especially the Team and "How we used AI" sections, before merging.
+How to explain it:
+- The README is the first thing anyone sees on GitHub, so it answers the basic questions: what is this, can I try it, how does it work, who made it.
+- "Decisions we made (and why)" lists real choices with their reasons, like case-sensitive answers and one file per lesson. These are the things we can talk about when someone asks why we built it this way.
+- "How we used AI" is required by our CLAUDE.md. It says honestly what Claude did (tutor, reviewer, and writing code we asked for) and what we did (decisions, testing, commits, reviewing each other's PRs), and points to this log for details.
+
+## PR #48: README screenshots and future improvements (2026-11-15, Gavin)
+What it does: adds two screenshots of the live site to the README (the map and a lesson question), and turns the old "out of scope" line into a "Future improvements" section with 8 ideas, each with a short reason.
+How AI helped: Gavin took the screenshots and chose to add the section. Claude wrote the list of ideas and the image descriptions.
+How to explain it:
+- `![description](docs/screenshot-map.png)` is how Markdown shows an image. The text in the brackets is read out by screen readers and shows if the image can't load.
+- The future ideas follow from what we built: more units and a merge conflict simulator (the hardest part for us), a light theme (easy because every color is a CSS variable), and accounts (would need a backend, which we left out on purpose).
+
 ## PR #49: Land on the lesson you're working on (2026-11-15, Nicolas)
 What it does: coming back to the map after a lesson (finished or quit with ✕), it slides to your glowing current lesson instead of starting at the top. Someone brand new, or someone who finished everything, stays at the top.
 How AI helped: Claude built PR 9 of the plan and checked it in Chrome with different amounts of progress (new player, Unit 1 done, halfway through Unit 2, everything done, and with animations turned off).

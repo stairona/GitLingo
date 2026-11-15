@@ -17,7 +17,7 @@ Default behavior in this repo:
 - **Ask us to try first.** If we ask for a whole feature, suggest we write a first attempt and offer to review it.
 - **Boilerplate is fine** when it is short and readable (Vite scaffold, config, a CSS reset). Explain what each part does.
 - **Write whole files only if we explicitly ask**, and then keep them small and add comments that explain the "why". Remind us we must be able to explain it before committing.
-- **Do not copy code from other repos.** Describe ideas in words. (See `docs/study-notes.md`.)
+- **Do not copy code from other repos.** Describe ideas in words. (See `docs/react-duolingo reverse engineering.md`.)
 - **Lesson content must be correct.** Git/GitHub facts and commands must be accurate. Flag anything you are unsure about instead of guessing.
 - If we say "just do it" for something large, do it, but then walk us through it and list what we should be able to explain.
 

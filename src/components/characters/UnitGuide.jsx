@@ -1,6 +1,6 @@
 import PixelCharacter from './PixelCharacter.jsx'
 import CharacterCard from './CharacterCard.jsx'
-import { CHARACTERS } from '../content/characters.js'
+import { CHARACTERS } from '../../content/characters.js'
 import './UnitGuide.css'
 
 function UnitGuide({ id, side, says, note, unitDone }) {

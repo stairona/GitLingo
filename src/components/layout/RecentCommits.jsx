@@ -1,4 +1,4 @@
-import { findLesson } from '../utils/unitProgress.js'
+import { findLesson } from '../../utils/unitProgress.js'
 import './RecentCommits.css'
 
 const SHOW = 4

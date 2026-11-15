@@ -208,3 +208,8 @@ How to explain it:
 - The name uses a new text size, `--text-4xl` (2.25rem), added to the list in `global.css`. The moon image went from 56px to 76px.
 - The moon file has empty room around it for the glow, so a small negative `margin-left` lines the moon up with the boxes below it.
 - In `AppFrame.css`, the first grid column (the sidebar) went from 256px to 280px.
+
+## PR #29: Remove unused files (2026-11-14, Nicolas)
+What it does: deletes `src/content/upcoming-units.json` (replaced by Gavin's unit files) and `src/utils/.gitkeep` (the folder has real files now).
+How AI helped: Claude checked that nothing used them. Nicolas ran the `git rm` himself.
+How to explain it: `git rm` deletes a file and stages that deletion in one step, so the next commit removes it from the repo.
